@@ -6,6 +6,8 @@ palette, a night-side Earth for the network payoff, and a synthesised score with
 design locked to every cut.
 
 - **Film:** `out/MASS_OneEconomy_30s_1080p.mp4` (1920×1080, 24 fps, H.264 + AAC 48 kHz stereo)
+- **Share copy:** `out/MASS_OneEconomy_30s_1080p_share.mp4` (same film at 7.2 Mbps, under 30 MB for messaging and uploads)
+- **Score stem:** `out/mass_score.wav` (24-bit, −15.6 LUFS)
 - **Storyboard and rationale:** [`STORYBOARD.md`](STORYBOARD.md)
 - **Credits and licences:** [`CREDITS.md`](CREDITS.md)
 

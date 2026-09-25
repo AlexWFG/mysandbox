@@ -13,7 +13,7 @@ def run(cmd):
     subprocess.run(cmd, check=True)
 
 
-def encode(picture, score, dest, kbps=11000):
+def encode(picture, score, dest, kbps=11000, akbps=320):
     """Two-pass H.264 at a fixed budget: grain is costly, so CRF would balloon the file."""
     common = ['-c:v', 'libx264', '-preset', 'slow', '-tune', 'grain', '-profile:v', 'high',
               '-b:v', f'{kbps}k', '-maxrate', f'{int(kbps * 1.6)}k', '-bufsize', f'{kbps * 2}k',
@@ -22,7 +22,7 @@ def encode(picture, score, dest, kbps=11000):
     run(['ffmpeg', '-y', '-loglevel', 'error', '-i', picture] + common +
         ['-pass', '1', '-passlogfile', log, '-an', '-f', 'mp4', '/dev/null'])
     run(['ffmpeg', '-y', '-loglevel', 'error', '-i', picture, '-i', score, '-map', '0:v:0', '-map', '1:a:0'] + common +
-        ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', '320k', '-ar', '48000', '-shortest',
+        ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', f'{akbps}k', '-ar', '48000', '-shortest',
          '-movflags', '+faststart', dest])
     for f in os.listdir(OUT):
         if f.startswith('x264_2pass'):
@@ -55,5 +55,7 @@ if __name__ == '__main__':
     dest = os.path.join(OUT, 'MASS_OneEconomy_30s_1080p.mp4')
     if '--sheet-only' not in sys.argv:
         encode(picture, score, dest)
+        # a lighter copy for messaging apps and upload limits (< 30 MB)
+        encode(picture, score, dest.replace('.mp4', '_share.mp4'), kbps=7200, akbps=256)
     contact_sheet(dest, os.path.join(OUT, 'MASS_contact_sheet.jpg'),
                   [1.2, 3.8, 5.4, 7.0, 8.9, 10.9, 12.0, 13.4, 15.0, 16.9, 18.9, 20.9, 22.9, 24.2, 26.6, 28.5])
