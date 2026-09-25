@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Propchain Launch Reel</title>
+<style>
+  @font-face { font-family: Inter; font-weight: 300; src: url(assets/inter-latin-300-normal.woff2) format('woff2'); }
+  @font-face { font-family: Inter; font-weight: 400; src: url(assets/inter-latin-400-normal.woff2) format('woff2'); }
+  @font-face { font-family: Inter; font-weight: 500; src: url(assets/inter-latin-500-normal.woff2) format('woff2'); }
+  @font-face { font-family: Inter; font-weight: 600; src: url(assets/inter-latin-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: Mono; font-weight: 400; src: url(assets/jetbrains-mono-latin-400-normal.woff2) format('woff2'); }
+  @font-face { font-family: Mono; font-weight: 500; src: url(assets/jetbrains-mono-latin-500-normal.woff2) format('woff2'); }
+
+  :root { --y: #FFBE06; --ink: #F4F2EC; --dim: rgba(244,242,236,.62); }
+  html, body { margin: 0; background: #070707; overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #070707; }
+  canvas#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+  #ui { position: absolute; inset: 0; font-family: Inter, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .abs { position: absolute; }
+  .fx { will-change: transform, opacity, filter; }
+
+  /* Text cards: lower-left, deck-style */
+  .card { position: absolute; left: 132px; bottom: 150px; width: 1300px; }
+  .eyebrow { font-family: Mono, monospace; font-weight: 500; font-size: 19px; letter-spacing: .26em; color: var(--y); text-transform: uppercase; margin-bottom: 26px; }
+  .eyebrow .bar { display: inline-block; width: 38px; height: 2px; background: var(--y); vertical-align: middle; margin-right: 16px; transform-origin: left center; }
+  .h1 { font-weight: 300; font-size: 104px; line-height: 1.02; letter-spacing: -.035em; }
+  .h2 { font-weight: 300; font-size: 76px; line-height: 1.08; letter-spacing: -.03em; }
+  .sub { font-weight: 400; font-size: 30px; line-height: 1.35; color: var(--dim); margin-top: 26px; letter-spacing: -.005em; max-width: 1000px; }
+  .line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+  .line > span { display: inline-block; }
+  .w { display: inline-block; white-space: pre; }
+  .yl { color: var(--y); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Proof ticker (layer 02) */
+  #proofs { right: 100px; top: 270px; width: 520px; padding: 22px 32px; font-family: Mono, monospace; background: linear-gradient(90deg, rgba(8,8,8,.55), rgba(8,8,8,.8)); backdrop-filter: blur(14px); border-left: 1px solid rgba(255,190,6,.35); }
+  .proof { display: flex; align-items: center; gap: 18px; padding: 16px 0; border-top: 1px solid rgba(255,190,6,.28); }
+  .proof:last-child { border-bottom: 1px solid rgba(255,190,6,.28); }
+  .proof .ck { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--y); position: relative; flex: none; }
+  .proof .ck svg { position: absolute; inset: 0; }
+  .proof .pt { font-size: 17px; letter-spacing: .16em; color: var(--ink); }
+  .proof .ph { font-size: 14px; color: rgba(244,242,236,.45); margin-top: 6px; letter-spacing: .04em; }
+
+  /* Agent tags (layer 03) */
+  .tag { font-family: Mono, monospace; font-size: 14px; letter-spacing: .08em; color: var(--ink); white-space: nowrap;
+         padding: 7px 11px; border: 1px solid rgba(255,190,6,.55); background: rgba(10,10,10,.55); transform-origin: left bottom; }
+  .tag b { color: var(--y); font-weight: 500; }
+  .tagline { position: absolute; height: 1px; background: rgba(255,190,6,.7); transform-origin: left center; }
+
+  /* Settlement rail */
+  #rail { left: 132px; right: 132px; bottom: 92px; height: 60px; font-family: Mono, monospace; }
+  #rail .track { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(244,242,236,.18); }
+  #rail .fill { position: absolute; left: 0; top: 0; height: 2px; margin-top: -.5px; background: var(--y); box-shadow: 0 0 18px rgba(255,190,6,.8); }
+  #rail .step { position: absolute; top: -7px; transform: translateX(-7px); }
+  #rail .dot { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid rgba(244,242,236,.35); background: #0b0b0b; box-sizing: border-box; }
+  #rail .lbl { position: absolute; top: 30px; left: 0; font-size: 17px; letter-spacing: .22em; white-space: nowrap; }
+  #rail .idx { color: var(--y); margin-right: 12px; }
+
+  /* Stats */
+  #stats { left: 132px; right: 132px; bottom: 150px; display: flex; gap: 0; }
+  .stat { flex: 1; padding-left: 34px; border-left: 1px solid rgba(255,190,6,.45); }
+  .stat:first-child { padding-left: 0; border-left: 0; }
+  .stat .v { font-weight: 300; font-size: 112px; letter-spacing: -.04em; line-height: 1; }
+  .stat .v i { font-style: normal; color: var(--y); }
+  .stat .k { font-family: Mono, monospace; font-size: 17px; letter-spacing: .2em; color: var(--dim); margin-top: 22px; text-transform: uppercase; line-height: 1.5; }
+
+  /* Brand bug + frame */
+  #bug { left: 132px; top: 84px; height: 26px; }
+  #bug img { height: 26px; display: block; }
+  #chap { right: 132px; top: 88px; font-family: Mono, monospace; font-size: 16px; letter-spacing: .24em; color: rgba(244,242,236,.55); }
+  #chap b { color: var(--y); font-weight: 500; }
+
+  /* End card */
+  #end { inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #endlogo { position: relative; width: 820px; height: 111px; }
+  #endlogo .mark { position: absolute; left: 0; top: 0; height: 111px; }
+  #endlogo .word { position: absolute; left: 0; top: 0; height: 111px; }
+  #endtag { font-weight: 300; font-size: 46px; letter-spacing: -.02em; margin-top: 64px; color: var(--ink); }
+  #endtri { font-family: Mono, monospace; font-size: 18px; letter-spacing: .3em; color: var(--dim); margin-top: 30px; text-transform: uppercase; }
+  #endtri b { color: var(--y); font-weight: 500; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "./node_modules/three/build/three.module.js",
+  "three/addons/": "./node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl" width="1920" height="1080"></canvas>
+  <div id="ui"></div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
