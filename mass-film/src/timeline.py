@@ -55,27 +55,27 @@ TAGS = [15.92, 16.16, 16.40]
 HUB = ('ABU DHABI', 24.45, 54.38)
 HUB_IGNITE = 17.72
 NODES = [
-    # name, lat, lon, ignite time, show label
-    ('KARACHI', 24.86, 67.00, 18.30, True),
-    ('MUMBAI', 19.08, 72.88, 18.55, True),
-    ('RIYADH', 24.71, 46.68, 18.80, True),
-    ('ISTANBUL', 41.01, 28.98, 19.05, True),
-    ('TASHKENT', 41.30, 69.24, 19.30, True),
-    ('CAIRO', 30.04, 31.24, 19.55, False),
-    ('DHAKA', 23.81, 90.41, 19.80, False),
-    ('JAKARTA', -6.21, 106.85, 20.05, True),
-    ('HO CHI MINH CITY', 10.82, 106.63, 20.30, False),
-    ('LONDON', 51.51, -0.13, 20.55, True),
-    ('MANILA', 14.60, 120.98, 20.80, False),
-    ('BAKU', 40.41, 49.87, 21.05, False),
-    ('SHANGHAI', 31.23, 121.47, 21.30, False),
-    ('SEOUL', 37.57, 126.98, 21.55, True),
+    # name, lat, lon, ignite time, show label. One city per target corridor country in the
+    # deck's network map; corridors are the roadmap, none is live yet.
+    ('KARACHI', 24.86, 67.00, 18.30, True),            # Pakistan
+    ('MUMBAI', 19.08, 72.88, 18.55, True),             # India
+    ('RIYADH', 24.71, 46.68, 18.80, True),             # Saudi Arabia
+    ('ISTANBUL', 41.01, 28.98, 19.05, True),           # Türkiye
+    ('CAIRO', 30.04, 31.24, 19.30, True),              # Egypt
+    ('DHAKA', 23.81, 90.41, 19.55, False),             # Bangladesh
+    ('JAKARTA', -6.21, 106.85, 19.80, True),           # Indonesia
+    ('HO CHI MINH CITY', 10.82, 106.63, 20.05, False),  # Vietnam
+    ('LONDON', 51.51, -0.13, 20.30, True),             # United Kingdom
+    ('KUALA LUMPUR', 3.14, 101.69, 20.55, False),      # Malaysia
+    ('MANILA', 14.60, 120.98, 20.80, False),           # Philippines
+    ('SHANGHAI', 31.23, 121.47, 21.05, False),         # China
+    ('SEOUL', 37.57, 126.98, 21.30, True),             # Korea
 ]
 ARC_TRAVEL = 0.42     # seconds for a corridor to draw from the hub to its node
-MESH = [  # node-to-node corridors that appear once the hub network is up
-    ('LONDON', 'ISTANBUL', 21.45), ('ISTANBUL', 'TASHKENT', 21.60), ('RIYADH', 'CAIRO', 21.75),
+MESH = [  # node-to-node corridors once the hub network is up (one accession links every member)
+    ('LONDON', 'ISTANBUL', 21.45), ('ISTANBUL', 'CAIRO', 21.60), ('RIYADH', 'CAIRO', 21.75),
     ('DHAKA', 'JAKARTA', 21.90), ('JAKARTA', 'HO CHI MINH CITY', 22.05), ('MANILA', 'SEOUL', 22.20),
-    ('SEOUL', 'SHANGHAI', 22.35), ('BAKU', 'TASHKENT', 22.50), ('TASHKENT', 'SHANGHAI', 22.65),
+    ('SEOUL', 'SHANGHAI', 22.35), ('MUMBAI', 'DHAKA', 22.50), ('KUALA LUMPUR', 'MANILA', 22.65),
 ]
 EARTH_TITLE1 = (18.40, 20.75)
 EARTH_TITLE2 = (21.00, 23.40)

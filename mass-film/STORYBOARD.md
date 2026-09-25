@@ -44,7 +44,7 @@ Music starts on the downbeat at 9.5 s: A minor, 120 BPM, one bar = 2 s.
 
 | # | Time | Picture | On screen | Sound |
 |---|------|---------|-----------|-------|
-| 10 | 17.50–23.50 | Hard cut to Earth at night (NASA Black Marble). The letterbox opens to 16:9 as the camera pulls back from the Gulf. Abu Dhabi ignites as the first node, then Karachi, Mumbai, Riyadh, Istanbul, Tashkent, Dhaka, Jakarta, Seoul and more. Gold corridors arc between them and light pulses (payments, trade) travel along them | *Every nation, a sovereign node.* then *Connected into one economy.* | Space whoosh and boom; the pad opens; each node plays a pluck, panned to where it sits on screen; arcs whoosh; riser |
+| 10 | 17.50–23.50 | Hard cut to Earth at night (NASA Black Marble). The letterbox opens to 16:9 as the camera pulls back from the Gulf. Abu Dhabi ignites as the first node, then the deck's target corridor countries: Karachi, Mumbai, Riyadh, Istanbul, Cairo, Dhaka, Jakarta, London, Seoul and more (one city per country; illustrative, since no corridor is live yet). Gold corridors arc between them and light pulses (payments, trade) travel along them | *Every nation, a sovereign node.* then *Connected into one economy.* | Space whoosh and boom; the pad opens; each node plays a pluck, panned to where it sits on screen; arcs whoosh; riser |
 | 11 | 23.50–25.50 | Four cuts on the beat: Dubai Marina from above, the DIFC Gate, Marina reflections, Hong Kong containers | **Formed. Licensed. Banked. Recognised.** | Four impacts on the beat, reverse cymbal |
 
 ## ACT IV · THE PROMISE (25.5 – 30.0 s)

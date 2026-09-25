@@ -900,7 +900,7 @@ def shot10(t, fi):
         draw_text(h, 'SOVEREIGN NODES', 150, bar + 84, 'mono', 15, GREY, ha, tracking=0.28, align='left')
         draw_text(h, f'{lit:02d}', 150, bar + 134, 'mono_light', 44, TEXT, ha, tracking=0.04, align='left')
         live = sum(1 for a in corridors() if t >= a['t1'])
-        draw_text(h, 'LIVE CORRIDORS', 470, bar + 84, 'mono', 15, GREY, ha, tracking=0.28, align='left')
+        draw_text(h, 'CORRIDORS', 470, bar + 84, 'mono', 15, GREY, ha, tracking=0.28, align='left')
         draw_text(h, f'{live:02d}', 470, bar + 134, 'mono_light', 44, TEXT, ha, tracking=0.04, align='left')
     title(h, [('Every nation, ', TEXT), ('a sovereign node.', GOLD)], W / 2, H - 118, t, T.EARTH_TITLE1[0],
           T.EARTH_TITLE1[1], size=60, align='center')

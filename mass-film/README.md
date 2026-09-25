@@ -20,7 +20,7 @@ design locked to every cut.
 | 11.5–13.5 s | 02:14 in Karachi: Aisha forms her Abu Dhabi company through the Mass Agent (formed, licensed, bank account, screened) | *A company, born in minutes.* |
 | 13.5–15.5 s | Abu Dhabi: six stacked layers (registry, licences and rules, banking, zones, corridors, markets) locked by government-held keys | *Every rule runs as code. Governments hold the keys.* |
 | 15.5–17.5 s | A container ship in the Suez Canal, its cargo carrying a live record | *Trade flows on one live record.* |
-| 17.5–23.5 s | The frame opens to 16:9 on Earth at night: Abu Dhabi ignites, then corridors reach 14 more nations | *Every nation, a sovereign node. Connected into one economy.* |
+| 17.5–23.5 s | The frame opens to 16:9 on Earth at night: Abu Dhabi ignites, then corridors reach the 13 target corridor countries from the deck | *Every nation, a sovereign node. Connected into one economy.* |
 | 23.5–25.5 s | Four hits | **Formed. Licensed. Banked. Recognised.** |
 | 25.5–30 s | Lockup over the mass.inc dust band | *The operating system for sovereign economies.* · mass.inc |
 
