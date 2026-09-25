@@ -1,0 +1,8 @@
+# render intermediates
+out/segments/
+out/*.mkv
+out/sheet_frames/
+out/stills/
+out/render.log
+out/x264_2pass*
+src/__pycache__/
