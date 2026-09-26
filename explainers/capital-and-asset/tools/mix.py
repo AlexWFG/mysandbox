@@ -114,7 +114,7 @@ fx.add(bell(note(62), 3.5, .05), line['v33']['t'] + line['v33']['dur'] + .8); fx
 
 # ------------------------------------------------ ducking + master
 kk = int(0.25 * SR)
-e = np.clip(np.convolve(env, np.ones(kk) / kk, mode='same') * 1.4, 0, 1)
+e = np.clip(signal.fftconvolve(env, np.ones(kk) / kk, mode='same') * 1.4, 0, 1)
 music.x *= (1 - 0.55 * e)[:, None]
 fx.x *= (1 - 0.35 * e)[:, None]
 # level: music+fx bed ~10 dB under narration
