@@ -45,7 +45,7 @@ window.__ready = (async () => {
   stock('warehouse', L('07') - 1.0, W('07', 'hard') - .1, 'Mandate M-0417', 'Logistics · Germany');
   stock('lenders', L('13') - 1.3, W('13', 'they') - .15, 'Object 03 · the debt layer', 'Lenders quote the pair.');
   stock('handshake', W('23', 'so') - .25, E('23') + .7, 'Stable', 'No reason to go around the platform.');
-  stock('city', E('27') + .5, T.duration + 1, null, null, { push: .006, fi: 1.2 });
+  stock('city', E('27') + 2.0, T.duration + 1, null, null, { push: .006, fi: 1.2 });
 
   // ---------------------------------------------------------------- title
   const title = scene(0, 4.6, (t) => {
@@ -80,13 +80,13 @@ window.__ready = (async () => {
   C('07', 'CLEARING', L('20') - .7);
   C('08', 'A LIVING BOOK', L('24') - .8);
   C('09', 'THE CLAIM', L('26') - .9);
-  C('', '', E('27') + .5);
+  C('', '', E('27') + 2.0);
   chrome(logo);
 
   ch1(); ch2(); ch3(); ch4(); ch5(); ch6();
 
   // ---------------------------------------------------------------- end card
-  const t0 = E('27') + .5;
+  const t0 = E('27') + 2.0;
   const end = scene(t0, T.duration + 1, (t) => {
     rise(eLogo, t, t0 + .5, { dy: 20, d: 1.2 });
     rise(eT, t, t0 + 1.1); rise(eS, t, t0 + 1.4);
