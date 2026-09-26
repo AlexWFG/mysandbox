@@ -6,3 +6,17 @@ out/stills/
 out/render.log
 out/x264_2pass*
 src/__pycache__/
+
+# v2: stock footage is re-fetched from the manifest (src/fetch_footage.py); frames are derived
+v2/footage/*.mp4
+v2/footage/*.part
+v2/footage/frames/
+v2/footage/search/
+v2/out/segments/
+v2/out/*.mkv
+v2/out/*.wav
+v2/out/scratch_vo/
+v2/out/review/
+v2/out/still_*.jpg
+v2/src/__pycache__/
+v2/out/voice_previews/

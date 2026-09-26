@@ -1,0 +1,156 @@
+{
+ "handshake": {
+  "file": "pexels_8069057_1080p.mp4",
+  "start": 0.3,
+  "end": 7.0,
+  "speed": 0.8,
+  "pexels_id": 8069057
+ },
+ "welder": {
+  "file": "pexels_32243438_1440p.mp4",
+  "start": 0.8,
+  "end": 7.0,
+  "speed": 0.5,
+  "pexels_id": 32243438
+ },
+ "cranes": {
+  "file": "pexels_13378859_1440p.mp4",
+  "start": 10.0,
+  "end": 22.0,
+  "speed": 1.0,
+  "pexels_id": 13378859
+ },
+ "pen_sign": {
+  "file": "pexels_7578633_1440p.mp4",
+  "start": 0.0,
+  "end": 6.0,
+  "speed": 0.7,
+  "pexels_id": 7578633
+ },
+ "karachi_night": {
+  "file": "pexels_11016391_1440p.mp4",
+  "start": 4.0,
+  "end": 14.0,
+  "speed": 1.0,
+  "pexels_id": 11016391
+ },
+ "aisha_night": {
+  "file": "pexels_7983117_1440p.mp4",
+  "start": 0.0,
+  "end": 12.0,
+  "speed": 1.0,
+  "pexels_id": 7983117
+ },
+ "forms": {
+  "file": "pexels_7983125_1440p.mp4",
+  "start": 1.0,
+  "end": 14.0,
+  "speed": 1.0,
+  "pexels_id": 7983125
+ },
+ "aisha_tired": {
+  "file": "pexels_7983322_1440p.mp4",
+  "start": 0.0,
+  "end": 12.0,
+  "speed": 1.0,
+  "pexels_id": 7983322
+ },
+ "passport_control": {
+  "file": "pexels_36679174_1440p.mp4",
+  "start": 0.0,
+  "end": 8.0,
+  "speed": 0.6,
+  "pexels_id": 36679174
+ },
+ "abudhabi_morning": {
+  "file": "pexels_11336420_1440p.mp4",
+  "start": 1.0,
+  "end": 16.0,
+  "speed": 1.0,
+  "pexels_id": 11336420
+ },
+ "omar_desk": {
+  "file": "pexels_10341378_1440p.mp4",
+  "start": 28.0,
+  "end": 45.0,
+  "speed": 1.0,
+  "pexels_id": 10341378
+ },
+ "omar_day": {
+  "file": "pexels_10341378_1440p.mp4",
+  "start": 44.0,
+  "end": 64.0,
+  "speed": 1.0,
+  "pexels_id": 10341378
+ },
+ "officers_papers": {
+  "file": "pexels_10347444_1440p.mp4",
+  "start": 5.0,
+  "end": 25.0,
+  "speed": 1.0,
+  "pexels_id": 10347444
+ },
+ "ministry_building": {
+  "file": "pexels_11336050_1440p.mp4",
+  "start": 0.0,
+  "end": 15.0,
+  "speed": 1.0,
+  "pexels_id": 11336050
+ },
+ "ministry_room": {
+  "file": "pexels_38779095_1080p.mp4",
+  "start": 0.0,
+  "end": 10.0,
+  "speed": 1.0,
+  "pexels_id": 38779095
+ },
+ "abudhabi_sunset": {
+  "file": "pexels_11258028_1440p.mp4",
+  "start": 2.0,
+  "end": 7.0,
+  "speed": 0.6,
+  "pexels_id": 11258028
+ },
+ "aisha_day": {
+  "file": "pexels_8503286_1080p.mp4",
+  "start": 0.0,
+  "end": 12.0,
+  "speed": 1.0,
+  "pexels_id": 8503286
+ },
+ "aisha_coffee": {
+  "file": "pexels_8503285_1080p.mp4",
+  "start": 3.0,
+  "end": 13.0,
+  "speed": 1.0,
+  "pexels_id": 8503285
+ },
+ "ministry_office": {
+  "file": "pexels_38779108_1080p.mp4",
+  "start": 0.0,
+  "end": 14.0,
+  "speed": 1.0,
+  "pexels_id": 38779108
+ },
+ "flag": {
+  "file": "pexels_15546303_1440p.mp4",
+  "start": 2.0,
+  "end": 22.0,
+  "speed": 1.0,
+  "pexels_id": 15546303
+ },
+ "card_tap": {
+  "file": "pexels_8421360_1440p.mp4",
+  "start": 1.5,
+  "end": 8.0,
+  "speed": 1.0,
+  "pexels_id": 8421360
+ },
+ "ship": {
+  "file": "pexels_3840442_1440p.mp4",
+  "start": 4.0,
+  "end": 30.0,
+  "speed": 1.0,
+  "pexels_id": 3840442
+ }
+}
