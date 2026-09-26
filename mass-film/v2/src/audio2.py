@@ -557,7 +557,7 @@ def build():
         place(T_['same'] + 0.3 + j * 0.15, s_bell_tone(hz(nm), 1.8, 657 + j), gain=0.06, pan=-0.6 + 0.6 * j, space=0.6)
 
     # ---------------------------------------------------------------- TRUST
-    r0, r1 = L('trust', 0), L('trust', 1)
+    r0 = L('trust', 0)
     place(r0.start - 0.2, s_glass_in(700), gain=0.3, pan=0.3, hall=0.2)
     t_before = r0.word('before')
     for j in range(4):
@@ -565,14 +565,38 @@ def build():
         place(tj, s_ui_confirm(hz(NT['pay'][j]), 701 + j), gain=0.11, pan=0.35, hall=0.3)
     place(r0.end - 0.1, s_chirp(705), gain=0.2, pan=0.35, hall=0.3)
     place(r0.end - 0.05, s_bell_tone(hz('B5'), 1.2, 706), gain=0.07, pan=0.35, hall=0.4)
-    place(r1.start - 0.25, s_whoosh(0.5, 300, 3000, 0.9, 707), gain=0.18, hall=0.3)
-    t_infra, t_keys = r1.word('infrastructure'), r1.word('keys')
-    for i in range(6):
-        ti = r1.start + 0.1 + i * (t_infra - r1.start + 0.6) / 6
-        place(ti + 0.18, s_bell_tone(hz(NT['layers'][i]), 1.2, 710 + i) * 0.6, gain=0.09 if EL else 0.14,
-              pan=0.45, hall=0.35)
-        place(ti + 0.18, s_key_click(716 + i), gain=0.12, pan=0.45)
-    place(t_keys - 0.19, s_lock(), gain=0.75, pan=0.3, room=0.3, hall=0.2)
+    # ---------------------------------------------------------------- LAYERS: the foundation, the economy on top
+    y0 = L('layers', 0)
+    tin = S.layer_times()
+    place(y0.start - 0.35, s_whoosh(0.5, 300, 3000, 0.9, 707), gain=0.18, hall=0.3)
+    place(tin[0], s_boom(1.8, 70, 34, 708), gain=0.55, bus='sub')                          # the foundation lands
+    place(tin[0], s_bell_tone(hz('D3' if EL else 'A2'), 2.5, 709), gain=0.06, hall=0.5)
+    place(y0.word('registry') - 0.1, s_glass_in(711), gain=0.14, pan=-0.2, hall=0.3)
+    place(y0.word('government') - 0.1, s_tick(True, 712), gain=0.12, pan=-0.5, room=0.2)
+    place(y0.word('keys') - 0.19, s_lock(), gain=0.7, pan=0.35, room=0.3, hall=0.2)
+    for i in range(1, 6):
+        pn = -0.3 + 0.15 * i
+        place(tin[i], s_bell_tone(hz(NT['layers'][i]), 1.2, 720 + i) * 0.6, gain=0.08 if EL else 0.12, pan=pn, hall=0.35)
+        place(tin[i], s_key_click(730 + i), gain=0.1, pan=pn)
+        place(tin[i] - 0.12, s_whoosh(0.2, 800, 4000, 1.2, 740 + i), gain=0.05, pan=pn, hall=0.2)
+    # ---------------------------------------------------------------- TRADE: a record every bank can trust
+    tr = L('trade', 0)
+    t_rec = tr.word('record')
+    place(t_rec, s_whoosh(0.7, 600, 6000, 1.4, 750), gain=0.08, hall=0.3)                  # the record rises
+    place(t_rec + 0.7, s_bell_tone(hz(NT['result'][2]), 1.4, 751), gain=0.05, hall=0.4)
+    place(tr.word('bank'), s_bell_tone(hz(NT['result'][0]), 1.0, 752), gain=0.04, hall=0.3)
+    t_cut = S.trade_cut()
+    place(t_cut - 0.7, s_whoosh(0.8, 400, 7000, 1.0, 753, 1.2), gain=0.16, hall=0.25)      # the dive
+    if EL:   # the harbour's quiet air under the card; its horn and clanks would sit on "from day one"
+        t_net = L('network', 0).start - 0.1
+        place(t_cut - 0.1, tile(elf('port', s_city_night(4.0, 20), t1=1.45), t_net - t_cut + 0.5, 0.3, 0.5), gain=0.22)
+    place(t_cut + 0.05, s_glass_in(754), gain=0.2, pan=0.35, hall=0.2)
+    for j in range(3):
+        place(tr.word('trade') + 0.25 * j, s_ui_confirm(hz(NT['checks'][j]), 755 + j), gain=0.1, pan=0.35, hall=0.3)
+    t_fl = tr.word('flows')
+    place(t_fl, s_boom(1.2, 80, 45, 758), gain=0.25, bus='sub')
+    for j, nm in enumerate(NT['result']):
+        place(t_fl + 0.05 + j * 0.09, s_bell_tone(hz(nm), 1.6, 759 + j), gain=0.05, pan=0.35, hall=0.4)
 
     # ---------------------------------------------------------------- NETWORK
     n0 = L('network', 0)
@@ -621,7 +645,7 @@ def build():
     t_mass = c1.word('Mass') - 0.05
     s_sting(t_mass, big=True)
     if EL:
-        sc, fs = sf.read(os.path.join(ELDIR, 'score.wav'))
+        sc, fs = sf.read(os.path.join(ELDIR, 'score_spliced.wav'))
         if fs != FS:
             sc = signal.resample_poly(sc, FS, fs, axis=0)
         env = np.sqrt(lp((sc ** 2).mean(1), 8).clip(1e-12, None))

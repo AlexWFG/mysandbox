@@ -23,7 +23,7 @@ import globe as G  # noqa: E402
 from timeline2 import Timeline  # noqa: E402
 from plates import plate  # noqa: E402
 from ui2 import (UIFrame, Chat, chat_panel, licensing_console, ministry_dashboard, systems_wall,  # noqa: E402
-                 lower_third, pulse, rr, label, check_icon, spinner, appear, mark_icon, seal, GREEN, AMBER)
+                 lower_third, pulse, rr, label, check_icon, spinner, appear, mark_icon, seal, GREEN, AMBER, WHITE)
 import canvas as CV  # noqa: E402
 
 TL = Timeline(os.environ.get('MASS_VO', 'scratch'))
@@ -699,91 +699,312 @@ def seg_demo(t, fi):
 
 # --------------------------------------------------------------------------- TRUST
 PAY_CHECKS = ['Sanctions screening', 'Licence covers this trade', 'Payment limits', 'Beneficiary verified']
-LAYERS = ['REGISTRY', 'LICENCES & RULES', 'BANKING', 'ZONES', 'CORRIDORS', 'MARKETS']
 
 
 def seg_trust(t, fi):
-    l0, l1 = L('trust', 0), L('trust', 1)
-    end = L('network', 0).start - 0.1
-    if t < l1.start - 0.15:
-        lin = plate('aisha_day', t, l0.start - 0.2, l1.start, (0.40, 0.30), (0.42, 0.31), 1.03, 1.07)
-        d = disp(lens_blur(lin, 4) * (0.5 if 'aisha_day' not in _clips() else 0.7), 'dusk', vig=0.5)
-        ui = UIFrame()
-        c = ui.c
-        x, y, w, h = W - 120 - 860, 150, 860, 700
-        p = appear(t, l0.start - 0.2, 0.4)
-        ui.glass(x, y, w, h, 30, p, tint_a=0.7)
-        label(c, 'PAYMENT · AISHA TRADING LLC', x + 40, y + 60, 16, GREY, p, tracking=0.24)
-        draw_text(c, 'Karachi Steel Co.', x + 40, y + 130, 'display_semibold', 44, TEXT, p, align='left')
-        draw_text(c, 'AED 48,000', x + w - 40, y + 130, 'display_light', 44, TEXT, p, align='right')
-        c.drawRect(skia.Rect.MakeXYWH(x + 1, y + 170, w - 2, 1), paint((1, 1, 1), 0.08 * p))
-        label(c, 'CHECKED BEFORE IT MOVES', x + 40, y + 222, 15, GOLD, p, tracking=0.26)
-        t_before = l0.word('before')
-        for j, nm in enumerate(PAY_CHECKS):
-            tj = l0.start + 0.3 + j * (t_before - l0.start) / len(PAY_CHECKS)
-            ry = y + 286 + j * 62
-            if t < tj:
-                V1_spin = spinner(c, x + 58, ry - 9, 13, t, GOLD, p * 0.9)
-                draw_text(c, nm, x + 92, ry, 'text', 28, GREY, p, align='left')
-            else:
-                check_icon(c, x + 58, ry - 9, 13, ramp(t, tj, tj + 0.3), GOLD, p)
-                draw_text(c, nm, x + 92, ry, 'text', 28, TEXT, p, align='left')
-        ts = l0.end - 0.1
-        ps = appear(t, ts, 0.35)
-        if ps > 0:
-            c.drawRRect(rr(x + 40, y + h - 130, w - 80, 88, 20), paint(GOLD, 0.12 * p * ps))
-            c.drawRRect(rr(x + 40, y + h - 130, w - 80, 88, 20), paint(GOLD, 0.5 * p * ps, stroke=1.2))
-            draw_text(c, 'Sent', x + 74, y + h - 74, 'text_semibold', 30, TEXT, p * ps, align='left')
-            label(c, 'PROOF 7F3A·91C2·E04B · VERIFIABLE BY ANY AUTHORITY', x + w - 70, y + h - 78, 14, GOLD, p * ps,
-                  align='right', tracking=0.16)
-        return ui.apply(d)
-    # sovereign by design: the stack locks under the nation's keys
-    lin = plate('flag', t, l1.start - 0.2, end, (0.42, 0.45), (0.46, 0.43), 1.08, 1.16)
-    xs_ = np.linspace(0, 1, W, dtype=np.float32)[None, :, None]
-    lin = lin * (0.9 - 0.45 * np.clip((xs_ - 0.5) * 2.5, 0, 1))
-    lin = V1.scrim(lin, 520, H - 210, 640, 160, 0.5)
-    d = disp(lin, 'bluehour', bloom_amt=0.25, bloom_th=0.62, hal=0.08, vig=0.5)
+    l0 = L('trust', 0)
+    lin = plate('aisha_day', t, l0.start - 0.2, L('layers', 0).start, (0.40, 0.30), (0.42, 0.31), 1.03, 1.07)
+    d = disp(lens_blur(lin, 4) * (0.5 if 'aisha_day' not in _clips() else 0.7), 'dusk', vig=0.5)
     ui = UIFrame()
     c = ui.c
-    t_infra, t_keys = l1.word('infrastructure'), l1.word('keys')
-    bx, by, wdt, hgt, gap = 1160, 850, 560, 48, 80
-    sl = 0.403
-    for i, nm in enumerate(LAYERS):
-        ti = l1.start + 0.1 + i * (t_infra - l1.start + 0.6) / len(LAYERS)
-        p = ease_out_cubic(ramp(t, ti, ti + 0.34))
+    x, y, w, h = W - 120 - 860, 150, 860, 700
+    p = appear(t, l0.start - 0.2, 0.4)
+    ui.glass(x, y, w, h, 30, p, tint_a=0.7)
+    label(c, 'PAYMENT · AISHA TRADING LLC', x + 40, y + 60, 16, GREY, p, tracking=0.24)
+    draw_text(c, 'Karachi Steel Co.', x + 40, y + 130, 'display_semibold', 44, TEXT, p, align='left')
+    draw_text(c, 'AED 48,000', x + w - 40, y + 130, 'display_light', 44, TEXT, p, align='right')
+    c.drawRect(skia.Rect.MakeXYWH(x + 1, y + 170, w - 2, 1), paint((1, 1, 1), 0.08 * p))
+    label(c, 'CHECKED BEFORE IT MOVES', x + 40, y + 222, 15, GOLD, p, tracking=0.26)
+    t_before = l0.word('before')
+    for j, nm in enumerate(PAY_CHECKS):
+        tj = l0.start + 0.3 + j * (t_before - l0.start) / len(PAY_CHECKS)
+        ry = y + 286 + j * 62
+        if t < tj:
+            spinner(c, x + 58, ry - 9, 13, t, GOLD, p * 0.9)
+            draw_text(c, nm, x + 92, ry, 'text', 28, GREY, p, align='left')
+        else:
+            check_icon(c, x + 58, ry - 9, 13, ramp(t, tj, tj + 0.3), GOLD, p)
+            draw_text(c, nm, x + 92, ry, 'text', 28, TEXT, p, align='left')
+    ts = l0.end - 0.1
+    ps = appear(t, ts, 0.35)
+    if ps > 0:
+        c.drawRRect(rr(x + 40, y + h - 130, w - 80, 88, 20), paint(GOLD, 0.12 * p * ps))
+        c.drawRRect(rr(x + 40, y + h - 130, w - 80, 88, 20), paint(GOLD, 0.5 * p * ps, stroke=1.2))
+        draw_text(c, 'Sent', x + 74, y + h - 74, 'text_semibold', 30, TEXT, p * ps, align='left')
+        label(c, 'PROOF 7F3A·91C2·E04B · VERIFIABLE BY ANY AUTHORITY', x + w - 70, y + h - 78, 14, GOLD, p * ps,
+              align='right', tracking=0.16)
+    return ui.apply(d)
+
+
+# --------------------------------------------------------------------------- LAYERS: the government's foundation,
+# the economy built on top
+STACK = [('SOVEREIGN REGISTRY', 'Run by the government, on its infrastructure, under its keys'),
+         ('LICENCES & RULES', 'rules run as code'),
+         ('BANKING & PAYMENTS', 'accounts open with the company'),
+         ('FREE ZONES', 'one operating layer'),
+         ('TRADE CORRIDORS', 'recognised across borders'),
+         ('MARKETS & TRADE FINANCE', 'invoices and cargo, financed')]
+SX0, SW, SDX, SDY = 420, 1080, 26, 18          # stack left, width, top-face depth
+F_BOT, F_H, L_H, L_GAP = 880, 104, 60, 16
+
+
+def stack_geom(i):
+    """(top, bottom) of layer i (0 = foundation)."""
+    if i == 0:
+        return F_BOT - F_H, F_BOT
+    b = F_BOT - F_H - L_GAP - (i - 1) * (L_H + L_GAP)
+    return b - L_H, b
+
+
+def layer_times():
+    l0, l1 = L('layers', 0), L('layers', 1)
+    t_bk, t_tr = l1.word('banking'), l1.word('trade')
+    return [l0.word('base'), l1.word('licences'), t_bk, (t_bk + t_tr) / 2 + 0.05, t_tr - 0.22, t_tr]
+
+
+def trade_cut():
+    """The stack holds through "a record every bank can trust", then the camera dives into the top layer."""
+    return L('trade', 0).word('trust') + 0.7
+
+
+def grad(y0, y1, c0, a0, c1, a1):
+    pnt = skia.Paint(AntiAlias=True)
+    pnt.setShader(skia.GradientShader.MakeLinear(
+        [skia.Point(0, y0), skia.Point(0, y1)],
+        [skia.Color4f(c0[0], c0[1], c0[2], a0).toColor(), skia.Color4f(c1[0], c1[1], c1[2], a1).toColor()]))
+    return pnt
+
+
+def draw_slab(c, i, p, t, t_in, foundation=False):
+    top, bot = stack_geom(i)
+    rise = (1 - ease_out_cubic(p)) * (40 if not foundation else 70)
+    top, bot = top + rise, bot + rise
+    a = clamp(p * 1.4)
+    x0, x1 = SX0, SX0 + SW
+    glow = math.exp(-max(0.0, t - t_in) * 2.2) * (t >= t_in)
+    # top face
+    tf = skia.Path()
+    tf.moveTo(x0, top); tf.lineTo(x1, top); tf.lineTo(x1 + SDX, top - SDY); tf.lineTo(x0 + SDX, top - SDY); tf.close()
+    c.drawPath(tf, paint(GOLD if foundation else (0.55, 0.58, 0.7), (0.30 if foundation else 0.16) * a))
+    c.drawPath(tf, paint(GOLD if foundation else WHITE, (0.9 if foundation else 0.22 + 0.6 * glow) * a, stroke=1.2))
+    # side face
+    sf_ = skia.Path()
+    sf_.moveTo(x1, top); sf_.lineTo(x1 + SDX, top - SDY); sf_.lineTo(x1 + SDX, bot - SDY); sf_.lineTo(x1, bot); sf_.close()
+    c.drawPath(sf_, paint((0.02, 0.02, 0.04), 0.85 * a))
+    c.drawPath(sf_, paint(GOLD if foundation else WHITE, (0.5 if foundation else 0.12) * a, stroke=1.0))
+    # front face
+    if foundation:
+        c.drawRect(skia.Rect.MakeLTRB(x0, top, x1, bot), grad(top, bot, (0.42, 0.33, 0.16), 0.92 * a, (0.16, 0.12, 0.06), 0.95 * a))
+    else:
+        c.drawRect(skia.Rect.MakeLTRB(x0, top, x1, bot), grad(top, bot, (0.12, 0.13, 0.18), 0.88 * a, (0.05, 0.05, 0.08), 0.9 * a))
+    c.drawRect(skia.Rect.MakeLTRB(x0, top, x1, bot), paint(GOLD if foundation else WHITE,
+                                                            (0.95 if foundation else 0.2 + 0.7 * glow) * a, stroke=1.3))
+    if glow > 0.02 and not foundation:
+        c.drawRect(skia.Rect.MakeLTRB(x0, top, x1, bot), paint(GOLD, 0.35 * glow * a, stroke=6, blur=8))
+    return top, bot, a
+
+
+def seg_layers(t, fi):
+    l0, l1 = L('layers', 0), L('layers', 1)
+    t0 = l0.start - 0.2
+    t_end = trade_cut()
+    tin = layer_times()
+    lt = L('trade', 0)
+    t_rec, t_bank = lt.word('record'), lt.word('bank')
+    t_reg, t_gov, t_keys = l0.word('registry'), l0.word('government'), l0.word('keys')
+    # backdrop: the city at night, far behind the diagram
+    bg = plate('ministry_building', t, t0, t_end, (0.5, 0.5), (0.5, 0.47), 1.1, 1.18)
+    bg = lens_blur(bg, 9) * 0.32
+    ys = np.linspace(0, 1, H, dtype=np.float32)[:, None, None]
+    bg = bg * (0.35 + 0.65 * ys) * smooth(ramp(t, t0, t0 + 0.5))
+    Lr = Layer()
+    c = Lr.c
+    # camera: start on the foundation, open up to the whole stack, finally push into the top layer
+    u_open = ease_in_out_cubic(ramp(t, l1.start - 0.2, tin[1] + 0.3))
+    u_push = ease_in_expo(ramp(t, t_end - 0.75, t_end))
+    top5 = sum(stack_geom(5)) / 2
+    cy = lerp(lerp(F_BOT - F_H / 2 - 40, 640, u_open), top5 - 10, u_push)
+    cx = lerp(W / 2, W / 2 + 10, u_push)
+    z = lerp(lerp(1.12, 1.0, u_open), 2.6, u_push) * (1 + 0.02 * ramp(t, t0, t_end))
+    c.save()
+    c.translate(W / 2, H / 2)
+    c.scale(z, z)
+    c.translate(-cx, -cy)
+    hl = {5: math.exp(-max(0.0, t - t_rec - 0.7) * 1.2) * (t >= t_rec + 0.7),
+          2: math.exp(-max(0.0, t - t_bank) * 1.5) * (t >= t_bank)}
+    # the layers, bottom to top: glass and activity first, then the data rising through them, the type on top
+    geo = {}
+    for i in range(len(STACK)):
+        p = ramp(t, tin[i], tin[i] + (0.5 if i == 0 else 0.35))
         if p <= 0:
             continue
-        y = by - i * gap - (1 - p) * 36
-        path = skia.Path()
-        path.moveTo(bx + sl * hgt, y - hgt)
-        path.lineTo(bx + wdt + sl * hgt, y - hgt)
-        path.lineTo(bx + wdt, y)
-        path.lineTo(bx, y)
-        path.close()
-        d = frosted_path_local(d, path, p)
-        c.drawLine(bx + sl * hgt, y - hgt, bx + wdt + sl * hgt, y - hgt, paint(GOLD, 0.95 * p, stroke=1.3))
-        c.drawLine(bx, y, bx + wdt, y, paint((1, 1, 1), 0.22 * p, stroke=1.0))
-        draw_text(c, f'0{i + 1}', bx + 34, y - 14, 'mono_medium', 18, GOLD, p, tracking=0.1, align='left')
-        draw_text(c, nm, bx + 90, y - 14, 'text_medium', 21, TEXT, p, tracking=0.16, align='left')
-    kp = ease_out_cubic(ramp(t, t_keys - 0.35, t_keys))
-    if kp > 0:
-        kx, ky = bx + wdt / 2 + 10, by + 70
-        c.drawCircle(kx, ky, 26, paint((0.02, 0.02, 0.05), 0.55 * kp))
-        c.drawArc(skia.Rect.MakeXYWH(kx - 26, ky - 26, 52, 52), -90, 360 * kp, False, paint(GOLD, 0.95, stroke=1.6))
-        shk = 7 * (1 - ease_out_back(ramp(t, t_keys - 0.08, t_keys + 0.1)))
-        c.drawRRect(rr(kx - 9, ky - 1, 18, 13, 3), paint(GOLD, kp))
-        sp_ = skia.Path()
-        sp_.moveTo(kx - 6, ky - 1)
-        sp_.lineTo(kx - 6, ky - 6 - shk)
-        sp_.arcTo(skia.Rect.MakeXYWH(kx - 6, ky - 12 - shk, 12, 12), 180, 180, False)
-        sp_.lineTo(kx + 6, ky - 1 - shk * 0.4)
-        c.drawPath(sp_, paint(GOLD, kp, stroke=2.2))
-        fl = math.exp(-(t - t_keys) * 6) if t >= t_keys else 0
-        if fl > 0.01:
-            c.drawCircle(kx, ky, 26 + 40 * (1 - fl), paint(GOLD, 0.8 * fl, stroke=1.6))
-        label(c, V1.decode('GOVERNMENT NODE · NATIONAL KEYS', t, t_keys - 0.1, 0.35, 9), kx, ky + 62, 15, GOLD, kp,
-              align='center', tracking=0.26)
-    return ui.apply(d)
+        top, bot, a = draw_slab(c, i, p, t, tin[i], foundation=(i == 0))
+        geo[i] = (top, bot, a)
+        if hl.get(i, 0) > 0.02:
+            c.drawRect(skia.Rect.MakeLTRB(SX0, top, SX0 + SW, bot), paint(GOLD, 0.9 * hl[i] * a, stroke=2.0))
+            c.drawRect(skia.Rect.MakeLTRB(SX0, top, SX0 + SW, bot), paint(GOLD, 0.45 * hl[i] * a, stroke=12, blur=12))
+            c.drawRect(skia.Rect.MakeLTRB(SX0, top, SX0 + SW, bot), paint(GOLD, 0.10 * hl[i] * a))
+        if i == 0:
+            # the live registry: rows of records with a reading light sweeping across
+            for r_ in range(3):
+                for q in range(46):
+                    rx, ry = SX0 + 450 + q * 11, top + 26 + r_ * 16
+                    if rx > SX0 + SW - 150:
+                        break
+                    c.drawCircle(rx, ry, 1.6, paint((1, 0.9, 0.7), 0.35 * a))
+            sweep = SX0 + 440 + ((t - tin[0]) * 0.45 % 1.0) * 520
+            c.drawRect(skia.Rect.MakeXYWH(sweep, top + 10, 3, F_H - 20), paint(GOLD, 0.8 * a, blur=4))
+        else:
+            # activity: companies appearing along the layer
+            rng2 = np.random.default_rng(100 + i)
+            spots = rng2.uniform(SX0 + 420, SX0 + SW - 330, 14)
+            born = tin[i] + 0.25 + rng2.uniform(0, 2.5, 14)
+            for k in range(14):
+                q = appear(t, born[k], 0.3)
+                if q > 0:
+                    c.drawRRect(rr(spots[k], top + L_H - 16, 8, 8, 2), paint(GOLD, (0.25 + 0.5 * q) * a))
+    # data rising from the registry through every layer once the economy is on top
+    n_up = sum(1 for tt in tin[1:] if t >= tt)
+    rng = np.random.default_rng(7)
+    xs = rng.uniform(SX0 + 60, SX0 + SW - 60, 26)
+    ph = rng.uniform(0, 1, 26)
+    if n_up:
+        top_now = stack_geom(n_up)[0]
+        for k in range(min(26, 6 + n_up * 4)):
+            yy = F_BOT - F_H / 2 - ((t * 0.55 + ph[k]) % 1.0) * (F_BOT - F_H / 2 - top_now + 30)
+            c.drawLine(xs[k], yy, xs[k], yy + 34, paint(GOLD, 0.55, stroke=2.0, blur=1.5))
+            c.drawCircle(xs[k], yy, 2.2, paint((1, 0.95, 0.8), 0.9))
+    if t >= t_rec:
+        u_b = ease_in_out_cubic(ramp(t, t_rec, t_rec + 0.7))
+        y_from, y_to = F_BOT - F_H / 2, sum(stack_geom(5)) / 2
+        yb = lerp(y_from, y_to, u_b)
+        fade_b = 1 - smooth(ramp(t, t_rec + 0.9, t_rec + 1.6))
+        if fade_b > 0:
+            xb = SX0 + SW - 70
+            c.drawLine(xb, y_from, xb, yb, paint(GOLD, 0.85 * fade_b, stroke=4, blur=3))
+            c.drawLine(xb, y_from, xb, yb, paint((1, 0.96, 0.85), 0.9 * fade_b, stroke=1.6))
+            c.drawCircle(xb, yb, 7, paint((1, 0.97, 0.9), fade_b))
+            c.drawCircle(xb, yb, 22, paint(GOLD, 0.45 * fade_b, blur=10))
+    for i, (top, bot, a) in geo.items():
+        name, sub = STACK[i]
+        if i == 0:
+            pl = appear(t, t_reg - 0.1, 0.4)
+            draw_text(c, V1.decode(name, t, t_reg - 0.1, 0.45, 5), SX0 + 36, top + 50, 'display_semibold', 34, TEXT, a * pl,
+                      align='left', tracking=0.04)
+            draw_text(c, sub, SX0 + 36, top + 82, 'text', 18, (1.0, 0.9, 0.72), 0.85 * a * appear(t, t_gov - 0.2, 0.4),
+                      align='left')
+            # the nation's keys
+            kp = ease_out_cubic(ramp(t, t_keys - 0.35, t_keys))
+            if kp > 0:
+                kx, ky = SX0 + SW - 70, top + F_H / 2
+                c.drawCircle(kx, ky, 28, paint((0.05, 0.04, 0.02), 0.6 * kp))
+                c.drawArc(skia.Rect.MakeXYWH(kx - 28, ky - 28, 56, 56), -90, 360 * kp, False, paint(GOLD, 0.95, stroke=1.8))
+                shk = 7 * (1 - ease_out_back(ramp(t, t_keys - 0.08, t_keys + 0.1)))
+                c.drawRRect(rr(kx - 10, ky - 1, 20, 14, 3), paint(GOLD, kp))
+                sp_ = skia.Path()
+                sp_.moveTo(kx - 6.5, ky - 1)
+                sp_.lineTo(kx - 6.5, ky - 7 - shk)
+                sp_.arcTo(skia.Rect.MakeXYWH(kx - 6.5, ky - 13.5 - shk, 13, 13), 180, 180, False)
+                sp_.lineTo(kx + 6.5, ky - 1 - shk * 0.4)
+                c.drawPath(sp_, paint(GOLD, kp, stroke=2.4))
+                fl = math.exp(-(t - t_keys) * 6) if t >= t_keys else 0
+                if fl > 0.01:
+                    c.drawCircle(kx, ky, 28 + 46 * (1 - fl), paint(GOLD, 0.8 * fl, stroke=1.8))
+        else:
+            draw_text(c, name, SX0 + 36, top + 38, 'text_semibold', 24, TEXT, a, align='left', tracking=0.06)
+            draw_text(c, sub, SX0 + SW - 30, top + 38, 'text', 19, GREY, 0.9 * a, align='right')
+    # left: who owns the base; right: who thrives on top
+    gp = appear(t, t_gov - 0.1, 0.45)
+    if gp > 0:
+        ft, fb = stack_geom(0)
+        bx = SX0 - 34
+        c.drawLine(bx, ft + 4, bx, fb - 4, paint(GOLD, 0.9 * gp, stroke=1.6))
+        c.drawLine(bx, ft + 4, bx + 12, ft + 4, paint(GOLD, 0.9 * gp, stroke=1.6))
+        c.drawLine(bx, fb - 4, bx + 12, fb - 4, paint(GOLD, 0.9 * gp, stroke=1.6))
+        draw_text(c, 'GOVERNMENT', bx - 22, (ft + fb) / 2 + 2, 'mono_medium', 22, GOLD, gp, align='right', tracking=0.2)
+        draw_text(c, 'owns the base', bx - 22, (ft + fb) / 2 + 32, 'text', 18, GREY, gp, align='right')
+    bp = appear(t, tin[5] + 0.4, 0.5)
+    if bp > 0:
+        tt5, _ = stack_geom(5)
+        _, bb1 = stack_geom(1)
+        bx = SX0 + SW + SDX + 30
+        c.drawLine(bx, tt5 - SDY + 4, bx, bb1 - 4, paint(WHITE, 0.6 * bp, stroke=1.6))
+        c.drawLine(bx, tt5 - SDY + 4, bx - 12, tt5 - SDY + 4, paint(WHITE, 0.6 * bp, stroke=1.6))
+        c.drawLine(bx, bb1 - 4, bx - 12, bb1 - 4, paint(WHITE, 0.6 * bp, stroke=1.6))
+        mid = (tt5 + bb1) / 2
+        for k, word in enumerate(['BUSINESSES', 'CAPITAL', 'TRADE']):
+            draw_text(c, word, bx + 24, mid - 40 + k * 38, 'mono_medium', 24, TEXT, bp * appear(t, tin[5] + 0.4 + 0.12 * k, 0.3),
+                      align='left', tracking=0.2)
+        draw_text(c, 'thrive on top', bx + 24, mid + 86, 'text', 18, GREY, bp, align='left')
+    c.restore()
+    lay = Lr.rgba()
+    glow = gblur(lay[..., 3], 30) * 0.08
+    lin = bg + glow[..., None] * np.array([1.0, 0.8, 0.5], np.float32)
+    d = disp(lin, 'neutral', bloom_amt=0.25, bloom_th=0.6, hal=0.0, vig=0.4, ca=0.0)
+    out = composite(d, lay)
+    return out * (1 - 0.85 * smooth(ramp(t, t_end - 0.18, t_end)))
+
+
+# --------------------------------------------------------------------------- TRADE: finance on a trusted record
+TRADE_CHECKS = [('Company verified on the registry', 0.0), ('Licence and owners confirmed', 0.25),
+                ('Invoice and shipping documents matched', 0.5)]
+
+
+def seg_trade(t, fi):
+    l0 = L('trade', 0)
+    t0 = trade_cut()
+    end = L('network', 0).start - 0.1
+    lin = plate('port_dusk', t, t0, end, (0.46, 0.5), (0.5, 0.48), 1.06, 1.14)
+    xs_ = np.linspace(0, 1, W, dtype=np.float32)[None, :, None]
+    lin = lin * (1.0 - 0.45 * np.clip((xs_ - 0.45) * 2.2, 0, 1))
+    lin = V1.scrim(lin, 330, H - 170, 520, 170, 0.55)
+    d = disp(lin, 'dusk', bloom_amt=0.3, bloom_th=0.62, hal=0.08, vig=0.5)
+    d = d * (0.15 + 0.85 * smooth(ramp(t, t0, t0 + 0.3)))
+    ui = UIFrame()
+    c = ui.c
+    x, y, w, h = W - 110 - 800, 170, 800, 600
+    p = appear(t, t0 + 0.05, 0.4)
+    t_flow = l0.word('flows')
+    fin = appear(t, t_flow - 0.05, 0.35)
+    ui.glass(x, y, w, h, 30, p, tint_a=0.72)
+    label(c, 'TRADE FINANCE REQUEST', x + 40, y + 58, 16, GREY, p, tracking=0.24)
+    pill = 'FINANCED' if fin > 0.5 else 'IN REVIEW'
+    pc = GOLD if fin > 0.5 else AMBER
+    pw = text_width(pill, 'mono_medium', 14, 0.2) + 36
+    c.drawRRect(rr(x + w - 40 - pw, y + 34, pw, 34, 17), paint(pc, 0.16 * p))
+    label(c, pill, x + w - 40 - pw / 2, y + 57, 14, pc, p, align='center', tracking=0.2)
+    draw_text(c, 'Aisha Trading LLC', x + 40, y + 124, 'display_semibold', 40, TEXT, p, align='left')
+    draw_text(c, 'First shipment · Khalifa Port → Karachi', x + 40, y + 164, 'text', 24, GREY, p, align='left')
+    draw_text(c, 'AED 250,000', x + w - 40, y + 124, 'display_light', 44, TEXT, p, align='right')
+    c.drawRect(skia.Rect.MakeXYWH(x + 1, y + 200, w - 2, 1), paint((1, 1, 1), 0.08 * p))
+    for j, (nm, dt_) in enumerate(TRADE_CHECKS):
+        tj = l0.word('trade') + dt_
+        ry = y + 262 + j * 60
+        if t < tj:
+            spinner(c, x + 58, ry - 9, 13, t, GOLD, p * 0.8)
+            draw_text(c, nm, x + 92, ry, 'text', 27, GREY, p, align='left')
+        else:
+            check_icon(c, x + 58, ry - 9, 13, ramp(t, tj, tj + 0.3), GOLD, p)
+            draw_text(c, nm, x + 92, ry, 'text', 27, TEXT, p, align='left')
+    if fin > 0:
+        by = y + h - 140
+        c.drawRRect(rr(x + 40, by, w - 80, 100, 22), paint(GOLD, 0.18 * fin * p))
+        c.drawRRect(rr(x + 40, by, w - 80, 100, 22), paint(GOLD, 0.8 * fin * p, stroke=1.4))
+        fl = math.exp(-max(0.0, t - t_flow) * 4)
+        if fl > 0.02:
+            c.drawRRect(rr(x + 40, by, w - 80, 100, 22), paint(GOLD, 0.5 * fl * fin, stroke=10, blur=10))
+        check_icon(c, x + 92, by + 50, 18, ramp(t, t_flow, t_flow + 0.35), GOLD, fin * p)
+        draw_text(c, 'Financed', x + 130, by + 62, 'display_semibold', 38, TEXT, fin * p, align='left')
+        label(c, 'SAME DAY', x + w - 76, by + 58, 18, GOLD, fin * p, align='right', tracking=0.24)
+    # the gap it closes (Asian Development Bank)
+    sp = appear(t, t0 + 0.25, 0.5) * (1 - smooth(ramp(t, end - 0.4, end)))
+    if sp > 0:
+        draw_text(c, '41%', 110, H - 170, 'display_light', 76, GOLD, sp, align='left')
+        draw_text(c, 'of small-business trade-finance', 270, H - 205, 'text', 24, TEXT, sp, align='left')
+        draw_text(c, 'requests are rejected today', 270, H - 173, 'text', 24, TEXT, sp, align='left')
+        label(c, 'ASIAN DEVELOPMENT BANK', 112, H - 128, 13, GREY, sp, tracking=0.2)
+    out = ui.apply(d)
+    return out * (1 - smooth(ramp(t, end - 0.2, end)))
 
 
 def frosted_path_local(base, path, alpha):
@@ -992,7 +1213,8 @@ def end_card(t, t0, t_tag, t_url):
 
 # --------------------------------------------------------------------------- dispatcher
 SEG_FN = {'open': seg_open, 'aisha': seg_aisha, 'omar': seg_omar, 'ministry': seg_ministry, 'peak': seg_peak,
-          'turn': seg_turn, 'reveal': seg_reveal, 'demo': seg_demo, 'trust': seg_trust, 'network': seg_network,
+          'turn': seg_turn, 'reveal': seg_reveal, 'demo': seg_demo, 'trust': seg_trust, 'layers': seg_layers,
+          'trade': seg_trade, 'network': seg_network,
           'close': seg_close}
 
 
@@ -1000,12 +1222,13 @@ def segments():
     b = [('open', 0.0), ('aisha', L('aisha', 0).start - 0.05), ('omar', L('omar', 0).start - 0.2),
          ('ministry', L('ministry', 0).start - 0.2), ('peak', L('peak', 0).start - 0.1), ('turn', L('turn', 0).start - 0.3),
          ('reveal', L('reveal', 0).start - 0.2), ('demo', L('demo', 0).start - 0.3), ('trust', L('trust', 0).start - 0.2),
+         ('layers', L('layers', 0).start - 0.2), ('trade', trade_cut()),
          ('network', L('network', 0).start - 0.1), ('close', L('close', 0).start - 0.1)]
     return b
 
 
 GRAIN = {'open': 0.045, 'aisha': 0.04, 'omar': 0.036, 'ministry': 0.03, 'peak': 0.05, 'turn': 0.018, 'reveal': 0.03,
-         'demo': 0.022, 'trust': 0.026, 'network': 0.02, 'close': 0.03}
+         'demo': 0.022, 'trust': 0.026, 'layers': 0.018, 'trade': 0.03, 'network': 0.02, 'close': 0.03}
 
 
 def bar_px(t):

@@ -1,7 +1,7 @@
-# MASS: 2-minute launch film (v2)
+# MASS: launch film (v2, 2:22)
 
-A story-driven launch film built on real stock footage, with a procedural UI and globe
-and a synthesised score. The narration drives the whole edit: every cut, UI beat and sound
+A story-driven launch film built on real stock footage, with a procedural UI and globe, ElevenLabs
+narration, and either an ElevenLabs score (version A) or a synthesised one (version B). The narration drives the whole edit: every cut, UI beat and sound
 cue is keyed to a line or a word in `src/script.py`. Replacing the scratch voice with the final
 ElevenLabs take re-times picture and sound automatically.
 
@@ -16,7 +16,9 @@ ElevenLabs take re-times picture and sound automatically.
 | II | The turn: one living record, created in minutes, trusted everywhere | "What if a company only had to prove itself once?" |
 | II | Reveal: the sonic logo lands on "Mass" | "This is Mass." |
 | II | Three-way demo on one moving canvas: Aisha talks to her agent, Nadia decides, the ministry sees it live, and a rule change reaches everyone | "Aisha tells her agent what she's building…" |
-| III | Trust: every action checked before it happens, on the nation's own infrastructure and keys | "Every action is checked…" |
+| III | Trust: every action is checked before it happens | "Every action is checked…" |
+| III | Layers: the government runs the registry at the base, on its own infrastructure and keys; licences, banking, free zones, trade corridors and markets build on top, where businesses, capital and trade thrive | "At the base: the registry…" / "On top, the economy builds…" |
+| III | Trade finance: on a record every bank can trust, Aisha's first shipment is financed the same day (41% of SME trade-finance requests are rejected today, per the Asian Development Bank) | "And with a record every bank can trust…" |
 | III | Network: another nation recognises the record | "Now imagine this across borders…" |
 | III | Close: Formed · Licensed · Banked · Recognised, then the end card | "Mass. The operating system for sovereign economies." |
 
@@ -29,7 +31,10 @@ ElevenLabs take re-times picture and sound automatically.
 | Review sheets | `python3 render2.py --sheet 12.5,30,68,90 --sheet-out ../out/review/x.jpg` |
 | Picture (lossless, parallel) | `python3 render2.py --video ../out/mass_v2_picture_lossless.mkv --workers 4` |
 | Final narration (one ElevenLabs request, cut into lines) | `python3 tts_final.py <voice_id>` |
+| Retake one line (three candidates, pick by ear or formant check) | `python3 tts_fix.py`, then `python3 tts_fix.py install <n>` |
+| Voice new lines into the take (one request, neighbours as context) | `python3 tts_insert.py` |
 | ElevenLabs score and effects timed to the edit | `python3 el_audio.py score` / `python3 el_audio.py sfx` |
+| Score bridge for the layers and trade-finance section, spliced in at the cuts | `python3 el_audio.py bridge` |
 | Score, sound design and narration mix | `python3 audio2.py` (−15 LUFS, −1 dBTP); `MASS_SCORE=el` uses the ElevenLabs score |
 | Delivery encodes | `finish2.py`: the video is encoded once, then each soundtrack is muxed onto it |
 | Captions | `python3 captions.py` |

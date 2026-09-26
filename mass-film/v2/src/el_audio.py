@@ -143,6 +143,80 @@ def sfx():
     print(f'sfx credits: {credits() - c0}')
 
 
+def extend(song_id, keep_until, resume_from, new_sections, dest_name='score_v2.mp3', model='music_v2_5'):
+    """Re-time the existing score around new edit material: keep [0, keep_until) and [resume_from, end) of the
+    original song as references, and compose only the new sections in between."""
+    dest = os.path.join(OUT, dest_name)
+    if os.path.exists(dest):
+        print(dest_name, 'exists, not re-requesting')
+        return
+    old_total = json.load(open(os.path.join(OUT, 'score.json')))['total_ms']
+    chunks = [dict(song_id=song_id, range=dict(start_ms=0, end_ms=int(keep_until * 1000)))]
+    for name, dur, pos, direction in new_sections:
+        chunks.append(dict(text=f'[Instrumental: {name}]' + (f'\n{{{direction}}}' if direction else ''),
+                           duration_ms=int(round(dur * 1000)), positive_styles=pos + ['instrumental', 'great production quality'],
+                           negative_styles=GLOBAL_NEG, context_adherence='high'))
+    chunks.append(dict(song_id=song_id, range=dict(start_ms=int(resume_from * 1000), end_ms=old_total)))
+    c0 = credits()
+    r = requests.post(f'{API}/music', params=dict(output_format='mp3_44100_192'),
+                      json=dict(composition_plan=dict(chunks=chunks), model_id=model), timeout=900)
+    if r.status_code != 200:
+        raise SystemExit(f'music error {r.status_code}: {r.text[:500]}')
+    open(dest, 'wb').write(r.content)
+    meta = dict(model=model, chunks=chunks, headers={k: v for k, v in r.headers.items() if 'song' in k.lower()},
+                credits=credits() - c0)
+    json.dump(meta, open(os.path.join(OUT, dest_name.replace('.mp3', '.json')), 'w'), indent=1)
+    print(f"{dest_name}: {len(r.content) / 1e6:.1f} MB, {meta['credits']} credits, headers {meta['headers']}")
+
+
+def splice(keep_until, bridge_end, resume_from, dest_name='score_spliced.wav', xf_in=0.3, xf_out=0.4):
+    """Original score up to keep_until, the newly composed bridge (from score_v2) up to bridge_end, then the
+    original again from resume_from, with equal-power crossfades at both joins."""
+    import soundfile as sf
+    import subprocess
+    for n in ('score', 'score_v2'):
+        w = os.path.join(OUT, f'{n}.wav')
+        if not os.path.exists(w):
+            subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', os.path.join(OUT, f'{n}.mp3'), '-ar', '48000', w],
+                           check=True)
+    a, fs = sf.read(os.path.join(OUT, 'score.wav'))
+    b, _ = sf.read(os.path.join(OUT, 'score_v2.wav'))
+    import numpy as np
+
+    def xfade(x, y, n):
+        u = np.linspace(0, 1, n)[:, None]
+        return x * np.cos(u * np.pi / 2) + y * np.sin(u * np.pi / 2)
+    i1, n1 = int(keep_until * fs), int(xf_in * fs)
+    i2, n2 = int(bridge_end * fs), int(xf_out * fs)
+    j = int(resume_from * fs)
+    head = a[:i1 - n1 // 2]
+    x1 = xfade(a[i1 - n1 // 2:i1 + n1 - n1 // 2], b[i1 - n1 // 2:i1 + n1 - n1 // 2], n1)
+    mid = b[i1 + n1 - n1 // 2:i2 - n2 // 2]
+    x2 = xfade(b[i2 - n2 // 2:i2 + n2 - n2 // 2], a[j - n2 // 2:j + n2 - n2 // 2], n2)
+    tail = a[j + n2 - n2 // 2:]
+    out = np.concatenate([head, x1, mid, x2, tail])
+    sf.write(os.path.join(OUT, dest_name), out, fs, subtype='PCM_24')
+    print(f'{dest_name}: {len(out) / fs:.2f}s (joins at {keep_until:.2f}s and {bridge_end:.2f}s)')
+
+
+def bridge():
+    """The layers and trade-finance section was added after the score was made. Its music is a newly composed
+    bridge in the same key and tempo (two sections timed to the new lines), spliced into the original score at
+    the picture cuts: the original up to the layers cut, the bridge, then the original from its network section."""
+    song = json.load(open(os.path.join(OUT, 'score.json')))['headers']['Song-Id']
+    keep_until = 96.2        # the layers cut
+    resume_from = 101.02     # the original score's network section (the cut to the globe before the new lines)
+    extend(song, keep_until, resume_from, [
+        ('Foundation, then the layers', 11.612,        # to just before "And with a record every bank can trust"
+         ['solid and assured', 'a deep foundation', 'building layer by layer', 'each layer adds an instrument',
+          'rising arpeggios over broad strings', 'sovereign, dignified', 'same key and tempo as before'],
+         'builds in five steps, one per layer'),
+        ('Trade finance', 6.495,                       # to the network cut
+         ['momentum and optimism', 'forward motion', 'confident pulse', 'lifts into an expansive section'],
+         'lift into the next section')])
+    splice(keep_until, L('network', 0).start - 0.1, resume_from)
+
+
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'plan'
@@ -155,3 +229,5 @@ if __name__ == '__main__':
         score()
     elif cmd == 'sfx':
         sfx()
+    elif cmd == 'bridge':
+        bridge()

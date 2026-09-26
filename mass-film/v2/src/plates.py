@@ -7,6 +7,7 @@ import math
 import os
 import subprocess
 import sys
+import zlib
 
 import cv2
 import numpy as np
@@ -118,7 +119,7 @@ def plate(name, t, t0, t1, c0=(0.5, 0.5), c1=(0.5, 0.5), z0=1.05, z1=1.12, speed
     cx, cy = lerp(c0[0], c1[0], u), lerp(c0[1], c1[1], u)
     z = lerp(z0, z1, u)
     if name not in WOB:
-        WOB[name] = Wobble(abs(hash(name)) % 1000, amp=2.0 * wob, rot=0.06 * wob)
+        WOB[name] = Wobble(zlib.crc32(name.encode()) % 1000, amp=2.0 * wob, rot=0.06 * wob)   # stable across runs
     wx, wy, wr = WOB[name](t)
     cl = clip(name)
     if cl is not None:

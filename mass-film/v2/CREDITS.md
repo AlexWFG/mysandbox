@@ -29,15 +29,21 @@ reads `footage/manifest.json`, and are not stored in the repository.
 | flag | [the-flag-of-the-united-arab-emirates-flies-in-the-wind-15546303](https://www.pexels.com/video/the-flag-of-the-united-arab-emirates-flies-in-the-wind-15546303/) | Markus Winkler |
 | card_tap | [person-paying-with-credit-card-8421360](https://www.pexels.com/video/person-paying-with-credit-card-8421360/) | Kampus Production |
 | ship | [cargo-container-ships-in-port-3840442](https://www.pexels.com/video/cargo-container-ships-in-port-3840442/) | Tom Fisk |
+| port_dusk | [aerial-view-of-busy-shipping-port-at-dusk-35907902](https://www.pexels.com/video/aerial-view-of-busy-shipping-port-at-dusk-35907902/) | willy one |
 
 ## Other sources
 - Earth textures (network sequence): NASA Visible Earth / Earth Observatory, public domain (shared with v1).
 - UAE outline (ministry dashboard): Natural Earth 1:50m, public domain.
 - Fonts: Inter, JetBrains Mono and Courier Prime, all under the SIL Open Font License.
+- Statistic in the trade-finance scene (41% of SME trade-finance requests rejected): Asian Development Bank
+  trade finance survey, the figure cited in the Mass deck. Confirm the edition and wording before public release.
 - Narration: ElevenLabs text-to-speech (Creator plan), voice "Russell" from the ElevenLabs voice library,
-  model `eleven_multilingual_v2`, one take (`out/vo_final/`). Scratch narration for the animatic: Piper TTS
-  (`en_GB-alan-medium`).
+  model `eleven_multilingual_v2`, one take (`out/vo_final/`), plus one retake for pronunciation (`src/tts_fix.py`)
+  and one request for the three layers and trade-finance lines, voiced with their neighbours as context
+  (`src/tts_insert.py`). Scratch narration for the animatic: Piper TTS (`en_GB-alan-medium`).
 - Score, version A: composed by Eleven Music (`music_v2_5`) from a composition plan timed to the edit
-  (`src/el_audio.py`, `out/el_audio/score.mp3`). Recorded-style effects (stamps, pen, welding, port, city,
+  (`src/el_audio.py`, `out/el_audio/score.mp3`). The layers and trade-finance section uses a bridge from a
+  second Eleven Music generation in the same key and tempo (`out/el_audio/score_v2.mp3`), spliced into the
+  original at the picture cuts (`el_audio.py bridge`). Recorded-style effects (stamps, pen, welding, port, city,
   typing, airport, office, control room, seal) from ElevenLabs sound effects (`out/el_audio/sfx_*.mp3`).
 - Score, version B, UI sounds, the sonic logo and the closing hits: synthesised from scratch in `src/audio2.py`.

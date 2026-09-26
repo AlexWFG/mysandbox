@@ -1,0 +1,82 @@
+{
+ "model": "music_v2_5",
+ "chunks": [
+  {
+   "song_id": "VSWMMUQFRaYlkWintyFB",
+   "range": {
+    "start_ms": 0,
+    "end_ms": 96200
+   }
+  },
+  {
+   "text": "[Instrumental: Foundation, then the layers]\n{builds in five steps, one per layer}",
+   "duration_ms": 11612,
+   "positive_styles": [
+    "solid and assured",
+    "a deep foundation",
+    "building layer by layer",
+    "each layer adds an instrument",
+    "rising arpeggios over broad strings",
+    "sovereign, dignified",
+    "same key and tempo as before",
+    "instrumental",
+    "great production quality"
+   ],
+   "negative_styles": [
+    "vocals",
+    "singing",
+    "lyrics",
+    "choir words",
+    "rap",
+    "EDM drop",
+    "dubstep",
+    "comedy",
+    "lo-fi",
+    "jazz",
+    "guitar solo",
+    "cheesy corporate ukulele",
+    "whistling"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Instrumental: Trade finance]\n{lift into the next section}",
+   "duration_ms": 6495,
+   "positive_styles": [
+    "momentum and optimism",
+    "forward motion",
+    "confident pulse",
+    "lifts into an expansive section",
+    "instrumental",
+    "great production quality"
+   ],
+   "negative_styles": [
+    "vocals",
+    "singing",
+    "lyrics",
+    "choir words",
+    "rap",
+    "EDM drop",
+    "dubstep",
+    "comedy",
+    "lo-fi",
+    "jazz",
+    "guitar solo",
+    "cheesy corporate ukulele",
+    "whistling"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "song_id": "VSWMMUQFRaYlkWintyFB",
+   "range": {
+    "start_ms": 101020,
+    "end_ms": 128748
+   }
+  }
+ ],
+ "headers": {
+  "Song-Id": "aBmxi1F1t34hzrufRiO2"
+ },
+ "credits": 0
+}
