@@ -5,8 +5,8 @@ Narrated motion-graphics explainer of **`Propchain — Assurance Fraud, Bonds an
 
 | File | What |
 |---|---|
-| `assurance-1080p.mp4` | 1920×1080, 30 fps, two-pass H.264 ~2.7 Mbps (light `hqdn3d`), AAC 192k, loudness −16 LUFS |
-| `assurance-preview.mp4` | 1280×720, two-pass ~0.76 Mbps, AAC 160k — see "Decisions" for why 720p |
+| `assurance-1080p.mp4` | 1920×1080, 30 fps, two-pass H.264 ~2.7 Mbps (light `hqdn3d`), AAC 192k, loudness-normalised to −16 LUFS — **86.6 MB** |
+| `assurance-preview.mp4` | 1280×720, two-pass ~0.76 Mbps, AAC 160k — **27.8 MB**; see "Decisions" for why 720p |
 | `STORYBOARD.md` | learning goals, arc and the planned beat sheet |
 
 **Runtime: 3:58.9** (238.9 s).
