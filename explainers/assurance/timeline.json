@@ -5,6 +5,12 @@
    "t": 4.2,
    "dur": 2.184,
    "clip_in": 0,
+   "segs": [
+    [
+     0.034,
+     2.064
+    ]
+   ],
    "file": "vo/n01a_1f52941810.mp3",
    "text": "Every record on Propchain is attested."
   },
@@ -12,6 +18,24 @@
    "t": 6.946,
    "dur": 8.151,
    "clip_in": 0.042,
+   "segs": [
+    [
+     0.04,
+     2.783
+    ],
+    [
+     3.397,
+     5.239
+    ],
+    [
+     5.512,
+     6.734
+    ],
+    [
+     6.929,
+     8.031
+    ]
+   ],
    "file": "vo/n01b_5650b746bf.mp3",
    "text": "But attestation proves provenance, not truth. A rent roll full of phantom tenants can be perfectly signed, and perfectly false."
   },
@@ -19,6 +43,12 @@
    "t": 15.845,
    "dur": 3.803,
    "clip_in": 0.051,
+   "segs": [
+    [
+     0.04,
+     3.046
+    ]
+   ],
    "file": "vo/n02_59ac015f6e.mp3",
    "text": "And consensus can't decide whether a tenant exists."
   },
@@ -26,6 +56,24 @@
    "t": 20.458,
    "dur": 7.747,
    "clip_in": 0,
+   "segs": [
+    [
+     0.011,
+     2.187
+    ],
+    [
+     2.453,
+     3.985
+    ],
+    [
+     4.744,
+     6.848
+    ],
+    [
+     7.152,
+     7.627
+    ]
+   ],
    "file": "vo/n03_47b4170497.mp3",
    "text": "Most fraud loss is misstated income, or diverted closing funds. Both have a truth the platform can see: cash."
   },
@@ -33,6 +81,40 @@
    "t": 30.025,
    "dur": 10.171,
    "clip_in": 0.046,
+   "segs": [
+    [
+     0.04,
+     1.48
+    ],
+    [
+     1.763,
+     3.865
+    ],
+    [
+     4.415,
+     5.112
+    ],
+    [
+     5.316,
+     5.858
+    ],
+    [
+     6.028,
+     6.856
+    ],
+    [
+     7.099,
+     7.583
+    ],
+    [
+     7.973,
+     9.181
+    ],
+    [
+     9.437,
+     10.051
+    ]
+   ],
    "file": "vo/n05_8f4961eb16.mp3",
    "text": "The defence is six layers, each stopping what the one below cannot: identity, provenance, corroboration, bonds, professional signatures, and memory."
   },
@@ -40,6 +122,12 @@
    "t": 41.068,
    "dur": 3.017,
    "clip_in": 0.049,
+   "segs": [
+    [
+     0.04,
+     2.897
+    ]
+   ],
    "file": "vo/n06_1cba018dd9.mp3",
    "text": "What gets through all six is what insurance prices."
   },
@@ -47,6 +135,16 @@
    "t": 45.905,
    "dur": 4.187,
    "clip_in": 0,
+   "segs": [
+    [
+     0.025,
+     1.204
+    ],
+    [
+     1.542,
+     4.067
+    ]
+   ],
    "file": "vo/n07_1b5b8defcb.mp3",
    "text": "Corroboration first. One asset's annual rent, from four sources."
   },
@@ -54,6 +152,28 @@
    "t": 50.778,
    "dur": 8.432,
    "clip_in": 0.043,
+   "segs": [
+    [
+     0.04,
+     2.895
+    ],
+    [
+     3.589,
+     4.973
+    ],
+    [
+     5.214,
+     6.291
+    ],
+    [
+     6.924,
+     7.563
+    ],
+    [
+     7.728,
+     8.312
+    ]
+   ],
    "file": "vo/n08_4b80df9cf6.mp3",
    "text": "The rent roll says one million and twenty thousand euros. The manager's ledger agrees, but it follows the seller: one source, not two."
   },
@@ -61,6 +181,16 @@
    "t": 60.082,
    "dur": 5.323,
    "clip_in": 0.028,
+   "segs": [
+    [
+     0.04,
+     2.632
+    ],
+    [
+     3.341,
+     5.203
+    ]
+   ],
    "file": "vo/n09_0580b7fb11.mp3",
    "text": "Bank receipts show nine hundred and fifty-eight thousand. Tenants confirm nine fifty-five."
   },
@@ -68,6 +198,24 @@
    "t": 66.153,
    "dur": 8.347,
    "clip_in": 0.012,
+   "segs": [
+    [
+     0.04,
+     1.526
+    ],
+    [
+     1.883,
+     3.949
+    ],
+    [
+     4.202,
+     6.156
+    ],
+    [
+     6.566,
+     7.789
+    ]
+   ],
    "file": "vo/n10_3d96ea6cb8.mp3",
    "text": "Cash outranks documents. The quorum settles at nine fifty-six, and the field reaches level A three: reconciled to cash."
   },
@@ -75,6 +223,28 @@
    "t": 75.496,
    "dur": 8.852,
    "clip_in": 0.006,
+   "segs": [
+    [
+     0.04,
+     1.809
+    ],
+    [
+     2.01,
+     3.04
+    ],
+    [
+     3.321,
+     5.052
+    ],
+    [
+     5.612,
+     7.306
+    ],
+    [
+     7.668,
+     8.732
+    ]
+   ],
    "file": "vo/n11_27d8019fb1.mp3",
    "text": "Counterparties can require a level, field by field, from A zero to A five. And A four needs something new: capital at risk."
   },
@@ -82,6 +252,28 @@
    "t": 86.168,
    "dur": 10.777,
    "clip_in": 0.034,
+   "segs": [
+    [
+     0.04,
+     2.789
+    ],
+    [
+     3.253,
+     4.379
+    ],
+    [
+     4.544,
+     5.949
+    ],
+    [
+     6.237,
+     8.292
+    ],
+    [
+     8.564,
+     10.657
+    ]
+   ],
    "file": "vo/n12_7d188dc040.mp3",
    "text": "A bond is a holdback with rules instead of lawyers. An illustrative deal: thirteen million euros, eight hundred thousand of attested income, a six point one five percent cap rate."
   },
@@ -89,6 +281,16 @@
    "t": 97.755,
    "dur": 5.61,
    "clip_in": 0.03,
+   "segs": [
+    [
+     0.04,
+     3.493
+    ],
+    [
+     4.084,
+     5.49
+    ]
+   ],
    "file": "vo/n13_7d90530875.mp3",
    "text": "The seller warrants that income within five percent, for twelve months. A forty-thousand tolerance."
   },
@@ -96,6 +298,24 @@
    "t": 104.113,
    "dur": 8.804,
    "clip_in": 0.035,
+   "segs": [
+    [
+     0.04,
+     2.879
+    ],
+    [
+     3.462,
+     5.141
+    ],
+    [
+     5.493,
+     6.667
+    ],
+    [
+     6.843,
+     8.684
+    ]
+   ],
    "file": "vo/n14_6cb55dbd21.mp3",
    "text": "The bond covers the buyer's loss at a ten percent miss: eighty thousand over the cap rate. One point three million, held in a yield-bearing escrow."
   },
@@ -103,6 +323,12 @@
    "t": 113.975,
    "dur": 2.163,
    "clip_in": 0.044,
+   "segs": [
+    [
+     0.04,
+     2.043
+    ]
+   ],
    "file": "vo/n15_1d658ac2dc.mp3",
    "text": "Twelve months of bank receipts decide."
   },
@@ -110,6 +336,20 @@
    "t": 116.948,
    "dur": 6.272,
    "clip_in": 0,
+   "segs": [
+    [
+     0.004,
+     2.866
+    ],
+    [
+     3.239,
+     4.364
+    ],
+    [
+     4.551,
+     6.152
+    ]
+   ],
    "file": "vo/n16_6609b8ef58.mp3",
    "text": "Income of seven sixty is a five percent miss, inside tolerance. The bond is released in full."
   },
@@ -117,6 +357,24 @@
    "t": 124.278,
    "dur": 8.068,
    "clip_in": 0.018,
+   "segs": [
+    [
+     0.04,
+     3.221
+    ],
+    [
+     3.656,
+     5.249
+    ],
+    [
+     5.842,
+     6.595
+    ],
+    [
+     6.771,
+     7.948
+    ]
+   ],
    "file": "vo/n17_0cd4c65eca.mp3",
    "text": "At seven twenty, the miss is five points beyond tolerance. Half the bond goes to the buyer. Pro rata, never all or nothing."
   },
@@ -124,6 +382,16 @@
    "t": 134.29,
    "dur": 4.58,
    "clip_in": 0.064,
+   "segs": [
+    [
+     0.04,
+     2.328
+    ],
+    [
+     2.497,
+     3.799
+    ]
+   ],
    "file": "vo/n18a_5605ae1f96.mp3",
    "text": "That only works where a later truth exists, that a contract can read."
   },
@@ -131,6 +399,20 @@
    "t": 139.494,
    "dur": 4.299,
    "clip_in": 0,
+   "segs": [
+    [
+     0.0,
+     1.234
+    ],
+    [
+     1.524,
+     3.173
+    ],
+    [
+     3.654,
+     4.179
+    ]
+   ],
    "file": "vo/n18b_32f64dd5a4.mp3",
    "text": "Rent against receipts. Title against the registry. Bondable."
   },
@@ -138,6 +420,16 @@
    "t": 144.479,
    "dur": 4.524,
    "clip_in": 0.027,
+   "segs": [
+    [
+     0.04,
+     0.927
+    ],
+    [
+     1.578,
+     3.982
+    ]
+   ],
    "file": "vo/n18c_78e2dea2d4.mp3",
    "text": "Building condition? Only with a referee, named in advance."
   },
@@ -145,6 +437,16 @@
    "t": 149.689,
    "dur": 2.304,
    "clip_in": 0.018,
+   "segs": [
+    [
+     0.04,
+     1.389
+    ],
+    [
+     1.571,
+     1.974
+    ]
+   ],
    "file": "vo/n18d_551112d1c5.mp3",
    "text": "Valuations and opinions: never."
   },
@@ -152,6 +454,28 @@
    "t": 153.813,
    "dur": 9.616,
    "clip_in": 0.009,
+   "segs": [
+    [
+     0.04,
+     1.475
+    ],
+    [
+     2.055,
+     3.574
+    ],
+    [
+     4.265,
+     5.813
+    ],
+    [
+     6.29,
+     7.766
+    ],
+    [
+     8.039,
+     9.496
+    ]
+   ],
    "file": "vo/n20_90c4a4785e.mp3",
    "text": "So who posts the capital? Usually, it isn't new money. The bond replaces the holdback, or W and I premium, a sale already carries."
   },
@@ -159,6 +483,20 @@
    "t": 164.239,
    "dur": 6.434,
    "clip_in": 0.021,
+   "segs": [
+    [
+     0.04,
+     1.387
+    ],
+    [
+     1.698,
+     3.463
+    ],
+    [
+     3.832,
+     6.314
+    ]
+   ],
    "file": "vo/n21_2dc87dcbf3.mp3",
    "text": "The seller can self-bond. A surety can post for a fee. Or the buyer can hold a policy, on the same trigger."
   },
@@ -166,6 +504,20 @@
    "t": 171.607,
    "dur": 7.18,
    "clip_in": 0.031,
+   "segs": [
+    [
+     0.04,
+     1.32
+    ],
+    [
+     1.813,
+     4.354
+    ],
+    [
+     4.705,
+     7.06
+    ]
+   ],
    "file": "vo/n22_d140571cba.mp3",
    "text": "The market is the middle one: sureties quoting on the same attested record, with fees that fall with level and track record."
   },
@@ -173,6 +525,28 @@
    "t": 179.659,
    "dur": 8.604,
    "clip_in": 0.002,
+   "segs": [
+    [
+     0.04,
+     1.91
+    ],
+    [
+     2.172,
+     2.924
+    ],
+    [
+     3.118,
+     4.368
+    ],
+    [
+     4.689,
+     6.051
+    ],
+    [
+     6.617,
+     8.484
+    ]
+   ],
    "file": "vo/n23_eb4576f152.mp3",
    "text": "Sellers bond only if certainty, a higher rank, firm debt, speed, is worth more than the cost. That has to be measured, not assumed."
   },
@@ -180,6 +554,36 @@
    "t": 190.083,
    "dur": 13.282,
    "clip_in": 0,
+   "segs": [
+    [
+     0.037,
+     1.368
+    ],
+    [
+     1.649,
+     3.565
+    ],
+    [
+     3.933,
+     6.782
+    ],
+    [
+     7.157,
+     8.703
+    ],
+    [
+     9.02,
+     10.214
+    ],
+    [
+     10.849,
+     12.294
+    ],
+    [
+     12.545,
+     13.162
+    ]
+   ],
    "file": "vo/n24b_460ea5bb9e.mp3",
    "text": "As for a native insurer: a data partner needs no capital. An M G A underwrites on a carrier's capital. An own carrier needs a licence, and solvency capital. The realistic route is A, then B."
   },
@@ -187,6 +591,24 @@
    "t": 204.361,
    "dur": 9.532,
    "clip_in": 0.044,
+   "segs": [
+    [
+     0.04,
+     1.325
+    ],
+    [
+     1.769,
+     3.959
+    ],
+    [
+     4.226,
+     6.148
+    ],
+    [
+     6.703,
+     9.412
+    ]
+   ],
    "file": "vo/n25_bca6ce3724.mp3",
    "text": "The edge is observation. The platform sees what was claimed at close, and what was realised for years after. That pairing is a loss curve no incumbent has."
   },
@@ -194,6 +616,20 @@
    "t": 214.765,
    "dur": 6.38,
    "clip_in": 0,
+   "segs": [
+    [
+     0.033,
+     2.628
+    ],
+    [
+     2.96,
+     4.361
+    ],
+    [
+     5.104,
+     6.26
+    ]
+   ],
    "file": "vo/n26_b90df12d51.mp3",
    "text": "So short-tail, parametric cover comes first, because it teaches fastest. Float comes last."
   },
@@ -201,6 +637,20 @@
    "t": 222.965,
    "dur": 4.69,
    "clip_in": 0,
+   "segs": [
+    [
+     0.0,
+     2.455
+    ],
+    [
+     3.049,
+     4.147
+    ],
+    [
+     4.606,
+     4.69
+    ]
+   ],
    "file": "vo/n27a_55b44d6311.mp3",
    "text": "It's a working draft, and the numbers are illustrative. But the plan is simple."
   },
@@ -208,6 +658,20 @@
    "t": 228.341,
    "dur": 4.273,
    "clip_in": 0,
+   "segs": [
+    [
+     0.016,
+     0.828
+    ],
+    [
+     1.443,
+     2.527
+    ],
+    [
+     3.147,
+     4.154
+    ]
+   ],
    "file": "vo/n27b_435d33b23a.mp3",
    "text": "Measure first. Bond what is measured. Insure the rest."
   }

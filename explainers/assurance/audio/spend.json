@@ -207,5 +207,35 @@
   "kind": "vo",
   "file": "n27a_55b44d6311.mp3",
   "chars": 79
+ },
+ {
+  "kind": "music",
+  "file": "bed_377ba0f327.mp3",
+  "chars": 0
+ },
+ {
+  "kind": "sfx",
+  "file": "whoosh_19e43db38c.mp3",
+  "chars": 79
+ },
+ {
+  "kind": "sfx",
+  "file": "stamp_64599f983e.mp3",
+  "chars": 54
+ },
+ {
+  "kind": "sfx",
+  "file": "coins_f5473b05db.mp3",
+  "chars": 74
+ },
+ {
+  "kind": "sfx",
+  "file": "tick_32ec3d83d0.mp3",
+  "chars": 56
+ },
+ {
+  "kind": "sfx",
+  "file": "paper_e289577706.mp3",
+  "chars": 52
  }
 ]

@@ -30,7 +30,7 @@ for ci, (name, ls) in enumerate(ORDER):
     chapters.append({'n': ci + 1, 'name': name, 't': round(t - (0.6 if ci else 0.4), 3)})
     for lid, extra in ls:
         v = dur[lid]; d = round(v['out'] - v['in'], 3)   # speech only; clip is placed at t - in
-        lines[lid] = {'t': round(t, 3), 'dur': d, 'clip_in': v['in'], 'file': v['file'], 'text': v['text']}
+        lines[lid] = {'t': round(t, 3), 'dur': d, 'clip_in': v['in'], 'segs': [[round(a - v['in'], 3), round(b - v['in'], 3)] for a, b in v.get('segs', [])], 'file': v['file'], 'text': v['text']}
         t += d + GAP + extra * XS
 end = round(t, 3)
 total = round(end + END, 2)

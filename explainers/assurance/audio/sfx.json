@@ -1,0 +1,7 @@
+{"fx": [
+ {"id": "whoosh", "text": "soft airy transition whoosh, clean modern UI motion graphics, subtle, no impact", "dur": 1.2, "influence": 0.6},
+ {"id": "stamp", "text": "soft rubber stamp press on paper, single, close, clean", "dur": 0.8, "influence": 0.6},
+ {"id": "coins", "text": "soft digital shimmer of small coins flowing, gentle UI sound, clean, short", "dur": 1.5, "influence": 0.5},
+ {"id": "tick", "text": "single soft UI click tick, clean minimal interface sound", "dur": 0.5, "influence": 0.7},
+ {"id": "paper", "text": "single sheet of paper sliding on a desk, soft, close", "dur": 1.0, "influence": 0.6}
+]}

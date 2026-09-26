@@ -1,0 +1,123 @@
+{
+ "cues": [
+  {
+   "id": "bed",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "modern minimal electronic",
+     "explainer film underscore",
+     "calm, flowing, intelligent",
+     "optimistic",
+     "clean production",
+     "96 BPM",
+     "A major",
+     "soft synth pads",
+     "plucked arpeggios",
+     "felt piano"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "cheesy corporate ukulele",
+     "whistling",
+     "epic trailer",
+     "dubstep",
+     "heavy bass drops"
+    ],
+    "sections": [
+     {
+      "section_name": "Opening",
+      "positive_local_styles": [
+       "sparse felt piano motif",
+       "soft warm pad",
+       "curious",
+       "gentle pulse enters late"
+      ],
+      "negative_local_styles": [
+       "drums",
+       "loud"
+      ],
+      "duration_ms": 29425,
+      "lines": []
+     },
+     {
+      "section_name": "Layers and corroboration",
+      "positive_local_styles": [
+       "light plucked arpeggio",
+       "soft electronic pulse",
+       "steady, thoughtful",
+       "warm synth pad"
+      ],
+      "negative_local_styles": [
+       "heavy drums",
+       "aggressive"
+      ],
+      "duration_ms": 56143,
+      "lines": []
+     },
+     {
+      "section_name": "The bond",
+      "positive_local_styles": [
+       "focused rhythmic pulse",
+       "muted marimba and pluck ostinato",
+       "subtle kick",
+       "clear and precise"
+      ],
+      "negative_local_styles": [
+       "aggressive",
+       "distorted"
+      ],
+      "duration_ms": 48122,
+      "lines": []
+     },
+     {
+      "section_name": "Capital and markets",
+      "positive_local_styles": [
+       "arpeggio continues",
+       "broader pads",
+       "calm confidence",
+       "light percussion"
+      ],
+      "negative_local_styles": [
+       "aggressive"
+      ],
+      "duration_ms": 55793,
+      "lines": []
+     },
+     {
+      "section_name": "The insurer and the plan",
+      "positive_local_styles": [
+       "gradual lift",
+       "warm strings pad",
+       "optimistic",
+       "fuller texture",
+       "resolves toward the end"
+      ],
+      "negative_local_styles": [
+       "epic trailer",
+       "aggressive"
+      ],
+      "duration_ms": 44623,
+      "lines": []
+     },
+     {
+      "section_name": "End card",
+      "positive_local_styles": [
+       "final sustained chord",
+       "soft piano note",
+       "calm resolution",
+       "fade"
+      ],
+      "negative_local_styles": [
+       "drums"
+      ],
+      "duration_ms": 5804,
+      "lines": []
+     }
+    ]
+   }
+  }
+ ]
+}
