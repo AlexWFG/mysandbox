@@ -9,7 +9,7 @@ VO = [
     ('aisha', "Making it official will take months:"),
     ('aisha', "the same checks, at every office, at every bank."),
     ('aisha', "And at the next border, she starts again."),
-    ('omar', "In Abu Dhabi, Mariam approves new companies for a free zone."),
+    ('omar', "In Abu Dhabi, Nadia approves new companies for a free zone."),
     ('omar', "Her systems don't talk to each other. So she retypes. Re-checks. And waits."),
     ('ministry', "At the ministry, the economy arrives in pieces."),
     ('ministry', "Dozens of systems. Every number, out of date."),
@@ -19,7 +19,7 @@ VO = [
     ('reveal', "This is Mass."),
     ('demo', "Aisha tells her agent what she's building."),
     ('demo', "It prepares everything, and checks every rule before filing."),
-    ('demo', "Mariam receives it complete. Nothing to retype. Nothing to chase. She simply decides."),
+    ('demo', "Nadia receives it complete. Nothing to retype. Nothing to chase. She simply decides."),
     ('demo', "Four minutes later, Aisha is in business."),
     ('demo', "The ministry sees it happen, live."),
     ('demo', "And when a rule changes, every company gets it the same day."),
@@ -46,7 +46,14 @@ PAUSE_AFTER = {
     ('network', 0): 1.0, ('network', 1): 0.5, ('network', 2): 1.0,
     ('close', 0): 1.0, ('close', 1): 3.2,
 }
-LEAD_IN = 1.4   # music/picture before the first line
+LEAD_IN = 1.25  # music/picture before the first line
+
+# Pace: gaps between lines tightened slightly (review note: "a tiny bit more speedy"). The demo keeps
+# most of its breathing room so the UI stays readable; the end card keeps its full hold.
+PACE = {'demo': 0.95, 'reveal': 0.9}
+for _k in list(PAUSE_AFTER):
+    if _k != ('close', 1):
+        PAUSE_AFTER[_k] = round(PAUSE_AFTER[_k] * PACE.get(_k[0], 0.85), 3)
 
 
 def full_text():

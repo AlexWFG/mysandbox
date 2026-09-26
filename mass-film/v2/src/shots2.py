@@ -340,7 +340,7 @@ def _clips():
 # --------------------------------------------------------------------------- OMAR
 def seg_omar(t, fi):
     l0, l1 = L('omar', 0), L('omar', 1)
-    t_omar = l0.word('Mariam')
+    t_omar = l0.word('Nadia')
     t_ret, t_rec, t_wait = l1.word('retypes'), l1.word('Re-checks'), l1.word('waits')
     end = L('ministry', 0).start
     if t < t_omar:
@@ -355,7 +355,7 @@ def seg_omar(t, fi):
     d = disp(lin, 'dusk', bloom_amt=0.15, vig=0.55)
     ui = UIFrame()
     c = ui.c
-    lower_third(ui, t, t_omar, 'Mariam', 'Licensing officer', 'Abu Dhabi free zone', y=H - BAR - 90)
+    lower_third(ui, t, t_omar, 'Nadia', 'Licensing officer', 'Abu Dhabi free zone', y=H - BAR - 90)
     if t >= l1.start - 0.2:
         # three systems that don't talk to each other, stacked right of her
         systems = ['REGISTRY', 'BANK PORTAL', 'MINISTRY UPLOAD']
@@ -448,7 +448,7 @@ def seg_peak(t, fi):
                                                          (0.45 if n not in _clips() else 1.0), lk, vig=0.4),
                        title=tl, sub=sb)
                   for n, lk, tl, sb in (('aisha_tired', 'nightblue', 'Aisha', 'Founder · Karachi'),
-                                        ('officers_papers', 'dusk', 'Mariam', 'Licensing officer · Abu Dhabi'),
+                                        ('officers_papers', 'dusk', 'Nadia', 'Licensing officer · Abu Dhabi'),
                                         ('ministry_room', 'night', 'The ministry', 'Economy · Abu Dhabi'))]
         img = CV.draw_panels(t, cam, panels)
         Lr = Layer()
@@ -659,7 +659,7 @@ def seg_demo(t, fi):
 
     def omar_ui(ui, tt):
         licensing_console(ui, tt, 1000, 80, 820, 920, st_console)
-        lower_third(ui, tt, d[2] - 0.2, 'Mariam', 'Licensing officer', 'Abu Dhabi free zone · 09:31', y=H - 110)
+        lower_third(ui, tt, d[2] - 0.2, 'Nadia', 'Licensing officer', 'Abu Dhabi free zone · 09:31', y=H - 110)
 
     def ministry_ui(ui, tt):
         ministry_dashboard(ui, tt, 960, 70, 880, 940, st_min)
@@ -671,7 +671,7 @@ def seg_demo(t, fi):
 
     panels = [dict(plate=pl('aisha_day', 'dusk'), ui=aisha_ui, title='Aisha', sub='Founder · Karachi',
                    highlight=hl([back + 0.8, T_['same'] + 0.6])),
-              dict(plate=pl('omar_day', 'bluehour'), ui=omar_ui, title='Mariam', sub='Licensing officer · Abu Dhabi',
+              dict(plate=pl('omar_day', 'bluehour'), ui=omar_ui, title='Nadia', sub='Licensing officer · Abu Dhabi',
                    highlight=hl([arrive_b, T_['same'] + 0.45])),
               dict(plate=pl('ministry_office', 'night'), ui=ministry_ui, title='The ministry', sub='Economy · live',
                    highlight=hl([back + 0.8, T_['same']]))]

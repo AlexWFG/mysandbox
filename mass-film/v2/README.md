@@ -10,12 +10,12 @@ ElevenLabs take re-times picture and sound automatically.
 |---|---|---|
 | I | Cold open: deals, work, trade, then every form stamped *pending / returned / resubmit* | "Every deal. Every job. Every shipment…" |
 | I | **Aisha**, founder, Karachi at 02:14: a week to build, months to make official, back to zero at the next border | "Karachi. Two a.m…" |
-| I | **Mariam**, licensing officer, Abu Dhabi free zone: retypes one record into three systems that never connect | "In Abu Dhabi, Mariam…" |
+| I | **Nadia**, licensing officer, Abu Dhabi free zone: retypes one record into three systems that never connect | "In Abu Dhabi, Nadia…" |
 | I | **The ministry**: a wall of screens that never agree | "At the ministry, the economy arrives in pieces…" |
 | I | Peak: three people, one economy, held back. Then silence | "Three people. One economy…" |
 | II | The turn: one living record, created in minutes, trusted everywhere | "What if a company only had to prove itself once?" |
 | II | Reveal: the sonic logo lands on "Mass" | "This is Mass." |
-| II | Three-way demo on one moving canvas: Aisha talks to her agent, Mariam decides, the ministry sees it live, and a rule change reaches everyone | "Aisha tells her agent what she's building…" |
+| II | Three-way demo on one moving canvas: Aisha talks to her agent, Nadia decides, the ministry sees it live, and a rule change reaches everyone | "Aisha tells her agent what she's building…" |
 | III | Trust: every action checked before it happens, on the nation's own infrastructure and keys | "Every action is checked…" |
 | III | Network: another nation recognises the record | "Now imagine this across borders…" |
 | III | Close: Formed · Licensed · Banked · Recognised, then the end card | "Mass. The operating system for sovereign economies." |

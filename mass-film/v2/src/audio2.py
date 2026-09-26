@@ -306,7 +306,7 @@ def build():
     end_o = L('ministry', 0).start
     t_ret, t_rec, t_wait = o1.word('retypes'), o1.word('Re-checks'), o1.word('waits')
     place(o0.start - 0.2, s_whoosh(1.4, 200, 1400, 0.7, 40), gain=0.12, hall=0.4)
-    place(o0.word('Mariam') - 0.05, s_office(end_o - o0.word('Mariam') + 0.3, 41), gain=0.35, room=0.2)
+    place(o0.word('Nadia') - 0.05, s_office(end_o - o0.word('Nadia') + 0.3, 41), gain=0.35, room=0.2)
     chords_o = [(end_a, o1.start, ['A2', 'C3', 'E3']), (o1.start, t_rec, ['F2', 'A2', 'C3']),
                 (t_rec, end_o, ['E2', 'G#2', 'B2'])]
     pad_run(chords_o, 0.16, 1300, seed=42)
@@ -429,7 +429,7 @@ def build():
         if tb - ta < 1.2 and abs(ca.zoom - cb.zoom) > 0.05:
             place(ta, s_whoosh(tb - ta + 0.15, 400 if cb.zoom < ca.zoom else 900, 3500, 0.9, int(ta * 10)), gain=0.16,
                   pan=0.0, hall=0.2)
-    # filing travels to Mariam; she decides; everyone hears back
+    # filing travels to Nadia; she decides; everyone hears back
     place(T_['file'] + 0.9, s_whoosh(0.9, 1200, 6000, 1.4, 640), gain=0.18, pan=-0.2, hall=0.3)
     place(T_['file'] + 1.8, s_msg_in(641), gain=0.24, pan=0.1, hall=0.3)
     for j in range(4):

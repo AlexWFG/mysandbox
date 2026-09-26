@@ -17,7 +17,7 @@ os.environ.setdefault('REQUESTS_CA_BUNDLE', '/root/.ccr/ca-bundle.crt')
 V2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(V2, 'out', 'vo_final')
 MODEL = 'eleven_multilingual_v2'
-SETTINGS = dict(stability=0.45, similarity_boost=0.8, style=0.25, use_speaker_boost=True)
+SETTINGS = dict(stability=0.5, similarity_boost=0.8, style=0.2, use_speaker_boost=True)
 
 
 def take_text():
@@ -59,7 +59,21 @@ def request(voice_id, text):
 def cut(d, text, spans):
     al = d.get('alignment') or d['normalized_alignment']
     chars, t0s, t1s = al['characters'], al['character_start_times_seconds'], al['character_end_times_seconds']
-    assert ''.join(chars) == text, 'alignment text differs from the request'
+    got = ''.join(chars)
+    if got != text:
+        # map request positions onto the returned characters (the service may normalise whitespace)
+        import difflib
+        idx, sm = [None] * len(text), difflib.SequenceMatcher(None, text, got, autojunk=False)
+        for blk in sm.get_matching_blocks():
+            for q in range(blk.size):
+                idx[blk.a + q] = blk.b + q
+        last = 0
+        for q in range(len(text)):
+            idx[q] = last if idx[q] is None else idx[q]
+            last = idx[q]
+        t0s = [t0s[idx[q]] for q in range(len(text))]
+        t1s = [t1s[idx[q]] for q in range(len(text))]
+        print(f'note: alignment text differs from the request ({sm.ratio():.3f} similar); mapped by matching')
     wav = os.path.join(OUT, 'take.wav')
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', os.path.join(OUT, 'take.mp3'), '-ar', '48000', '-ac', '1',
                     wav], check=True)
