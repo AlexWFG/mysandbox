@@ -1,0 +1,5 @@
+node_modules/
+out/
+stock/raw/
+stock/clips/
+*.wav
