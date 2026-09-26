@@ -9,8 +9,8 @@ OUT = os.path.join(V2, 'out')
 
 
 def frames(path):
-    r = subprocess.run(['ffprobe', '-v', 'error', '-count_frames', '-select_streams', 'v:0', '-show_entries',
-                        'stream=nb_read_frames', '-of', 'csv=p=0', path], capture_output=True, text=True)
+    r = subprocess.run(['ffprobe', '-v', 'error', '-count_packets', '-select_streams', 'v:0', '-show_entries',
+                        'stream=nb_read_packets', '-of', 'csv=p=0', path], capture_output=True, text=True)
     return int(r.stdout.strip())
 
 

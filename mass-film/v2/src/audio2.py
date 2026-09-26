@@ -64,10 +64,10 @@ def elf(name, like=None, t0=0.0, t1=None, gain_db=0.0):
             e = np.abs(v)
             return np.sqrt(np.mean(v[e > e.max() * 0.05] ** 2)) + 1e-9
         x = x * act_rms(like) / act_rms(x)
-    return fade(x * db(gain_db), 0.004, 0.05)
+    return fade(x * db(gain_db), 0.015 if t0 == 0 else 0.25, 0.12 if t1 is None else 0.3)
 
 
-def tile(x, dur):
+def tile(x, dur, fin=0.6, fout=0.8):
     """Loop an ambience to dur seconds with short crossfades."""
     n, m = ns(dur), ns(0.25)
     out = np.zeros(n)
@@ -76,7 +76,7 @@ def tile(x, dur):
         seg = x[:min(len(x), n - i)].copy()
         out[i:i + len(seg)] += seg
         i += len(x) - m
-    return fade(out, 0.3, 0.4)
+    return fade(out, fin, fout)
 
 
 def peak_t(name):
@@ -345,8 +345,9 @@ def build():
     end_a = L('omar', 0).start
     t_aisha = a0.word('Aisha')
     if EL:
-        place(a0.start - 0.4, tile(elf('city_night', s_city_night(4.0, 20)), a1.start - a0.start + 0.6), gain=0.3)
-        place(t_aisha + 0.1, tile(elf('typing', gain_db=-4), a1.start - t_aisha), gain=0.5, pan=0.25, room=0.1)
+        place(a0.start - 0.8, tile(elf('city_night', s_city_night(4.0, 20)), a1.start - a0.start + 1.6, 0.8, 1.0), gain=0.3)
+        place(t_aisha + 0.1, tile(elf('typing', gain_db=-4), a1.start - t_aisha + 0.3, 0.15, 0.4), gain=0.5, pan=0.25,
+              room=0.1)
     else:
         place(a0.start - 0.4, s_city_night(a1.start - a0.start + 0.6, 20), gain=0.22, room=0.1)
         typing(t_aisha + 0.1, a1.start, 0.16, 0.25, 21)
@@ -360,7 +361,8 @@ def build():
     for k in range(3):
         place(a1.start + 0.15 + k * 0.45, s_pop(True, 32 + k), gain=0.22, pan=-0.3 + 0.2 * k, room=0.2)
     if EL:
-        place(a1.start + 0.3, tile(elf('typing', gain_db=-4), a3.start - a1.start - 0.5), gain=0.55, pan=-0.1, room=0.1)
+        place(a1.start + 0.3, tile(elf('typing', gain_db=-4), a3.start - a1.start - 0.5, 0.3, 0.4), gain=0.55, pan=-0.1,
+              room=0.1)
     else:
         typing(a1.start + 0.3, a3.start - 0.2, 0.2, -0.1, 33, (0.04, 0.12))
     words = [a2.word('same'), a2.word('office'), a2.word('bank'), a2.end - 0.1]
@@ -378,7 +380,7 @@ def build():
         tc += 1 / 120
     # the border
     if EL:
-        place(a3.start - 0.1, tile(elf('airport', s_crowd(3.0, 36)), end_a - a3.start + 0.2), gain=0.3, room=0.2)
+        place(a3.start - 0.3, tile(elf('airport', s_crowd(3.0, 36)), end_a - a3.start + 0.8, 0.4, 0.9), gain=0.3, room=0.2)
     else:
         place(a3.start - 0.1, fade(s_crowd(end_a - a3.start + 0.2, 36), 0.1, 0.1), gain=0.26, room=0.3, hall=0.2)
         place(a3.start + 0.2, s_chime(), gain=0.22, pan=0.3, hall=0.6)
@@ -392,7 +394,8 @@ def build():
     t_ret, t_rec, t_wait = o1.word('retypes'), o1.word('Re-checks'), o1.word('waits')
     place(o0.start - 0.2, s_whoosh(1.4, 200, 1400, 0.7, 40), gain=0.12, hall=0.4)
     if EL:
-        place(o0.word('Nadia') - 0.05, tile(elf('office', s_office(3.0, 41)), end_o - o0.word('Nadia') + 0.3), gain=0.35)
+        place(o0.word('Nadia') - 0.4, tile(elf('office', s_office(3.0, 41)), end_o - o0.word('Nadia') + 0.8, 0.5, 0.8),
+              gain=0.35)
     else:
         place(o0.word('Nadia') - 0.05, s_office(end_o - o0.word('Nadia') + 0.3, 41), gain=0.35, room=0.2)
     chords_o = [(end_a, o1.start, ['A2', 'C3', 'E3']), (o1.start, t_rec, ['F2', 'A2', 'C3']),
@@ -417,7 +420,7 @@ def build():
     t_econ, t_every = m0.word('economy'), m1.word('Every')
     place(m0.start - 0.2, s_city_night(t_econ - m0.start + 0.4, 52) * 0.7, gain=0.3, hall=0.2)
     if EL:
-        place(t_econ - 0.05, tile(elf('control_room', s_fluoro(3.0, 53), gain_db=3), end_m - t_econ), gain=0.3)
+        place(t_econ - 0.3, tile(elf('control_room', s_fluoro(3.0, 53), gain_db=3), end_m - t_econ + 0.8, 0.4, 0.8), gain=0.3)
     else:
         place(t_econ - 0.05, fade(s_fluoro(end_m - t_econ, 53), 0.05, 0.1), gain=0.16, room=0.3)
     rng = np.random.default_rng(54)
@@ -621,7 +624,13 @@ def build():
         sc, fs = sf.read(os.path.join(ELDIR, 'score.wav'))
         if fs != FS:
             sc = signal.resample_poly(sc, FS, fs, axis=0)
-        place(0.0, sc * SCORE_GAIN, bus='music')
+        env = np.sqrt(lp((sc ** 2).mean(1), 8).clip(1e-12, None))
+        i0 = int((L('demo', 0).start - 0.3) * FS)
+        jump = i0 + int(np.argmax(20 * np.log10(env[i0:i0 + ns(3.0)]) > -30))
+        a, b = jump - ns(0.5), jump + ns(0.35)
+        ramp_ = np.ones(len(sc))
+        ramp_[a:b] = np.sin(np.linspace(0, np.pi / 2, b - a)) ** 2 * 0.85 + 0.15
+        place(0.0, sc * ramp_[:, None] * SCORE_GAIN, bus='music')
     place(c1.word('operating'), s_bell_tone(hz('E6'), 2.4, 980), gain=0.03, space=0.6)
     place(c1.end + 0.4, s_bell_tone(hz('A6'), 1.8, 981), gain=0.025, space=0.6)
     return dict(t_black=t_black, t_cut=t_cut, t_rev=t_rev)
@@ -668,11 +677,33 @@ def vo_chain(vo):
 
 
 def duck_env(vo):
-    """1 = no narration, 0 = narration present (30 ms attack, ~300 ms release)."""
+    """1 = no narration, 0 = narration present. Holds through pauses under 0.9 s so the music does not pump
+    between sentences; opens in ~0.15 s and recovers over ~0.7 s."""
     e = np.sqrt(lp(vo ** 2, 12).clip(0, None))
-    act = np.clip((20 * np.log10(e + 1e-9) + 42) / 10, 0, 1)
-    hold = np.maximum(act, np.concatenate([act[ns(0.12):], np.zeros(ns(0.12))]))   # open slightly early
-    return 1 - lp(hold, 2.5).clip(0, 1)
+    on = (20 * np.log10(e + 1e-9) > -45).astype(float)
+    # fill short gaps
+    step = ns(0.01)
+    blocks = on[::step] > 0
+    gap = 0
+    for i in range(len(blocks)):
+        if blocks[i]:
+            if 0 < gap <= 90:
+                blocks[i - gap:i] = True
+            gap = 0
+        else:
+            gap += 1
+    mask = np.repeat(blocks.astype(float), step)[:len(vo)]
+    mask = np.concatenate([mask, np.zeros(len(vo) - len(mask))])
+    # asymmetric smoothing on a 100 Hz control signal
+    ctl = mask[::480]
+    out = np.zeros_like(ctl)
+    a_up, a_dn = 1 - math.exp(-1 / (0.15 * 100)), 1 - math.exp(-1 / (0.7 * 100))
+    v = 0.0
+    for i, m in enumerate(ctl):
+        v += (m - v) * (a_up if m > v else a_dn)
+        out[i] = v
+    talk = np.interp(np.arange(len(vo)), np.arange(len(ctl)) * 480, out)
+    return 1 - talk
 
 
 def master(out_path, target=-15.0, source='scratch'):
@@ -693,20 +724,24 @@ def master(out_path, target=-15.0, source='scratch'):
     fx = B['sfx'] + room * 0.28 + hall * 0.24 + space * 0.22 + dly * 0.25
     # Act I ends in silence at the black; the peak cuts to silence before the turn
     gate = np.ones(N)
-    for t_gate, t_back in ((marks['t_black'], L('aisha', 0).start - 0.45), (marks['t_cut'], L('turn', 0).start + 0.3)):
+    for t_gate, t_back, f_out, f_in in ((marks['t_black'], L('aisha', 0).start - 0.45, 0.01, 0.4),
+                                        (marks['t_cut'], L('turn', 0).start - 0.3, 0.25, 1.2)):
         i, j = int(t_gate * FS), int(t_back * FS)
-        m = ns(0.01)
-        gate[i:i + m] = np.linspace(1, 0, m)
+        if j <= i:
+            continue
+        m = ns(f_out)
+        gate[i:i + m] = np.minimum(gate[i:i + m], np.cos(np.linspace(0, np.pi / 2, m)) ** 2)
         gate[i + m:j] = 0
-        gate[j:j + ns(0.4)] = np.minimum(gate[j:j + ns(0.4)], np.linspace(0, 1, ns(0.4)))
+        k = ns(f_in)
+        gate[j:j + k] = np.minimum(gate[j:j + k], np.sin(np.linspace(0, np.pi / 2, k)) ** 2)
     talk = 1 - duck                                                             # narration present
     if EL:
         # carve a pocket for the voice: under narration the score's speech band dips a further 6 dB
         sos = signal.butter(2, [300, 4000], btype='band', fs=FS, output='sos')
         mid = signal.sosfiltfilt(sos, music, axis=0)
-        music = music - mid * (1 - db(-6 * talk))[:, None]
-    bed = (music * 0.9 * db(-10 * talk)[:, None] + sub * db(-3 * talk)[:, None]
-           + fx * db(-5 * talk)[:, None]) * gate[:, None] * db(BED_DB)
+        music = music - mid * (1 - db(-5 * talk))[:, None]
+    bed = (music * 0.9 * db((-7 if EL else -10) * talk)[:, None] + sub * db(-2 * talk)[:, None]
+           + fx * db(-4 * talk)[:, None]) * gate[:, None] * db(BED_DB)
     mix = bed + pan2(vo, 0.0) * 1.0
     for c in range(2):
         mix[:, c] = hp(mix[:, c], 22)

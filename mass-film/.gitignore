@@ -24,3 +24,5 @@ v2/out/vo_final/*.wav
 v2/out/vo_final/take_raw.json
 v2/out/el_audio/*.wav
 v2/out/v2_master_video_1080p.mp4
+v2/out/vo_final/fixes/*.wav
+v2/out/fix_live.mkv

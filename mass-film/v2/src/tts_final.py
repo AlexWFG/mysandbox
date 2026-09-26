@@ -83,15 +83,19 @@ def cut(d, text, spans):
     bounds = [(t0s[a], t1s[b - 1]) for a, b in spans]
     for k, ((a, b), (s0, s1)) in enumerate(zip(spans, bounds)):
         lo = max(0.0, s0 - 0.05)
-        hi = s1 + 0.12
+        hi = s1 + 0.12                                  # layout length (drives the edit timing)
+        tail = s1 + 0.35                                # audio keeps the natural release of the last word
         if k > 0:
             lo = max(lo, (bounds[k - 1][1] + s0) / 2)
         if k + 1 < len(bounds):
-            hi = min(hi, (s1 + bounds[k + 1][0]) / 2)
-        seg = x[int(lo * fs):int(hi * fs)].copy()
-        m = int(0.01 * fs)
-        seg[:m] *= np.linspace(0, 1, m)
-        seg[-m:] *= np.linspace(1, 0, m)
+            mid = (s1 + bounds[k + 1][0]) / 2
+            hi, tail = min(hi, mid), min(tail, mid)
+        tail = min(tail, len(x) / fs)
+        hi = min(hi, len(x) / fs)
+        seg = x[int(lo * fs):int(tail * fs)].copy()
+        m1, m2 = int(0.01 * fs), int(0.08 * fs)
+        seg[:m1] *= np.linspace(0, 1, m1)
+        seg[-m2:] *= np.linspace(1, 0, m2)
         name = f'{k:02d}.wav'
         sf.write(os.path.join(OUT, name), seg, fs, subtype='PCM_24')
         words, i = [], a
@@ -99,7 +103,7 @@ def cut(d, text, spans):
             j = i + len(w)
             words.append((w, round(t0s[i] - lo, 3), round(t1s[j - 1] - lo, 3)))
             i = j + 1
-        lines.append(dict(file=name, dur=round(len(seg) / fs, 3), words=words))
+        lines.append(dict(file=name, dur=round(hi - lo, 3), words=words))
     json.dump(lines, open(os.path.join(OUT, 'lines.json'), 'w'), indent=1)
     print(f'cut {len(lines)} lines; take length {len(x) / fs:.1f}s')
 

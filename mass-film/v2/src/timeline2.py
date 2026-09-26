@@ -53,13 +53,14 @@ class Timeline:
         else:
             durs = json.load(open(os.path.join(OUT, 'scratch_vo', 'durations.json')))
             words = [None] * len(durs)
+            info = [{}] * len(durs)
         t = script.LEAD_IN
         self.lines = []
         for (key, text), d, wd in zip(keyed, durs, words):
             # final take: word times in lines.json are relative to the start of each line's file
             ln = Line(key, text, t, d, [(w, t + a, t + b) for w, a, b in wd] if wd else None)
             self.lines.append(ln)
-            t = ln.end + script.PAUSE_AFTER.get(key, 0.5)
+            t = ln.end + script.PAUSE_AFTER.get(key, 0.5) + (info[len(self.lines) - 1].get('pause_adj', 0.0) if source == 'final' else 0.0)
         self.duration = t
         self.by_key = {ln.key: ln for ln in self.lines}
 
