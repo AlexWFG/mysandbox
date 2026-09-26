@@ -73,7 +73,14 @@ def music():
         body = {k: v for k, v in cue.items() if k in ('prompt', 'music_length_ms', 'composition_plan', 'force_instrumental', 'model_id')}
         out = key_path('music', {'id': cue['id'], **body})
         if not os.path.exists(out):
-            open(out, 'wb').write(req('/music?output_format=mp3_44100_192', body)); print('  generated', os.path.basename(out))
+            # streamed: a long generation over the non-streaming endpoint timed out at the proxy (502)
+            r = urllib.request.Request(API + '/music/stream?output_format=mp3_44100_192', data=json.dumps(body).encode(), headers={'Content-Type': 'application/json', 'Accept': 'audio/mpeg'})
+            with urllib.request.urlopen(r, timeout=900) as rsp, open(out + '.part', 'wb') as f:
+                while True:
+                    b = rsp.read(65536)
+                    if not b: break
+                    f.write(b)
+            os.rename(out + '.part', out); print('  generated', os.path.basename(out))
         print(cue['id'], os.path.basename(out), round(dur(out), 2), 's')
 
 

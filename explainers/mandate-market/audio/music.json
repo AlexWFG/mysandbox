@@ -1,0 +1,92 @@
+{
+ "cues": [
+  {
+   "id": "bed150",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "modern ambient electronic",
+     "calm flowing motion-graphics explainer score",
+     "optimistic and intelligent",
+     "92 BPM",
+     "F major",
+     "soft analog synth arpeggios",
+     "felt piano",
+     "warm pads",
+     "clean and uncluttered",
+     "leaves room for narration"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "epic trailer",
+     "heavy drums",
+     "aggressive",
+     "dubstep",
+     "distorted",
+     "cheesy corporate ukulele",
+     "big risers"
+    ],
+    "sections": [
+     {
+      "section_name": "Opening",
+      "positive_local_styles": [
+       "felt piano motif",
+       "warm pad swell",
+       "no drums"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 5000,
+      "lines": []
+     },
+     {
+      "section_name": "Build",
+      "positive_local_styles": [
+       "soft plucked arpeggio enters",
+       "gentle sub pulse",
+       "curious"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 20000,
+      "lines": []
+     },
+     {
+      "section_name": "Groove A",
+      "positive_local_styles": [
+       "steady flowing groove",
+       "soft kick and brushed hats",
+       "interlocking arpeggios",
+       "precise and analytical, never busy"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 55000,
+      "lines": []
+     },
+     {
+      "section_name": "Groove B",
+      "positive_local_styles": [
+       "same groove, slightly deeper bass line",
+       "focused",
+       "subtle forward momentum"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 50000,
+      "lines": []
+     },
+     {
+      "section_name": "Resolve",
+      "positive_local_styles": [
+       "resolving warm uplifting chords",
+       "percussion drops out",
+       "final sustained chord with gentle decay"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 20000,
+      "lines": []
+     }
+    ]
+   }
+  }
+ ]
+}
