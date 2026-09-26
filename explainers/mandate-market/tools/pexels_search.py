@@ -10,7 +10,7 @@ python3 film/tools/pexels_search.py slot1 ...  # specific slots
 import json, sys, os, io, urllib.request, urllib.parse
 from PIL import Image, ImageDraw
 
-ROOT = os.path.join(os.path.dirname(__file__), '..')
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 SLOTS = json.load(open(os.path.join(ROOT, 'stock', 'slots.json')))
 OUT = os.path.join(ROOT, 'stock', 'search')
 os.makedirs(OUT, exist_ok=True)

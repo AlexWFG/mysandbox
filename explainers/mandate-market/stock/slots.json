@@ -1,0 +1,7 @@
+{
+ "trading": {"query": "stock exchange trading screens numbers"},
+ "warehouse": {"query": "logistics warehouse aerial drone"},
+ "city": {"query": "office buildings aerial city dusk"},
+ "lenders": {"query": "business people meeting office discussion"},
+ "handshake": {"query": "business handshake office deal"}
+}

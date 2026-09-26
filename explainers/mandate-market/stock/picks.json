@@ -1,0 +1,7 @@
+{
+ "trading":   {"slot": "trading",   "i": 8,  "from": 2.0, "dur": 6},
+ "warehouse": {"slot": "warehouse", "i": 10, "from": 1.0, "dur": 6},
+ "city":      {"slot": "city",      "i": 4,  "from": 6.0, "dur": 8},
+ "lenders":   {"slot": "lenders",   "i": 11, "from": 3.0, "dur": 6},
+ "handshake": {"slot": "handshake", "i": 7,  "from": 1.0, "dur": 6}
+}

@@ -7,7 +7,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const ROOT = path.dirname(new URL(import.meta.url).pathname);  // explainers/mandate-market
 const fpsArg = process.argv.indexOf('--fps');
 const FPS = fpsArg > 0 ? parseInt(process.argv[fpsArg + 1]) : 30;
 const pageArg = process.argv.indexOf('--page');

@@ -1,0 +1,42 @@
+{
+ "trading": {
+  "key": "7579577:2.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7579577,
+  "author": "Tima Miroshnichenko",
+  "url": "https://www.pexels.com/video/financial-market-7579577/"
+ },
+ "warehouse": {
+  "key": "35376603:1.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 35376603,
+  "author": "Altaf Shah",
+  "url": "https://www.pexels.com/video/aerial-view-of-industrial-estate-with-warehouses-35376603/"
+ },
+ "city": {
+  "key": "20670675:6.0:8",
+  "frames": 240,
+  "fps": 30,
+  "pexels_id": 20670675,
+  "author": "Borys Trusevych",
+  "url": "https://www.pexels.com/video/20670675/"
+ },
+ "lenders": {
+  "key": "7691631:3.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7691631,
+  "author": "Yan Krukau",
+  "url": "https://www.pexels.com/video/colleagues-discussing-about-the-reports-7691631/"
+ },
+ "handshake": {
+  "key": "7692917:1.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7692917,
+  "author": "Yan Krukau",
+  "url": "https://www.pexels.com/video/business-people-doing-a-handshake-7692917/"
+ }
+}

@@ -7,7 +7,7 @@ import json, os, subprocess, urllib.request
 import imageio_ffmpeg
 
 FF = imageio_ffmpeg.get_ffmpeg_exe()
-ROOT = os.path.join(os.path.dirname(__file__), '..', 'stock')
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'stock')
 picks = json.load(open(os.path.join(ROOT, 'picks.json')))
 man_path = os.path.join(ROOT, 'manifest.json')
 manifest = json.load(open(man_path)) if os.path.exists(man_path) else {}
