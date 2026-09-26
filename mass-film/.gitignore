@@ -12,7 +12,7 @@ v2/footage/*.mp4
 v2/footage/*.part
 v2/footage/frames/
 v2/footage/search/
-v2/out/segments/
+v2/out/segments*/
 v2/out/*.mkv
 v2/out/*.wav
 v2/out/scratch_vo/
