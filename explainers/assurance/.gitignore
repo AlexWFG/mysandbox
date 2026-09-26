@@ -1,0 +1,5 @@
+out/
+node_modules/
+stock/raw/
+stock/clips/
+*.log
