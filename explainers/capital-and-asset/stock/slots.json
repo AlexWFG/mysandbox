@@ -1,0 +1,9 @@
+{
+ "broker":   {"query": "real estate agent handshake office"},
+ "valuer":   {"query": "building inspector clipboard"},
+ "notary":   {"query": "signing contract pen close up"},
+ "lender":   {"query": "bank meeting financial advisor"},
+ "analyst":  {"query": "financial analyst spreadsheet computer office"},
+ "property": {"query": "property manager apartment building"},
+ "city":     {"query": "city office buildings aerial"}
+}

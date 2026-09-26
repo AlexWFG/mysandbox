@@ -1,0 +1,113 @@
+{
+ "cues": [
+  {
+   "id": "bed",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "calm modern ambient electronic",
+     "flowing",
+     "optimistic and intelligent",
+     "92 BPM",
+     "D major",
+     "soft analog synth pads",
+     "gentle plucked arpeggios",
+     "warm felt piano",
+     "light minimal percussion",
+     "documentary explainer underscore",
+     "spacious mix"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "epic",
+     "trailer",
+     "aggressive drums",
+     "dubstep",
+     "dark",
+     "horror",
+     "cheesy",
+     "ukulele",
+     "loud hits"
+    ],
+    "sections": [
+     {
+      "section_name": "Opening",
+      "positive_local_styles": [
+       "felt piano motif alone at first",
+       "soft pad swell",
+       "light arpeggio enters after 12 seconds",
+       "curious, open"
+      ],
+      "negative_local_styles": [
+       "drums"
+      ],
+      "duration_ms": 33500,
+      "lines": []
+     },
+     {
+      "section_name": "The rule",
+      "positive_local_styles": [
+       "arpeggio steady",
+       "soft kick and brushed hi-hat",
+       "clear and focused",
+       "gentle forward motion"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 49700,
+      "lines": []
+     },
+     {
+      "section_name": "The map",
+      "positive_local_styles": [
+       "building layers",
+       "pulse bass enters",
+       "arpeggio brighter",
+       "sense of order and clarity"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 38000,
+      "lines": []
+     },
+     {
+      "section_name": "The offer",
+      "positive_local_styles": [
+       "slightly lighter texture",
+       "piano returns over pulse",
+       "confident and warm"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 36100,
+      "lines": []
+     },
+     {
+      "section_name": "The sequence",
+      "positive_local_styles": [
+       "gradual build",
+       "steady pulse",
+       "each phrase adds a layer",
+       "momentum without urgency"
+      ],
+      "negative_local_styles": [],
+      "duration_ms": 47500,
+      "lines": []
+     },
+     {
+      "section_name": "Resolution",
+      "positive_local_styles": [
+       "full but gentle",
+       "warm resolution",
+       "final 6 seconds settle to a sustained pad and single piano note, then silence"
+      ],
+      "negative_local_styles": [
+       "abrupt ending"
+      ],
+      "duration_ms": 35400,
+      "lines": []
+     }
+    ]
+   }
+  }
+ ]
+}

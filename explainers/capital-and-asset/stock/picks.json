@@ -1,0 +1,12 @@
+{
+ "broker":   {"slot": "broker", "i": 7, "from": 0.5, "dur": 5},
+ "valuer":   {"slot": "valuer", "i": 4, "from": 0.5, "dur": 6},
+ "notary":   {"slot": "notary", "i": 5, "from": 0.5, "dur": 5},
+ "signing":  {"slot": "notary", "i": 2, "from": 0.5, "dur": 7},
+ "lender":   {"slot": "lender", "i": 2, "from": 0.3, "dur": 5},
+ "lender2":  {"slot": "lender", "i": 1, "from": 0.5, "dur": 6},
+ "analyst":  {"slot": "analyst", "i": 2, "from": 0.5, "dur": 6},
+ "analyst2": {"slot": "analyst", "i": 0, "from": 0.5, "dur": 6},
+ "property": {"slot": "property", "i": 1, "from": 0.5, "dur": 7},
+ "city":     {"slot": "city", "i": 0, "from": 0.5, "dur": 8}
+}

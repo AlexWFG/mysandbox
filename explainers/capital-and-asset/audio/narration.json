@@ -1,0 +1,145 @@
+{
+ "voice": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "lines": [
+  {
+   "id": "v01",
+   "text": "Between capital and the asset sits a crowd."
+  },
+  {
+   "id": "v02",
+   "text": "Brokers, valuers, lawyers, notaries, lenders. Some twenty parties stand between the money and the building."
+  },
+  {
+   "id": "v03",
+   "text": "Two businesses work this stretch. Prop.com sells outcome services: desk work, delivered faster and cheaper."
+  },
+  {
+   "id": "v04",
+   "text": "Propchain builds the rails: a standard everyone runs on, even Prop.com's competitors."
+  },
+  {
+   "id": "v05",
+   "text": "So for each party in the middle: own it, tool it, or onboard it? And in which order?"
+  },
+  {
+   "id": "v06",
+   "text": "It starts with a rule. Every party in the middle splits in three."
+  },
+  {
+   "id": "v07",
+   "text": "The act carries the liability: a signature, a deed, an audit opinion. Its value is its independence. It stays independent, and we tool it."
+  },
+  {
+   "id": "v08",
+   "text": "The process prepares the act: data rooms, models, draft deeds. It's desk work: most of the hours, and the fee. It becomes a Prop.com service."
+  },
+  {
+   "id": "v09",
+   "text": "And the data: rent rolls in, N-O-I out. Comparables in, a mark out. Propchain attests it."
+  },
+  {
+   "id": "v10",
+   "text": "Take the valuer. The signature is independent. The model is not. And the mark is data."
+  },
+  {
+   "id": "v11",
+   "text": "An opinion issued by the party that profits from the deal is worth less, whatever its quality. Independence is the product."
+  },
+  {
+   "id": "v12",
+   "text": "Now lay the parties out in the order a deal moves: eight layers, from capital to the asset."
+  },
+  {
+   "id": "v13",
+   "text": "And every party gets one verb."
+  },
+  {
+   "id": "v14",
+   "text": "Investors, lenders, buyers, sellers, tenants: they aren't intermediaries. They are the market. Propchain onboards them."
+  },
+  {
+   "id": "v15",
+   "text": "The notary, registry, valuer, auditor, depositary and lawyers each hold an act that must stay theirs. We tool them. We never own them."
+  },
+  {
+   "id": "v16",
+   "text": "Everything else is process: underwriting, reporting, asset management, debt advisory, payments. Prop.com serves it as an outcome, automated underneath."
+  },
+  {
+   "id": "v17",
+   "text": "Prop.com sells the outcome of a desk, not the AI: four or five analyst seats, replaced by one outsourced desk."
+  },
+  {
+   "id": "v18",
+   "text": "Five criteria score each service line, and sort them into three tiers."
+  },
+  {
+   "id": "v19",
+   "text": "Tier one, now: underwriting, reporting, asset management and debt advisory. Pure desk work, no licence in the way."
+  },
+  {
+   "id": "v20",
+   "text": "Tier two, next: fund admin, D-D assembly, legal process and payments. A regulated act is in the way, so we deliver the process under a named partner's act."
+  },
+  {
+   "id": "v21",
+   "text": "Tier three, later: property management and origination. We want the records, not the headcount."
+  },
+  {
+   "id": "v22",
+   "text": "Land and expand: tier two sells to the same client, whose data we already hold."
+  },
+  {
+   "id": "v23",
+   "text": "Propchain's order follows a different logic: what each party unlocks."
+  },
+  {
+   "id": "v24",
+   "text": "Lenders first. Credit boxes rest on the platform, and every asset with attested N-O-I carries a debt quote."
+  },
+  {
+   "id": "v25",
+   "text": "Then valuers: marks on attested inputs, so loan-to-value tests run on marks lenders already trust."
+  },
+  {
+   "id": "v26",
+   "text": "Then notaries: financed, marked pairs settle without re-verification."
+  },
+  {
+   "id": "v27",
+   "text": "Then auditors and depositaries, reading the same records. Other managers join because their lenders did."
+  },
+  {
+   "id": "v28",
+   "text": "Last, property managers feed in source data, lawyers land due diligence as fields, and the registry connects."
+  },
+  {
+   "id": "v29",
+   "text": "Dependency, not rank. A notary tool with nothing to settle is a demo. With a financed bid and a mark, it's a closing."
+  },
+  {
+   "id": "v30",
+   "text": "For acts we can't own, the tools are free or near-free. The tool never produces the act. It prepares, presents and records it."
+  },
+  {
+   "id": "v31",
+   "text": "So the two businesses pull each other. Services make records. Records make rails worth joining. And parties on the rails need their process half delivered."
+  },
+  {
+   "id": "v32",
+   "text": "It works only if Prop.com is just a participant: same identity, same permissions, no privileged read. Every read is logged."
+  },
+  {
+   "id": "v33",
+   "text": "Own the desk. Tool the act. Onboard the market."
+  }
+ ]
+}

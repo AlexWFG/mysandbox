@@ -1,0 +1,82 @@
+{
+ "broker": {
+  "key": "7577728:0.5:5",
+  "frames": 150,
+  "fps": 30,
+  "pexels_id": 7577728,
+  "author": "Kindel Media",
+  "url": "https://www.pexels.com/video/men-shaking-hands-7577728/"
+ },
+ "valuer": {
+  "key": "7816376:0.5:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7816376,
+  "author": "Pavel Danilyuk",
+  "url": "https://www.pexels.com/video/a-realtor-doing-her-checklist-7816376/"
+ },
+ "notary": {
+  "key": "8731580:0.5:5",
+  "frames": 150,
+  "fps": 30,
+  "pexels_id": 8731580,
+  "author": "Mikhail Nilov",
+  "url": "https://www.pexels.com/video/a-person-holding-a-pen-8731580/"
+ },
+ "signing": {
+  "key": "8439245:0.5:7",
+  "frames": 190,
+  "fps": 30,
+  "pexels_id": 8439245,
+  "author": "Kampus Production",
+  "url": "https://www.pexels.com/video/a-person-signing-a-document-8439245/"
+ },
+ "lender": {
+  "key": "8293500:0.3:5",
+  "frames": 150,
+  "fps": 30,
+  "pexels_id": 8293500,
+  "author": "RDNE Stock project",
+  "url": "https://www.pexels.com/video/a-person-giving-applying-for-a-loan-8293500/"
+ },
+ "lender2": {
+  "key": "8814720:0.5:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 8814720,
+  "author": "Kampus Production",
+  "url": "https://www.pexels.com/video/realtor-talking-to-his-client-using-digital-tablet-8814720/"
+ },
+ "analyst": {
+  "key": "38779110:0.5:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 38779110,
+  "author": "Kiwi and Camera",
+  "url": "https://www.pexels.com/video/modern-traffic-management-control-room-38779110/"
+ },
+ "analyst2": {
+  "key": "7692788:0.5:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7692788,
+  "author": "Yan Krukau",
+  "url": "https://www.pexels.com/video/man-using-a-laptop-and-checking-the-time-7692788/"
+ },
+ "property": {
+  "key": "31004744:0.5:7",
+  "frames": 210,
+  "fps": 30,
+  "pexels_id": 31004744,
+  "author": "Cory Clean",
+  "url": "https://www.pexels.com/video/modern-residential-neighborhood-aerial-view-31004744/"
+ },
+ "city": {
+  "key": "13764229:0.5:8",
+  "frames": 240,
+  "fps": 30,
+  "pexels_id": 13764229,
+  "author": "K",
+  "url": "https://www.pexels.com/video/statue-on-roundabout-in-city-13764229/"
+ }
+}
