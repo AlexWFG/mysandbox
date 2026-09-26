@@ -3,7 +3,7 @@
 Narrated motion-graphics explainer made from `Propchain — The Mandate Market.pdf` (concept note, September 2026), following `explainers/BRIEF.md`.
 
 - **`mandate-market-1080p.mp4`**: 1920×1080, 30 fps, H.264 two-pass + AAC 192k.
-- **`mandate-market-preview.mp4`**: 1280×720, two-pass, AAC 160k, under 29 MB.
+- **`mandate-market-preview.mp4`**: 1280×720, two-pass (~750 kbps so it fits under 29 MB; 1.5 Mbps would not at 4:00), AAC 160k — 27.7 MB. The 1080p file is 93.3 MB.
 - **Runtime: 4:00** (240.0 s).
 
 The film teaches the matching mechanics with one example that runs all the way through: **mandate M-0417** (logistics, Germany, €10–25M) scores a logistics asset in Munich, credit box **L1** quotes the pair, and the pair's bid comes out of the deck's worked example (NOI €800k, test price €13.0M).

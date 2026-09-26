@@ -266,12 +266,12 @@ export default function ch3() {
       const fA = W('11', 'vacancy') + .5;
       rise(rA.r, t, W('11', 'cap') - .2);
       rA.fills.forEach((f, k) => f.f.style.transform = `scaleX(${pr(t, W('11', segs[k].cue) + .1, .8)})`);
-      setText(rA.sc_, (sA * pr(t, fA, .8)).toFixed(2)); rA.sc_.style.color = t > fA ? Y : '#F4F2EC';
+      setText(rA.sc_, (sA * pr(t, fA, .8)).toFixed(2)); rA.sc_.style.color = t > fA ? Y : '#F4F2EC'; rA.sc_.style.opacity = pr(t, fA - .1, .4);
       const tb = W('11', 'floors') - .1, tz = W('11', 'zeroes');
       rise(rB.r, t, tb, { dy: 16 });
       rB.fills.forEach((f, k) => f.f.style.transform = `scaleX(${pr(t, tb + .3 + k * .12, .7) * (1 - .85 * pr(t, tz, .6))})`);
       const vB = sB * pr(t, tb + .4, 1.0) * (1 - pr(t, tz, .5));
-      setText(rB.sc_, vB.toFixed(2)); rB.sc_.style.color = t > tz ? Y : '#F4F2EC';
+      setText(rB.sc_, vB.toFixed(2)); rB.sc_.style.color = t > tz ? Y : '#F4F2EC'; rB.sc_.style.opacity = pr(t, tb + .4, .4);
       rise(stamp, t, W('11', 'vacancy', 1) - .1, { dy: -10, scale: .1 });
       rise(floors, t, tz + .8, { dy: 10 });
     }
