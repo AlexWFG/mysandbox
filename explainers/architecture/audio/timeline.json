@@ -1,0 +1,155 @@
+{
+ "lines": {
+  "01": {
+   "t": 0.8,
+   "d": 4.62,
+   "file": "vo/01_0daf2ddae3.mp3",
+   "text": "Provable, not visible. This is how the attested market is built."
+  },
+  "02": {
+   "t": 6.42,
+   "d": 6.11,
+   "file": "vo/02_f1819ec472.mp3",
+   "text": "It starts with one decision. The chain is a notary and a settlement rail, not a database."
+  },
+  "03": {
+   "t": 12.88,
+   "d": 10.68,
+   "file": "vo/03_5220325123.mp3",
+   "text": "On chain goes only what must be verified later, without trusting us: commitments, identities, grants, signatures, settlement state, and the audit log root."
+  },
+  "04": {
+   "t": 23.91,
+   "d": 11.18,
+   "file": "vo/04_3c9a06d899.mp3",
+   "text": "Anything someone needs to read stays off chain: records, mandates, the matching engine, models, documents. And keys never leave a hardware security module."
+  },
+  "06": {
+   "t": 36.09,
+   "d": 11.05,
+   "file": "vo/06_7d00583693.mp3",
+   "text": "Around that ledger sit eight services. Identity, ingestion, the record store, attestation. Matching, settlement, the agent runtime, and integration."
+  },
+  "07": {
+   "t": 47.49,
+   "d": 6.4,
+   "file": "vo/07_615e492b3e.mp3",
+   "text": "Every service writes commitments to the ledger, and reads grants from it. None of them stores state there."
+  },
+  "09": {
+   "t": 54.89,
+   "d": 10.76,
+   "file": "vo/09_e09e028b63.mp3",
+   "text": "Now, follow one record. A rent roll leaves the owner's property system through an adapter. Ingestion extracts its fields, with lineage back to the source."
+  },
+  "10": {
+   "t": 66.0,
+   "d": 5.28,
+   "file": "vo/10_0a0590b739.mp3",
+   "text": "The record store encrypts each field under its own key, in the owner's vault."
+  },
+  "11": {
+   "t": 71.63,
+   "d": 9.04,
+   "file": "vo/11_19a71a8c82.mp3",
+   "text": "Each field is hashed with a random salt, because N-O-I equals eight hundred thousand is guessable. An unsalted hash is a leak."
+  },
+  "12": {
+   "t": 81.02,
+   "d": 5.33,
+   "file": "vo/12_00a664cdce.mp3",
+   "text": "The hashes roll up into a single Merkle root, per asset, per period."
+  },
+  "13": {
+   "t": 86.7,
+   "d": 7.13,
+   "file": "vo/13_647b9e9dae.mp3",
+   "text": "Attestation collects signatures from independent sources of the fact, computes the quorum and a level, and commits."
+  },
+  "14": {
+   "t": 94.18,
+   "d": 6.71,
+   "file": "vo/14_e036dc50e4.mp3",
+   "text": "What reaches the chain is the root, the signatures and the level. The rent roll itself never does."
+  },
+  "15": {
+   "t": 101.89,
+   "d": 12.02,
+   "file": "vo/15_5a49c7e430.mp3",
+   "text": "Two quorums, kept apart. Consensus orders: validators agree what happened, and when. Attestation verifies: independent sources sign that a fact is true enough to act on."
+  },
+  "16": {
+   "t": 114.26,
+   "d": 8.91,
+   "file": "vo/16_6bc7a6f886.mp3",
+   "text": "The validators are named parties, like notaries, auditors and banks, anchored to a public chain that no consortium member controls."
+  },
+  "17": {
+   "t": 124.17,
+   "d": 9.51,
+   "file": "vo/17_dba5204f6e.mp3",
+   "text": "A buyer's agent gets a grant: the value and salt for named fields only. It checks them against the root on chain, and the grant itself is logged."
+  },
+  "18": {
+   "t": 134.03,
+   "d": 7.78,
+   "file": "vo/18_24e2646f0c.mp3",
+   "text": "Where the double-blind market needs it, a range proof answers: is N-O-I at least X? Without revealing it."
+  },
+  "19": {
+   "t": 142.81,
+   "d": 12.02,
+   "file": "vo/19_6008f5d8b4.mp3",
+   "text": "Every action traces to a person: institution, principal, agent credential, action. Agents prepare. Anything that binds also carries a principal's signature."
+  },
+  "20": {
+   "t": 155.18,
+   "d": 8.18,
+   "file": "vo/20_600c74fc5f.mp3",
+   "text": "Matching runs deterministically in an attested enclave, with roots in and a root out. Neutrality becomes verifiable."
+  },
+  "21": {
+   "t": 163.71,
+   "d": 12.98,
+   "file": "vo/21_c480d60cf5.mp3",
+   "text": "List, diligence, match, finance, settle. Each step leaves a mark on chain a regulator can verify, without seeing a rent, a mandate or a price. And operate repeats it, monthly."
+  },
+  "22": {
+   "t": 177.69,
+   "d": 13.45,
+   "file": "vo/22_14a3f3b89b.mp3",
+   "text": "None of this asks an intermediary to change their systems. First, shadow: adapters read what exists. Then, write back, in their own format. Then, they work on the platform, because it's faster."
+  },
+  "23": {
+   "t": 191.49,
+   "d": 7.34,
+   "file": "vo/23_80c6a9f80d.mp3",
+   "text": "Every adapter is one untrusted source. A compromised adapter can lie. It cannot reach a quorum alone."
+  },
+  "24": {
+   "t": 199.18,
+   "d": 9.01,
+   "file": "vo/24_bd25b85222.mp3",
+   "text": "A bank gets three connectors: its financing pack in, its credit policy out, and a servicing feed. Neither bank system is replaced."
+  },
+  "25": {
+   "t": 209.19,
+   "d": 11.78,
+   "file": "vo/25_40b60dfd9c.mp3",
+   "text": "Safety starts with a split. A data breach costs confidentiality; a key compromise is money gone. So data and value sit on different keys, networks and teams."
+  },
+  "26": {
+   "t": 221.32,
+   "d": 8.49,
+   "file": "vo/26_4bf99177db.mp3",
+   "text": "And assume a key will be compromised. Alone, it can do nothing. With a second, only a little. And with a third, it can be reversed."
+  },
+  "27": {
+   "t": 230.81,
+   "d": 4.6,
+   "file": "vo/27_9c27b777a3.mp3",
+   "text": "Commit first. Connect second. Match third. Settle last."
+  }
+ },
+ "end": 240.01
+}

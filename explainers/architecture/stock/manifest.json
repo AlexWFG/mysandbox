@@ -1,0 +1,26 @@
+{
+ "tower": {
+  "key": "7317045:2.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7317045,
+  "author": "MART  PRODUCTION",
+  "url": "https://www.pexels.com/video/glass-panel-windows-on-the-building-exterior-7317045/"
+ },
+ "sign": {
+  "key": "8731199:1.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 8731199,
+  "author": "Mikhail Nilov",
+  "url": "https://www.pexels.com/video/man-writing-in-paper-8731199/"
+ },
+ "team": {
+  "key": "7653214:2.0:6",
+  "frames": 180,
+  "fps": 30,
+  "pexels_id": 7653214,
+  "author": "Thirdman",
+  "url": "https://www.pexels.com/video/people-working-together-7653214/"
+ }
+}

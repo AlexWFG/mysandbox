@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Propchain · Technical architecture</title>
+<link rel="stylesheet" href="film.css"></head>
+<body><div id="film"><div id="stage"></div></div>
+<script src="timeline.js"></script><script src="stock.js"></script>
+<script src="engine.js"></script><script src="scenes1.js"></script><script src="scenes2.js"></script><script src="scenes3.js"></script>
+<script>
+const ICON_LIST = ['stamp','arrow-left-right','database','hash','id-card','ticket-check','signature','scroll-text','file-spreadsheet','briefcase','cpu','layers','file-text','key-round',
+ 'fingerprint','inbox','vault','bot','plug','server','lock','lock-open','eye','eye-off','landmark','user','users','pen-line','badge-check','refresh-cw','repeat','check','x','triangle-alert',
+ 'building-2','shield-check','snowflake','undo-2','timer','list-checks','search-check','handshake','network','link','database-zap','git-merge','scale','wallet','coins','file-check','calendar-sync','send'];
+window.__ready = (async () => {
+  STAGE = document.getElementById('stage');
+  await loadIcons(ICON_LIST);
+  await document.fonts.load('300 40px Inter'); await document.fonts.load('500 40px Inter'); await document.fonts.load('400 40px Inter');await document.fonts.load('500 20px JBM');
+  buildScenes1();
+  if (window.buildScenes2) buildScenes2();
+  if (window.buildScenes3) buildScenes3();
+  buildOverlays();
+  await document.fonts.ready;
+  const q = new URLSearchParams(location.search);
+  if (q.has('t')) await seek(parseFloat(q.get('t')));
+})();
+window.__seek = t => seek(t);
+</script></body></html>

@@ -1,0 +1,5 @@
+{
+ "tower": {"slot": "building", "i": 6, "from": 2.0, "dur": 6},
+ "sign": {"slot": "people", "i": 6, "from": 1.0, "dur": 6},
+ "team": {"slot": "office", "i": 3, "from": 2.0, "dur": 6}
+}

@@ -4,3 +4,4 @@ stock/raw/
 stock/clips/
 *.wav
 ffmpeg2pass*
+film/out/
