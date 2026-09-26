@@ -1,0 +1,20 @@
+{
+  "open_skyline":   { "act": "I",   "query": "manhattan skyline aerial sunrise", "use": "cold open under the Fink 2022 quote" },
+  "trading_floor":  { "act": "I",   "query": "stock exchange traders screens", "use": "hype montage" },
+  "keynote":        { "act": "I",   "query": "conference keynote speaker stage lights", "use": "hype montage" },
+  "city_rush":      { "act": "I",   "query": "city night timelapse traffic lights", "use": "hype montage, energy" },
+  "phone_charts":   { "act": "I",   "query": "man phone stock chart", "use": "hype montage" },
+  "glass_towers":   { "act": "I",   "query": "glass skyscrapers looking up", "use": "hype montage" },
+  "applause":       { "act": "I",   "query": "business audience applause", "use": "hype peak" },
+  "exec_window":    { "act": "I",   "query": "businessman looking out window city", "use": "Fink 2025 letter quote" },
+  "rain_glass":     { "act": "II",  "query": "rain on window city night slow motion", "use": "the crash, silence" },
+  "empty_office":   { "act": "II",  "query": "empty office night", "use": "the crash" },
+  "aerial_estate":  { "act": "III", "query": "aerial residential buildings drone", "use": "largest asset class" },
+  "paperwork":      { "act": "III", "query": "stack of paper documents office", "use": "PDFs, spreadsheets and paper" },
+  "stamp_sign":     { "act": "III", "query": "signing contract stamp document", "use": "notary / manual process" },
+  "site_visit":     { "act": "III", "query": "architects inspecting building site", "use": "diligence by site visit" },
+  "boardroom":      { "act": "III", "query": "business people meeting boardroom tense", "use": "intermediaries" },
+  "algo_screens":   { "act": "III", "query": "financial data screens trading algorithm", "use": "public markets are automated" },
+  "allocator":      { "act": "V",   "query": "investor analyst multiple monitors office", "use": "LP allocating capital" },
+  "city_dusk":      { "act": "V",   "query": "city skyline dusk aerial lights", "use": "resolution / stats" }
+}

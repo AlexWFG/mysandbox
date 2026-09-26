@@ -27,7 +27,7 @@ const scene = new THREE.Scene();
 const plateScene = new THREE.Scene();
 const orthoCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 let plateLoaded; const plateReady = new Promise(r => (plateLoaded = r));
-const plateTex = new THREE.TextureLoader().load('assets/plate-city.jpg', () => plateLoaded());
+const plateTex = new THREE.TextureLoader().load(new URL('../assets/plate-city.jpg', import.meta.url).href, () => plateLoaded());
 plateTex.colorSpace = THREE.SRGBColorSpace;
 plateTex.minFilter = THREE.LinearMipmapLinearFilter;
 const plateMat = new THREE.ShaderMaterial({
@@ -507,7 +507,7 @@ const FOCUS = [
 ];
 
 // ------------------------------------------------------------------ UI
-buildUI(document.getElementById('ui'));
+if (!window.__FILM) buildUI(document.getElementById('ui'));
 
 // ------------------------------------------------------------------ per-frame update
 const mat4 = new THREE.Matrix4();
@@ -669,7 +669,7 @@ function updatePoints(t) {
   arcGeo.attributes.aCol.needsUpdate = true;
 }
 
-function seek(t) {
+function seek(t, o = {}) {
   // camera
   const c = hermite(CAM, t);
   camera.position.set(c[0], c[1], c[2]);
@@ -722,8 +722,11 @@ function seek(t) {
   fu.uCA.value = 0.5 + 1.6 * window01(t, 3.3, 5.0, 0.5, 0.9) + 1.0 * window01(t, 10.4, 11.6, 0.6, 0.6);
   bloom.strength = 0.8 + 0.4 * window01(t, 10.6, 12.0, 0.4, 0.8) + 0.15 * window01(t, 18.6, 30, 2, 1);
 
+  if (o.fade != null) fu.uFade.value = o.fade;
+  if (o.exp != null) fu.uExp.value = o.exp;
+  if (o.grain != null) fu.uGrain.value = o.grain;
   composer.render();
-  updateUI(t, { projected });
+  if (!window.__FILM) updateUI(t, { projected });
 }
 
 // ------------------------------------------------------------------ boot
@@ -734,15 +737,17 @@ async function boot() {
   const a2 = buildAtlases();
   docTex.image = a2.doc; cellTex.image = a2.cell; docTex.needsUpdate = true; cellTex.needsUpdate = true;
   await plateReady;
+  if (window.__FILM) return;
   await new Promise(r => setTimeout(r, 200));
   seek(0);
 }
+const readyP = boot();
+export { seek, readyP, camera, projected };
 window.__duration = DURATION;
-window.__seek = seek;
-window.__ready = boot();
+if (!window.__FILM) { window.__seek = seek; window.__ready = readyP; }
 // live preview: ?t=12.5 renders a still, ?play plays in real time
 const qs = new URLSearchParams(location.search);
-window.__ready.then(() => {
+if (!window.__FILM) readyP.then(() => {
   if (qs.has('t')) seek(parseFloat(qs.get('t')));
   if (qs.has('play')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); }; loop(); }
 });

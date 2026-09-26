@@ -10,7 +10,10 @@ import path from 'node:path';
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const fpsArg = process.argv.indexOf('--fps');
 const FPS = fpsArg > 0 ? parseInt(process.argv[fpsArg + 1]) : 30;
-const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.woff2': 'font/woff2', '.json': 'application/json' };
+const pageArg = process.argv.indexOf('--page');
+const PAGE = pageArg > 0 ? process.argv[pageArg + 1] : 'index.html';
+const OUTDIR = PAGE === 'index.html' ? 'out' : path.join(path.dirname(PAGE), 'out');
+const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.woff2': 'font/woff2', '.json': 'application/json' };
 
 function serve() {
   return new Promise(res => {
@@ -28,7 +31,7 @@ async function openPage(port) {
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
   page.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') console.log('[page]', m.text()); });
   page.on('pageerror', e => console.log('[pageerror]', e.message));
-  await page.goto(`http://localhost:${port}/index.html`);
+  await page.goto(`http://localhost:${port}/${PAGE}`);
   await page.waitForFunction(() => window.__ready !== undefined, null, { timeout: 60000 });
   await page.evaluate(() => window.__ready);
   return { browser, page };
@@ -44,9 +47,9 @@ const srv = await serve();
 const port = srv.address().port;
 
 if (mode === 'stills') {
-  const dir = path.join(ROOT, 'out/stills'); fs.mkdirSync(dir, { recursive: true });
+  const dir = path.join(ROOT, OUTDIR, 'stills'); fs.mkdirSync(dir, { recursive: true });
   const { browser, page } = await openPage(port);
-  for (const a of rest) {
+  for (const a of rest.filter(x => /^[0-9.]+$/.test(x) && rest[rest.indexOf(x) - 1] !== '--fps')) {
     const t = parseFloat(a); const t0 = Date.now();
     await shoot(page, t, path.join(dir, `t_${t.toFixed(2).padStart(5, '0')}.jpg`));
     console.log(`t=${t} ${Date.now() - t0}ms`);
@@ -56,7 +59,7 @@ if (mode === 'stills') {
   const wi = rest.indexOf('--workers'); const workers = wi >= 0 ? parseInt(rest[wi + 1]) : 4;
   const fi = rest.indexOf('--from'); const from = fi >= 0 ? parseInt(rest[fi + 1]) : 0;
   const ti = rest.indexOf('--to'); const total = ti >= 0 ? parseInt(rest[ti + 1]) : 30 * FPS;
-  const dir = path.join(ROOT, 'out/frames'); fs.mkdirSync(dir, { recursive: true });
+  const dir = path.join(ROOT, OUTDIR, 'frames'); fs.mkdirSync(dir, { recursive: true });
   let next = from, done = 0; const t0 = Date.now();
   await Promise.all([...Array(workers)].map(async () => {
     const { browser, page } = await openPage(port);
