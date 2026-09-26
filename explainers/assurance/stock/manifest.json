@@ -1,0 +1,30 @@
+{
+ "lease": {
+  "key": "7841590:0.5:7",
+  "frames": 210,
+  "pexels_id": 7841590,
+  "author": "RDNE Stock project",
+  "url": "https://www.pexels.com/video/close-up-video-of-a-document-7841590/"
+ },
+ "meeting": {
+  "key": "8847991:3:8",
+  "frames": 240,
+  "pexels_id": 8847991,
+  "author": "Mikhail Nilov",
+  "url": "https://www.pexels.com/video/colleagues-having-discussions-8847991/"
+ },
+ "tower": {
+  "key": "20336481:2:8",
+  "frames": 240,
+  "pexels_id": 20336481,
+  "author": "Adnan Muhammad",
+  "url": "https://www.pexels.com/video/blue-sky-20336481/"
+ },
+ "skyline": {
+  "key": "1826904:5:9",
+  "frames": 270,
+  "pexels_id": 1826904,
+  "author": "Ricky Esquivel",
+  "url": "https://www.pexels.com/video/view-of-the-city-at-dusk-1826904/"
+ }
+}

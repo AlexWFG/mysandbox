@@ -1,0 +1,266 @@
+[
+ {
+  "id": "n01a",
+  "text": "Every record on Propchain is attested.",
+  "file": "vo/n01a_1f52941810.mp3",
+  "dur": 2.456,
+  "in": 0,
+  "out": 2.184
+ },
+ {
+  "id": "n01b",
+  "text": "But attestation proves provenance, not truth. A rent roll full of phantom tenants can be perfectly signed, and perfectly false.",
+  "file": "vo/n01b_5650b746bf.mp3",
+  "dur": 8.725,
+  "in": 0.042,
+  "out": 8.193
+ },
+ {
+  "id": "n02",
+  "text": "And consensus can't decide whether a tenant exists.",
+  "file": "vo/n02_59ac015f6e.mp3",
+  "dur": 3.892,
+  "in": 0.051,
+  "out": 3.854
+ },
+ {
+  "id": "n03",
+  "text": "Most fraud loss is misstated income, or diverted closing funds. Both have a truth the platform can see: cash.",
+  "file": "vo/n03_47b4170497.mp3",
+  "dur": 8.307,
+  "in": 0,
+  "out": 7.747
+ },
+ {
+  "id": "n04",
+  "text": "The aim is to make lies expensive, and detectable.",
+  "file": "vo/n04_1eea8215f8.mp3",
+  "dur": 3.187,
+  "in": 0.061,
+  "out": 2.856
+ },
+ {
+  "id": "n05",
+  "text": "The defence is six layers, each stopping what the one below cannot: identity, provenance, corroboration, bonds, professional signatures, and memory.",
+  "file": "vo/n05_8f4961eb16.mp3",
+  "dur": 10.762,
+  "in": 0.046,
+  "out": 10.217
+ },
+ {
+  "id": "n06",
+  "text": "What gets through all six is what insurance prices.",
+  "file": "vo/n06_1cba018dd9.mp3",
+  "dur": 3.579,
+  "in": 0.049,
+  "out": 3.066
+ },
+ {
+  "id": "n07",
+  "text": "Corroboration first. One asset's annual rent, from four sources.",
+  "file": "vo/n07_1b5b8defcb.mp3",
+  "dur": 4.624,
+  "in": 0,
+  "out": 4.187
+ },
+ {
+  "id": "n08",
+  "text": "The rent roll says one million and twenty thousand euros. The manager's ledger agrees, but it follows the seller: one source, not two.",
+  "file": "vo/n08_4b80df9cf6.mp3",
+  "dur": 9.091,
+  "in": 0.043,
+  "out": 8.475
+ },
+ {
+  "id": "n09",
+  "text": "Bank receipts show nine hundred and fifty-eight thousand. Tenants confirm nine fifty-five.",
+  "file": "vo/n09_0580b7fb11.mp3",
+  "dur": 5.747,
+  "in": 0.028,
+  "out": 5.351
+ },
+ {
+  "id": "n10",
+  "text": "Cash outranks documents. The quorum settles at nine fifty-six, and the field reaches level A three: reconciled to cash.",
+  "file": "vo/n10_3d96ea6cb8.mp3",
+  "dur": 8.385,
+  "in": 0.012,
+  "out": 8.359
+ },
+ {
+  "id": "n11",
+  "text": "Counterparties can require a level, field by field, from A zero to A five. And A four needs something new: capital at risk.",
+  "file": "vo/n11_27d8019fb1.mp3",
+  "dur": 9.273,
+  "in": 0.006,
+  "out": 8.858
+ },
+ {
+  "id": "n12",
+  "text": "A bond is a holdback with rules instead of lawyers. An illustrative deal: thirteen million euros, eight hundred thousand of attested income, a six point one five percent cap rate.",
+  "file": "vo/n12_7d188dc040.mp3",
+  "dur": 11.311,
+  "in": 0.034,
+  "out": 10.811
+ },
+ {
+  "id": "n13",
+  "text": "The seller warrants that income within five percent, for twelve months. A forty-thousand tolerance.",
+  "file": "vo/n13_7d90530875.mp3",
+  "dur": 6.165,
+  "in": 0.03,
+  "out": 5.64
+ },
+ {
+  "id": "n14",
+  "text": "The bond covers the buyer's loss at a ten percent miss: eighty thousand over the cap rate. One point three million, held in a yield-bearing escrow.",
+  "file": "vo/n14_6cb55dbd21.mp3",
+  "dur": 9.43,
+  "in": 0.035,
+  "out": 8.839
+ },
+ {
+  "id": "n15",
+  "text": "Twelve months of bank receipts decide.",
+  "file": "vo/n15_1d658ac2dc.mp3",
+  "dur": 2.534,
+  "in": 0.044,
+  "out": 2.207
+ },
+ {
+  "id": "n16",
+  "text": "Income of seven sixty is a five percent miss, inside tolerance. The bond is released in full.",
+  "file": "vo/n16_6609b8ef58.mp3",
+  "dur": 6.635,
+  "in": 0,
+  "out": 6.272
+ },
+ {
+  "id": "n17",
+  "text": "At seven twenty, the miss is five points beyond tolerance. Half the bond goes to the buyer. Pro rata, never all or nothing.",
+  "file": "vo/n17_0cd4c65eca.mp3",
+  "dur": 8.542,
+  "in": 0.018,
+  "out": 8.086
+ },
+ {
+  "id": "n18a",
+  "text": "That only works where a later truth exists, that a contract can read.",
+  "file": "vo/n18a_5605ae1f96.mp3",
+  "dur": 4.676,
+  "in": 0.064,
+  "out": 4.644
+ },
+ {
+  "id": "n18b",
+  "text": "Rent against receipts. Title against the registry. Bondable.",
+  "file": "vo/n18b_32f64dd5a4.mp3",
+  "dur": 4.963,
+  "in": 0,
+  "out": 4.299
+ },
+ {
+  "id": "n18c",
+  "text": "Building condition? Only with a referee, named in advance.",
+  "file": "vo/n18c_78e2dea2d4.mp3",
+  "dur": 4.598,
+  "in": 0.027,
+  "out": 4.551
+ },
+ {
+  "id": "n18d",
+  "text": "Valuations and opinions: never.",
+  "file": "vo/n18d_551112d1c5.mp3",
+  "dur": 2.351,
+  "in": 0.018,
+  "out": 2.322
+ },
+ {
+  "id": "n19",
+  "text": "Staking learned this. Slashing works on facts the chain can see, and has failed wherever disputed conduct was put to a vote.",
+  "file": "vo/n19_1214d76744.mp3",
+  "dur": 8.307,
+  "in": 0.004,
+  "out": 7.503
+ },
+ {
+  "id": "n20",
+  "text": "So who posts the capital? Usually, it isn't new money. The bond replaces the holdback, or W and I premium, a sale already carries.",
+  "file": "vo/n20_90c4a4785e.mp3",
+  "dur": 10.214,
+  "in": 0.009,
+  "out": 9.625
+ },
+ {
+  "id": "n21",
+  "text": "The seller can self-bond. A surety can post for a fee. Or the buyer can hold a policy, on the same trigger.",
+  "file": "vo/n21_2dc87dcbf3.mp3",
+  "dur": 7.001,
+  "in": 0.021,
+  "out": 6.455
+ },
+ {
+  "id": "n22",
+  "text": "The market is the middle one: sureties quoting on the same attested record, with fees that fall with level and track record.",
+  "file": "vo/n22_d140571cba.mp3",
+  "dur": 7.784,
+  "in": 0.031,
+  "out": 7.211
+ },
+ {
+  "id": "n23",
+  "text": "Sellers bond only if certainty, a higher rank, firm debt, speed, is worth more than the cost. That has to be measured, not assumed.",
+  "file": "vo/n23_eb4576f152.mp3",
+  "dur": 9.326,
+  "in": 0.002,
+  "out": 8.606
+ },
+ {
+  "id": "n24a",
+  "text": "And the native insurer? There are three paths.",
+  "file": "vo/n24a_4592d2ec51.mp3",
+  "dur": 3.344,
+  "in": 0.053,
+  "out": 3.199
+ },
+ {
+  "id": "n24b",
+  "text": "As for a native insurer: a data partner needs no capital. An M G A underwrites on a carrier's capital. An own carrier needs a licence, and solvency capital. The realistic route is A, then B.",
+  "file": "vo/n24b_460ea5bb9e.mp3",
+  "dur": 13.505,
+  "in": 0,
+  "out": 13.282
+ },
+ {
+  "id": "n25",
+  "text": "The edge is observation. The platform sees what was claimed at close, and what was realised for years after. That pairing is a loss curve no incumbent has.",
+  "file": "vo/n25_bca6ce3724.mp3",
+  "dur": 10.109,
+  "in": 0.044,
+  "out": 9.576
+ },
+ {
+  "id": "n26",
+  "text": "So short-tail, parametric cover comes first, because it teaches fastest. Float comes last.",
+  "file": "vo/n26_b90df12d51.mp3",
+  "dur": 6.635,
+  "in": 0,
+  "out": 6.38
+ },
+ {
+  "id": "n27a",
+  "text": "It's a working draft, and the numbers are illustrative. But the plan is simple.",
+  "file": "vo/n27a_55b44d6311.mp3",
+  "dur": 4.728,
+  "in": 0,
+  "out": 4.69
+ },
+ {
+  "id": "n27b",
+  "text": "Measure first. Bond what is measured. Insure the rest.",
+  "file": "vo/n27b_435d33b23a.mp3",
+  "dur": 4.545,
+  "in": 0,
+  "out": 4.273
+ }
+]

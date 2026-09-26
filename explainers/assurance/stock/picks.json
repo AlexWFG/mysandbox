@@ -1,0 +1,6 @@
+{
+ "lease": {"slot": "sign", "i": 11, "from": 0.5, "dur": 7},
+ "meeting": {"slot": "meeting", "i": 9, "from": 3, "dur": 8},
+ "tower": {"slot": "city", "i": 3, "from": 2, "dur": 8},
+ "skyline": {"slot": "dusk", "i": 6, "from": 5, "dur": 9}
+}

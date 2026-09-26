@@ -1,0 +1,212 @@
+{
+ "voice": "JBFqnCBsd6RMkjVDRZzb",
+ "voice_name": "George",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "lines": [
+  {
+   "id": "n01a",
+   "text": "Every record on Propchain is attested.",
+   "prev": null,
+   "next": "But attestation proves provenance, not truth. A rent roll full of phantom tenants can be perfectly signed, and perfectly false."
+  },
+  {
+   "id": "n01b",
+   "text": "But attestation proves provenance, not truth. A rent roll full of phantom tenants can be perfectly signed, and perfectly false.",
+   "prev": "Every record on Propchain is attested.",
+   "next": "And consensus can't decide whether a tenant exists."
+  },
+  {
+   "id": "n02",
+   "text": "And consensus can't decide whether a tenant exists.",
+   "prev": "But attestation proves provenance, not truth. A rent roll full of phantom tenants can be perfectly signed, and perfectly false.",
+   "next": "Most fraud loss is misstated income, or diverted closing funds. Both have a truth the platform can see: cash."
+  },
+  {
+   "id": "n03",
+   "text": "Most fraud loss is misstated income, or diverted closing funds. Both have a truth the platform can see: cash.",
+   "prev": "And consensus can't decide whether a tenant exists.",
+   "next": "The aim is to make lies expensive, and detectable."
+  },
+  {
+   "id": "n04",
+   "text": "The aim is to make lies expensive, and detectable.",
+   "prev": "Most fraud loss is misstated income, or diverted closing funds. Both have a truth the platform can see: cash.",
+   "next": "The defence is six layers, each stopping what the one below cannot: identity, provenance, corroboration, bonds, professional signatures, and memory."
+  },
+  {
+   "id": "n05",
+   "text": "The defence is six layers, each stopping what the one below cannot: identity, provenance, corroboration, bonds, professional signatures, and memory.",
+   "prev": "The aim is to make lies expensive, and detectable.",
+   "next": "What gets through all six is what insurance prices."
+  },
+  {
+   "id": "n06",
+   "text": "What gets through all six is what insurance prices.",
+   "prev": "The defence is six layers, each stopping what the one below cannot: identity, provenance, corroboration, bonds, professional signatures, and memory.",
+   "next": "Corroboration first. One asset's annual rent, from four sources."
+  },
+  {
+   "id": "n07",
+   "text": "Corroboration first. One asset's annual rent, from four sources.",
+   "prev": "What gets through all six is what insurance prices.",
+   "next": "The rent roll says one million and twenty thousand euros. The manager's ledger agrees, but it follows the seller: one source, not two."
+  },
+  {
+   "id": "n08",
+   "text": "The rent roll says one million and twenty thousand euros. The manager's ledger agrees, but it follows the seller: one source, not two.",
+   "prev": "Corroboration first. One asset's annual rent, from four sources.",
+   "next": "Bank receipts show nine hundred and fifty-eight thousand. Tenants confirm nine fifty-five."
+  },
+  {
+   "id": "n09",
+   "text": "Bank receipts show nine hundred and fifty-eight thousand. Tenants confirm nine fifty-five.",
+   "prev": "The rent roll says one million and twenty thousand euros. The manager's ledger agrees, but it follows the seller: one source, not two.",
+   "next": "Cash outranks documents. The quorum settles at nine fifty-six, and the field reaches level A three: reconciled to cash."
+  },
+  {
+   "id": "n10",
+   "text": "Cash outranks documents. The quorum settles at nine fifty-six, and the field reaches level A three: reconciled to cash.",
+   "prev": "Bank receipts show nine hundred and fifty-eight thousand. Tenants confirm nine fifty-five.",
+   "next": "Levels run from A zero to A five, field by field, and a counterparty can require one. A four needs something new: capital at risk."
+  },
+  {
+   "id": "n11",
+   "text": "Counterparties can require a level, field by field, from A zero to A five. And A four needs something new: capital at risk.",
+   "prev": "Cash outranks documents. The quorum settles at nine fifty-six, and the field reaches level A three: reconciled to cash.",
+   "next": "A bond is a holdback with rules instead of lawyers. Take an illustrative deal: thirteen million euros, eight hundred thousand of attested income, a six point one five percent cap rate."
+  },
+  {
+   "id": "n12",
+   "text": "A bond is a holdback with rules instead of lawyers. An illustrative deal: thirteen million euros, eight hundred thousand of attested income, a six point one five percent cap rate.",
+   "prev": "Levels run from A zero to A five, field by field, and a counterparty can require one. A four needs something new: capital at risk.",
+   "next": "The seller warrants that income within five percent, for twelve months. A forty-thousand tolerance."
+  },
+  {
+   "id": "n13",
+   "text": "The seller warrants that income within five percent, for twelve months. A forty-thousand tolerance.",
+   "prev": "A bond is a holdback with rules instead of lawyers. Take an illustrative deal: thirteen million euros, eight hundred thousand of attested income, a six point one five percent cap rate.",
+   "next": "The bond covers the buyer's loss at a ten percent miss: eighty thousand over the cap rate. One point three million, held in a yield-bearing escrow."
+  },
+  {
+   "id": "n14",
+   "text": "The bond covers the buyer's loss at a ten percent miss: eighty thousand over the cap rate. One point three million, held in a yield-bearing escrow.",
+   "prev": "The seller warrants that income within five percent, for twelve months. A forty-thousand tolerance.",
+   "next": "Twelve months of bank receipts decide."
+  },
+  {
+   "id": "n15",
+   "text": "Twelve months of bank receipts decide.",
+   "prev": "The bond covers the buyer's loss at a ten percent miss: eighty thousand over the cap rate. One point three million, held in a yield-bearing escrow.",
+   "next": "Income of seven sixty is a five percent miss, inside tolerance. The bond is released in full."
+  },
+  {
+   "id": "n16",
+   "text": "Income of seven sixty is a five percent miss, inside tolerance. The bond is released in full.",
+   "prev": "Twelve months of bank receipts decide.",
+   "next": "At seven twenty, the miss is five points beyond tolerance. Half the bond goes to the buyer. Pro rata, never all or nothing."
+  },
+  {
+   "id": "n17",
+   "text": "At seven twenty, the miss is five points beyond tolerance. Half the bond goes to the buyer. Pro rata, never all or nothing.",
+   "prev": "Income of seven sixty is a five percent miss, inside tolerance. The bond is released in full.",
+   "next": "That only works where a later truth exists, that a contract can read."
+  },
+  {
+   "id": "n18a",
+   "text": "That only works where a later truth exists, that a contract can read.",
+   "prev": "At seven twenty, the miss is five points beyond tolerance. Half the bond goes to the buyer. Pro rata, never all or nothing.",
+   "next": "Rent against receipts. Title against the registry. Bondable."
+  },
+  {
+   "id": "n18b",
+   "text": "Rent against receipts. Title against the registry. Bondable.",
+   "prev": "That only works where a later truth exists, that a contract can read.",
+   "next": "Building condition? Only with a referee, named in advance."
+  },
+  {
+   "id": "n18c",
+   "text": "Building condition? Only with a referee, named in advance.",
+   "prev": "Rent against receipts. Title against the registry. Bondable.",
+   "next": "Valuations and opinions: never."
+  },
+  {
+   "id": "n18d",
+   "text": "Valuations and opinions: never.",
+   "prev": "Building condition? Only with a referee, named in advance.",
+   "next": "Staking learned this. Slashing works on facts the chain can see, and has failed wherever disputed conduct was put to a vote."
+  },
+  {
+   "id": "n19",
+   "text": "Staking learned this. Slashing works on facts the chain can see, and has failed wherever disputed conduct was put to a vote.",
+   "prev": "Valuations and opinions: never.",
+   "next": "So who posts the capital? Usually, it isn't new money. The bond replaces the holdback, or the W and I premium, a sale already carries."
+  },
+  {
+   "id": "n20",
+   "text": "So who posts the capital? Usually, it isn't new money. The bond replaces the holdback, or W and I premium, a sale already carries.",
+   "prev": "Staking learned this. Slashing works on facts the chain can see, and has failed wherever disputed conduct was put to a vote.",
+   "next": "The seller can self-bond. A surety can post for a fee. Or the buyer can hold a policy, on the same trigger."
+  },
+  {
+   "id": "n21",
+   "text": "The seller can self-bond. A surety can post for a fee. Or the buyer can hold a policy, on the same trigger.",
+   "prev": "So who posts the capital? Usually, it isn't new money. The bond replaces the holdback, or the W and I premium, a sale already carries.",
+   "next": "The market is the middle one: sureties quoting on the same attested record, with fees that fall with level and track record."
+  },
+  {
+   "id": "n22",
+   "text": "The market is the middle one: sureties quoting on the same attested record, with fees that fall with level and track record.",
+   "prev": "The seller can self-bond. A surety can post for a fee. Or the buyer can hold a policy, on the same trigger.",
+   "next": "It only works if certainty, a higher rank, firm debt, speed, is worth more than the cost. That has to be measured, not assumed."
+  },
+  {
+   "id": "n23",
+   "text": "Sellers bond only if certainty, a higher rank, firm debt, speed, is worth more than the cost. That has to be measured, not assumed.",
+   "prev": "The market is the middle one: sureties quoting on the same attested record, with fees that fall with level and track record.",
+   "next": "And the native insurer? There are three paths."
+  },
+  {
+   "id": "n24a",
+   "text": "And the native insurer? There are three paths.",
+   "prev": "It only works if certainty, a higher rank, firm debt, speed, is worth more than the cost. That has to be measured, not assumed.",
+   "next": "A data partner needs no capital. An M G A underwrites on a carrier's capital. An own carrier needs a licence, and solvency capital. The realistic route is A, then B."
+  },
+  {
+   "id": "n24b",
+   "text": "As for a native insurer: a data partner needs no capital. An M G A underwrites on a carrier's capital. An own carrier needs a licence, and solvency capital. The realistic route is A, then B.",
+   "prev": "And the native insurer? There are three paths.",
+   "next": "The edge is observation. The platform sees what was claimed at close, and what was realised for years after. That pairing is a loss curve no incumbent has."
+  },
+  {
+   "id": "n25",
+   "text": "The edge is observation. The platform sees what was claimed at close, and what was realised for years after. That pairing is a loss curve no incumbent has.",
+   "prev": "A data partner needs no capital. An M G A underwrites on a carrier's capital. An own carrier needs a licence, and solvency capital. The realistic route is A, then B.",
+   "next": "So short-tail, parametric cover comes first, because it teaches fastest. Float comes last."
+  },
+  {
+   "id": "n26",
+   "text": "So short-tail, parametric cover comes first, because it teaches fastest. Float comes last.",
+   "prev": "The edge is observation. The platform sees what was claimed at close, and what was realised for years after. That pairing is a loss curve no incumbent has.",
+   "next": "This is a working draft, and the numbers are illustrative. But the plan fits on one line."
+  },
+  {
+   "id": "n27a",
+   "text": "It's a working draft, and the numbers are illustrative. But the plan is simple.",
+   "prev": "So short-tail, parametric cover comes first, because it teaches fastest. Float comes last.",
+   "next": "Measure first. Bond what is measured. Insure the rest."
+  },
+  {
+   "id": "n27b",
+   "text": "Measure first. Bond what is measured. Insure the rest.",
+   "prev": "This is a working draft, and the numbers are illustrative. But the plan fits on one line.",
+   "next": null
+  }
+ ]
+}
