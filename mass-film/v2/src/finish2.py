@@ -31,3 +31,20 @@ if __name__ == '__main__':
     audio = sys.argv[3] if len(sys.argv) > 3 else os.path.join(OUT, 'mass_v2_mix_scratch.wav')
     dest = sys.argv[4] if len(sys.argv) > 4 else os.path.join(OUT, f'MASS_v2_{preset}.mp4')
     encode(picture, audio, dest, preset)
+
+
+def encode_video(picture, preset, dest, kbps=None):
+    """Video-only 2-pass encode (the expensive part), shared by every soundtrack version."""
+    p = PRESETS[preset]
+    common = ['-i', picture, '-map', '0:v', '-vf', p['vf'], '-c:v', 'libx264', '-preset', 'slow', '-tune', p['tune'],
+              '-aq-mode', '3', '-b:v', f"{kbps or p['kbps']}k", '-pix_fmt', 'yuv420p', '-an',
+              '-passlogfile', f'/tmp/claude-0/x264v_{preset}']
+    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', *common, '-pass', '1', '-f', 'null', '/dev/null'], check=True)
+    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', *common, '-pass', '2', dest], check=True)
+
+
+def mux(video, audio, dest, akbps):
+    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', video, '-i', audio, '-map', '0:v', '-map', '1:a',
+                    '-c:v', 'copy', '-c:a', 'aac', '-b:a', f'{akbps}k', '-shortest', '-movflags', '+faststart', dest],
+                   check=True)
+    print(f'{dest}: {os.path.getsize(dest) / 2 ** 20:.1f} MiB')

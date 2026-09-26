@@ -28,6 +28,61 @@ N = int(DUR * FS) + FS
 BEAT = 0.6            # 100 bpm
 BUSES = ['sfx', 'music', 'sub', 'room', 'hall', 'space', 'delay', 'vo']
 BED_DB = -12.0        # the whole bed relative to the narration
+EL = os.environ.get('MASS_SCORE', 'synth') == 'el'   # ElevenLabs score + recorded-style effects
+SCORE_GAIN = db(-6.0)
+ELDIR = os.path.join(V2, 'out', 'el_audio')
+# tonal cues follow the score's key: A for the synthesised score, D (minor, D major at the logo) for the ElevenLabs one
+NT = dict(
+    point=('A5', 'A4') if not EL else ('D5', 'D4'),
+    created=['C#6', 'E6', 'A6', 'B6'] if not EL else ['D6', 'F6', 'A6', 'C7'],
+    trusted=['E6', 'G#6', 'B6', 'C#7', 'E7'] if not EL else ['D6', 'F6', 'A6', 'C7', 'D7'],
+    sting=['A1', 'E2', 'A2', 'C#3', 'E3', 'B3'] if not EL else ['D2', 'A2', 'D3', 'E3', 'A3', 'D4'],
+    shimmer=[('A5', 0.5), ('E6', 0.4), ('C#7', 0.25), ('B6', 0.25)] if not EL else [('D6', 0.5), ('A6', 0.4), ('E7', 0.25), ('D7', 0.25)],
+    checks=['E5', 'A5', 'C#6', 'E6'] if not EL else ['A5', 'D6', 'F6', 'A6'],
+    result=['A5', 'C#6', 'E6'] if not EL else ['D6', 'F6', 'A6'],
+    review=['A5', 'B5', 'C#6', 'E6'] if not EL else ['A5', 'C6', 'D6', 'F6'],
+    wave=['A5', 'C#6', 'E6'] if not EL else ['D6', 'F6', 'A6'],
+    pay=['E5', 'G#5', 'B5', 'E6'] if not EL else ['A5', 'C6', 'D6', 'F6'],
+    layers=['E5', 'A5', 'C#6', 'E6', 'A6', 'C#7'] if not EL else ['D5', 'F5', 'A5', 'D6', 'F6', 'A6'],
+    nodes=None if not EL else ['D5', 'F5', 'A5', 'C6', 'D6', 'G5'],
+    mesh=['A5', 'C#6', 'E6', 'B5'] if not EL else ['D6', 'F6', 'A6', 'C6'],
+    stabs=[['A2', 'E3', 'A3', 'C#4'], ['C#3', 'G#3', 'C#4', 'E4'], ['D3', 'A3', 'D4', 'F#4'], ['E3', 'B3', 'E4', 'G#4']]
+    if not EL else [['D3', 'A3', 'D4', 'F4'], ['F3', 'C4', 'F4', 'A4'], ['A#2', 'F3', 'A#3', 'D4'], ['C3', 'G3', 'C4', 'E4']],
+    point_hz=None,
+)
+
+
+def elf(name, like=None, t0=0.0, t1=None, gain_db=0.0):
+    """An ElevenLabs effect (mono, 48 kHz), optionally trimmed and matched in loudness to the synth sound it replaces."""
+    x, fs = sf.read(os.path.join(ELDIR, f'sfx_{name}.wav'))
+    x = x.mean(1) if x.ndim > 1 else x
+    if fs != FS:
+        x = signal.resample_poly(x, FS, fs)
+    x = x[int(t0 * FS):int(t1 * FS) if t1 else None]
+    if like is not None:
+        def act_rms(v):
+            e = np.abs(v)
+            return np.sqrt(np.mean(v[e > e.max() * 0.05] ** 2)) + 1e-9
+        x = x * act_rms(like) / act_rms(x)
+    return fade(x * db(gain_db), 0.004, 0.05)
+
+
+def tile(x, dur):
+    """Loop an ambience to dur seconds with short crossfades."""
+    n, m = ns(dur), ns(0.25)
+    out = np.zeros(n)
+    i = 0
+    while i < n:
+        seg = x[:min(len(x), n - i)].copy()
+        out[i:i + len(seg)] += seg
+        i += len(x) - m
+    return fade(out, 0.3, 0.4)
+
+
+def peak_t(name):
+    x, fs = sf.read(os.path.join(ELDIR, f'sfx_{name}.wav'))
+    x = x.mean(1) if x.ndim > 1 else x
+    return int(np.argmax(np.abs(x))) / fs
 B = {k: np.zeros((N, 2)) for k in BUSES}
 
 
@@ -89,11 +144,11 @@ def s_sting(t0, big=False):
     for k, dt in enumerate((0.0, 0.08, 0.16)):
         place(t0 + dt, s_click(2200 + 400 * k, 710 + k), gain=0.35, pan=-0.35 + 0.35 * k, hall=0.25, delay=0.15)
     place(t0 + 0.16, s_boom(3.6 if big else 3.0, 64, 30, 720), gain=1.0, bus='sub')
-    place(t0 + 0.16, s_bloom(['A1', 'E2', 'A2', 'C#3', 'E3', 'B3'], 6.5 if big else 4.6, 730, 5600 if big else 4800),
+    place(t0 + 0.16, s_bloom(NT['sting'], 6.5 if big else 4.6, 730, 5600 if big else 4800),
           gain=1.15 if big else 1.0, bus='music', hall=0.35, space=0.3)
     place(t0 + 0.16, hp(noise(ns(0.02), 740), 2500) * expdec(ns(0.02), 0.004), gain=0.5, hall=0.4)
     place(t0 + 0.16, s_cymbal(3.5 if big else 2.6, 741), gain=0.09, hall=0.5, space=0.3)
-    for k, (nm, a) in enumerate((('A5', 0.5), ('E6', 0.4), ('C#7', 0.25), ('B6', 0.25))):
+    for k, (nm, a) in enumerate(NT['shimmer']):
         place(t0 + 0.3 + k * 0.07, s_bell_tone(hz(nm), 3.2 if big else 2.4, 750 + k), gain=0.06 * a / 0.5,
               pan=0.5 * math.sin(k * 2.1), space=0.8, delay=0.4)
     place(t0 + 0.42, s_whoosh(0.9, 2600, 11000, 1.8, 760), gain=0.10, pan=0.25, hall=0.4)
@@ -242,45 +297,72 @@ def build():
     flurry = [l2.end + 0.10 + k * (0.20 - k * 0.022) for k in range(6)]
     t_black = flurry[-1] + 0.35
     place(0.0, fade(lp(pink(ns(t_black), 1), 700) * 0.02, 0.3, 0.004))                                  # room tone
-    drone = A.s_drone(t_black - 0.2)
-    place(0.1, fade(drone, 1.0, 0.004), gain=0.3, bus='music', hall=0.25)
-    tk, k = 0.4, 0
-    while tk < t_black - 0.2:                                                                          # the clock
-        place(tk, s_tick(k % 2 == 0, k), gain=0.13 + 0.1 * tk / t_black, pan=-0.2, room=0.3)
-        k += 1
-        tk += 0.5
-    for hb in np.arange(0.6, t_black - 0.3, 1.0):
-        place(hb, s_heartbeat(int(hb * 10)), gain=0.35 + 0.25 * hb / t_black, bus='sub')
+    if not EL:
+        drone = A.s_drone(t_black - 0.2)
+        place(0.1, fade(drone, 1.0, 0.004), gain=0.3, bus='music', hall=0.25)
+        tk, k = 0.4, 0
+        while tk < t_black - 0.2:                                                                      # the clock
+            place(tk, s_tick(k % 2 == 0, k), gain=0.13 + 0.1 * tk / t_black, pan=-0.2, room=0.3)
+            k += 1
+            tk += 0.5
+        for hb in np.arange(0.6, t_black - 0.3, 1.0):
+            place(hb, s_heartbeat(int(hb * 10)), gain=0.35 + 0.25 * hb / t_black, bus='sub')
     place(0.25, s_whoosh(0.9, 300, 1800, 0.8, 11), gain=0.12, hall=0.2)                               # deal
     place(0.9, s_paper(41), gain=0.18, pan=-0.2, room=0.2)
-    place(t_job - 0.05, s_arc(t_ship - t_job + 0.1, 12), gain=0.32, pan=0.1, room=0.2)               # job
-    place(t_job, s_metal(13, 1.0), gain=0.07, hall=0.3)
-    place(t_ship - 0.03, s_ship_horn(2.4), gain=0.32, pan=-0.3, hall=0.4, space=0.3)                 # shipment
-    place(t_ship + 0.2, s_metal(14, 1.4) * 0.6, gain=0.06, pan=0.4, hall=0.5)
-    place(l1.start + 0.3, s_pen(1.6, 15), gain=0.28, pan=0.1, room=0.2)                                # signing
+    if not EL:
+        place(t_job - 0.05, s_arc(t_ship - t_job + 0.1, 12), gain=0.32, pan=0.1, room=0.2)           # job
+        place(t_job, s_metal(13, 1.0), gain=0.07, hall=0.3)
+        place(t_ship - 0.03, s_ship_horn(2.4), gain=0.32, pan=-0.3, hall=0.4, space=0.3)             # shipment
+        place(t_ship + 0.2, s_metal(14, 1.4) * 0.6, gain=0.06, pan=0.4, hall=0.5)
+        place(l1.start + 0.3, s_pen(1.6, 15), gain=0.28, pan=0.1, room=0.2)                            # signing
+    else:
+        place(t_job + 0.05 - peak_t('welding'), elf('welding', s_arc(1.0, 12), t1=t_ship - t_job + 0.5), gain=0.32,
+              pan=0.1, room=0.15)
+        port = elf('port', s_ship_horn(2.4), t0=3.5)
+        place(max(t_ship - 0.1, l0.end - 0.32), port, gain=0.34, pan=-0.2, hall=0.3)   # horn just after the word
+        place(l1.start + 0.2, elf('pen', s_pen(1.6, 15)), gain=0.3, pan=0.1, room=0.15)
+    names = ['stamp_2', 'stamp_3']
     for k, ts in enumerate(stamps):
         place(ts - 0.13, s_whoosh(0.13, 400, 2500, 1.0, 55 + k), gain=0.3, room=0.1)
-        place(ts + 0.04, s_stamp(), gain=0.7, room=0.4, hall=0.15)
+        if EL:
+            nm = names[k % 2]
+            place(ts + 0.04 - peak_t(nm), elf(nm, s_stamp()), gain=0.8, room=0.35, hall=0.12)
+        else:
+            place(ts + 0.04, s_stamp(), gain=0.7, room=0.4, hall=0.15)
         place(ts, s_sub_drop(0.5, 70, 38), gain=0.35 + 0.1 * k, bus='sub')
     for k, tf in enumerate(flurry):
-        place(tf, s_stamp(), gain=0.55 + 0.06 * k, pan=0.3 * math.sin(k * 1.7), room=0.35)
+        if EL:
+            nm = names[k % 2]
+            st = elf(nm, s_stamp())
+            st = signal.resample_poly(st, 100, 100 + 4 * (k % 3))           # slight pitch variety
+            place(tf - peak_t(nm), st, gain=0.6 + 0.06 * k, pan=0.3 * math.sin(k * 1.7), room=0.3)
+        else:
+            place(tf, s_stamp(), gain=0.55 + 0.06 * k, pan=0.3 * math.sin(k * 1.7), room=0.35)
     place(flurry[-1], s_sub_drop(0.9, 60, 30), gain=0.6, bus='sub')
 
     # ---------------------------------------------------------------- AISHA
     a0, a1, a2, a3 = (L('aisha', i) for i in range(4))
     end_a = L('omar', 0).start
-    place(a0.start - 0.4, s_city_night(a1.start - a0.start + 0.6, 20), gain=0.22, room=0.1)
     t_aisha = a0.word('Aisha')
-    typing(t_aisha + 0.1, a1.start, 0.16, 0.25, 21)
+    if EL:
+        place(a0.start - 0.4, tile(elf('city_night', s_city_night(4.0, 20)), a1.start - a0.start + 0.6), gain=0.3)
+        place(t_aisha + 0.1, tile(elf('typing', gain_db=-4), a1.start - t_aisha), gain=0.5, pan=0.25, room=0.1)
+    else:
+        place(a0.start - 0.4, s_city_night(a1.start - a0.start + 0.6, 20), gain=0.22, room=0.1)
+        typing(t_aisha + 0.1, a1.start, 0.16, 0.25, 21)
     place(t_aisha + 1.1, s_ui_confirm(hz('E5'), 22), gain=0.18, pan=0.5, hall=0.3)                   # build complete
     chords_a = [(a0.start, a1.start, ['A2', 'C3', 'E3']), (a1.start, a2.start + 1.5, ['F2', 'A2', 'C3']),
                 (a2.start + 1.5, a3.start, ['D2', 'F2', 'A2']), (a3.start, end_a, ['E2', 'G#2', 'B2'])]
-    pad_run(chords_a, 0.15, 1100, seed=30)
-    pulse_run(a1.start, end_a, chords_a, 0.17, seed=31, grow=0.6)
+    if not EL:
+        pad_run(chords_a, 0.15, 1100, seed=30)
+        pulse_run(a1.start, end_a, chords_a, 0.17, seed=31, grow=0.6)
     # the maze
     for k in range(3):
         place(a1.start + 0.15 + k * 0.45, s_pop(True, 32 + k), gain=0.22, pan=-0.3 + 0.2 * k, room=0.2)
-    typing(a1.start + 0.3, a3.start - 0.2, 0.2, -0.1, 33, (0.04, 0.12))
+    if EL:
+        place(a1.start + 0.3, tile(elf('typing', gain_db=-4), a3.start - a1.start - 0.5), gain=0.55, pan=-0.1, room=0.1)
+    else:
+        typing(a1.start + 0.3, a3.start - 0.2, 0.2, -0.1, 33, (0.04, 0.12))
     words = [a2.word('same'), a2.word('office'), a2.word('bank'), a2.end - 0.1]
     for k, tw in enumerate(words):
         place(tw - 0.1, s_glass_in(34 + k), gain=0.25, pan=0.3, hall=0.15)
@@ -295,8 +377,11 @@ def build():
             prev = v
         tc += 1 / 120
     # the border
-    place(a3.start - 0.1, fade(s_crowd(end_a - a3.start + 0.2, 36), 0.1, 0.1), gain=0.26, room=0.3, hall=0.2)
-    place(a3.start + 0.2, s_chime(), gain=0.22, pan=0.3, hall=0.6)
+    if EL:
+        place(a3.start - 0.1, tile(elf('airport', s_crowd(3.0, 36)), end_a - a3.start + 0.2), gain=0.3, room=0.2)
+    else:
+        place(a3.start - 0.1, fade(s_crowd(end_a - a3.start + 0.2, 36), 0.1, 0.1), gain=0.26, room=0.3, hall=0.2)
+        place(a3.start + 0.2, s_chime(), gain=0.22, pan=0.3, hall=0.6)
     t_again = a3.word('again')
     place(t_again, s_glitch(), gain=0.55, room=0.1)
     place(t_again, s_sub_drop(0.8, 70, 32), gain=0.6, bus='sub')
@@ -306,11 +391,15 @@ def build():
     end_o = L('ministry', 0).start
     t_ret, t_rec, t_wait = o1.word('retypes'), o1.word('Re-checks'), o1.word('waits')
     place(o0.start - 0.2, s_whoosh(1.4, 200, 1400, 0.7, 40), gain=0.12, hall=0.4)
-    place(o0.word('Nadia') - 0.05, s_office(end_o - o0.word('Nadia') + 0.3, 41), gain=0.35, room=0.2)
+    if EL:
+        place(o0.word('Nadia') - 0.05, tile(elf('office', s_office(3.0, 41)), end_o - o0.word('Nadia') + 0.3), gain=0.35)
+    else:
+        place(o0.word('Nadia') - 0.05, s_office(end_o - o0.word('Nadia') + 0.3, 41), gain=0.35, room=0.2)
     chords_o = [(end_a, o1.start, ['A2', 'C3', 'E3']), (o1.start, t_rec, ['F2', 'A2', 'C3']),
                 (t_rec, end_o, ['E2', 'G#2', 'B2'])]
-    pad_run(chords_o, 0.16, 1300, seed=42)
-    pulse_run(o0.start, end_o, chords_o, 0.18, seed=43, grow=0.5)
+    if not EL:
+        pad_run(chords_o, 0.16, 1300, seed=42)
+        pulse_run(o0.start, end_o, chords_o, 0.18, seed=43, grow=0.5)
     for k in range(3):
         place(o1.start - 0.2 + k * 0.18, s_pop(True, 44 + k), gain=0.2, pan=0.5, room=0.2)
         typing(t_ret + k * 0.35, t_ret + k * 0.35 + 0.9, 0.2, 0.45, 45 + k, (0.03, 0.07))
@@ -327,7 +416,10 @@ def build():
     end_m = L('peak', 0).start
     t_econ, t_every = m0.word('economy'), m1.word('Every')
     place(m0.start - 0.2, s_city_night(t_econ - m0.start + 0.4, 52) * 0.7, gain=0.3, hall=0.2)
-    place(t_econ - 0.05, fade(s_fluoro(end_m - t_econ, 53), 0.05, 0.1), gain=0.16, room=0.3)
+    if EL:
+        place(t_econ - 0.05, tile(elf('control_room', s_fluoro(3.0, 53), gain_db=3), end_m - t_econ), gain=0.3)
+    else:
+        place(t_econ - 0.05, fade(s_fluoro(end_m - t_econ, 53), 0.05, 0.1), gain=0.16, room=0.3)
     rng = np.random.default_rng(54)
     for k in range(48):
         ta = t_every - 0.3 + int(rng.permutation(48)[k]) * 0.045
@@ -336,16 +428,18 @@ def build():
         tb = t_econ + rng.uniform(0, end_m - t_econ)
         place(tb, s_ui_confirm(hz(['C6', 'D#6', 'F#6', 'A6'][k % 4]), 60 + k), gain=0.04, pan=rng.uniform(-1, 1), room=0.3)
     chords_m = [(end_o, m1.start, ['D2', 'F2', 'A2']), (m1.start, end_m, ['E2', 'G#2', 'B2', 'D3'])]
-    pad_run(chords_m, 0.16, 1500, seed=61)
-    pulse_run(end_o, end_m, chords_m, 0.2, step=BEAT / 4, seed=62, grow=0.6)
+    if not EL:
+        pad_run(chords_m, 0.16, 1500, seed=61)
+        pulse_run(end_o, end_m, chords_m, 0.2, step=BEAT / 4, seed=62, grow=0.6)
 
     # ---------------------------------------------------------------- PEAK (then silence)
     p0 = L('peak', 0)
     t_held = p0.word('Held')
     for a_i in range(2):
         place(p0.start + 1.0 + a_i * 0.5, s_error(63 + a_i), gain=0.35, pan=-0.3 + 0.6 * a_i, room=0.2)
-    place(p0.start, fade(s_riser(p0.end - p0.start), 0.4, 0.002), gain=0.24, bus='music', hall=0.2)
-    pad_run([(p0.start, p0.end, ['F2', 'A2', 'C3', 'E3'])], 0.13, 1800, seed=64)
+    if not EL:
+        place(p0.start, fade(s_riser(p0.end - p0.start), 0.4, 0.002), gain=0.24, bus='music', hall=0.2)
+        pad_run([(p0.start, p0.end, ['F2', 'A2', 'C3', 'E3'])], 0.13, 1800, seed=64)
     cuts, acc, d = [], t_held, 0.42
     while acc < p0.end:
         cuts.append(acc)
@@ -359,18 +453,19 @@ def build():
     # ---------------------------------------------------------------- TURN
     u0, u1 = L('turn', 0), L('turn', 1)
     t_rev = L('reveal', 0).word('Mass') - 0.06
-    place(u0.start + 0.4, s_bell_tone(hz('A5'), 3.0, 70), gain=0.08, hall=0.6, delay=0.3)
-    place(u0.start + 0.4, s_bell_tone(hz('A4'), 3.0, 71), gain=0.05, hall=0.6)
+    place(u0.start + 0.4, s_bell_tone(hz(NT['point'][0]), 3.0, 70), gain=0.08, hall=0.6, delay=0.3)
+    place(u0.start + 0.4, s_bell_tone(hz(NT['point'][1]), 3.0, 71), gain=0.05, hall=0.6)
     chords_u = [(u0.start + 0.2, u1.start, ['A2', 'E3', 'A3']), (u1.start, u1.word('Created'), ['F#2', 'A2', 'C#3', 'E3']),
                 (u1.word('Created'), u1.word('Trusted'), ['D2', 'A2', 'D3', 'F#3']), (u1.word('Trusted'), t_rev, ['E2', 'B2', 'E3', 'G#3'])]
-    pad_run(chords_u, 0.09, 1500, seed=72, attack=1.2, space=0.3)
+    if not EL:
+        pad_run(chords_u, 0.09, 1500, seed=72, attack=1.2, space=0.3)
     place(u1.start, s_glass_in(73), gain=0.22, hall=0.3)
     place(u1.start, s_whoosh(0.7, 500, 4000, 1.0, 74), gain=0.15, hall=0.3)
-    for j, nm in enumerate(['C#6', 'E6', 'A6', 'B6']):
+    for j, nm in enumerate(NT['created']):
         place(u1.word('Created') + j * 0.28, s_ui_confirm(hz(nm), 75 + j), gain=0.06, pan=0.2, hall=0.2)
     for j in range(5):
         place(u1.word('Trusted') + j * 0.12, s_whoosh(0.5, 2000, 9000, 1.6, 80 + j), gain=0.07, pan=-0.8 + 0.4 * j, hall=0.4)
-        place(u1.word('Trusted') + j * 0.12 + 0.48, s_bell_tone(hz(['E6', 'G#6', 'B6', 'C#7', 'E7'][j]), 1.2, 85 + j),
+        place(u1.word('Trusted') + j * 0.12 + 0.48, s_bell_tone(hz(NT['trusted'][j]), 1.2, 85 + j),
               gain=0.035, pan=-0.8 + 0.4 * j, space=0.6)
 
     # ---------------------------------------------------------------- REVEAL: the sonic logo
@@ -389,17 +484,19 @@ def build():
         chords_d.append((tq, tq + bar * 2, prog[k % 4]))
         tq += bar * 2
         k += 1
-    pad_run(chords_d, 0.085, 1700, seed=90, attack=0.4, hall=0.3)
-    nbeats = int((L('network', 0).start - g0) / BEAT)
+    if not EL:
+        pad_run(chords_d, 0.085, 1700, seed=90, attack=0.4, hall=0.3)
+    nbeats = int((L('network', 0).start - g0) / BEAT) if not EL else 0
     for i in range(nbeats):
         tb = g0 + i * BEAT
         place(tb, s_kick(100 + i, 0.25), gain=0.32 if i % 2 == 0 else 0.18, bus='sub')
         place(tb + BEAT / 2, s_hat(200 + i), gain=0.07, pan=0.25)
         if i % 4 == 1 or i % 4 == 3:
             place(tb, s_snare(300 + i, 0.09), gain=0.07, room=0.4)
-    pulse_run(g0, L('network', 0).start, chords_d, 0.09, step=BEAT / 4, seed=400, bright=0.5, grow=0.4)
+    if not EL:
+        pulse_run(g0, L('network', 0).start, chords_d, 0.09, step=BEAT / 4, seed=400, bright=0.5, grow=0.4)
     tq, k = g0 + bar * 2, 0
-    while tq < L('network', 0).start - 1e-6:                                                      # arpeggio shimmer
+    while not EL and tq < L('network', 0).start - 1e-6:                                           # arpeggio shimmer
         notes = next(c[2] for c in chords_d if c[0] <= tq < c[1])
         place(tq, s_pluck(hz(notes[[1, 2, 3, 2][k % 4]]) * 2, 0.5, 0.5, 500 + k), gain=0.03, pan=0.4 * math.sin(k * 0.9),
               bus='music', delay=0.4)
@@ -413,31 +510,35 @@ def build():
             if e.get('typing', True):
                 for q in range(3):
                     place(e['t'] - 0.8 + q * 0.25, s_click(1800, 600 + q), gain=0.06, pan=0.35)
-            place(e['t'], s_msg_in(int(e['t'] * 10)), gain=0.22, pan=0.35, hall=0.25)
+            place(e['t'], s_msg_in(int(e['t'] * 10)), gain=0.14 if EL else 0.22, pan=0.35, hall=0.25)
         if e.get('kind') == 'passport':
             place(e['scan'], s_scan(1.0, 610), gain=0.3, pan=0.35, room=0.2)
             place(e['scan'] + 1.0, s_ui_confirm(hz('A5'), 611), gain=0.25, pan=0.35, hall=0.3)
         if e.get('kind') == 'checks':
             for j, (_, ti) in enumerate(e['items']):
-                place(ti, s_ui_confirm(hz(['E5', 'A5', 'C#6', 'E6'][j % 4]), 620 + j), gain=0.24, pan=0.35, hall=0.3, delay=0.2)
+                place(ti, s_ui_confirm(hz(NT['checks'][j % 4]), 620 + j), gain=0.24, pan=0.35, hall=0.3, delay=0.2)
         if e.get('kind') == 'result':
             for j, (_, ti) in enumerate(e['items']):
-                place(ti, s_bell_tone(hz(['A5', 'C#6', 'E6'][j]), 1.4, 630 + j), gain=0.09, pan=0.35, hall=0.4, delay=0.3)
+                place(ti, s_bell_tone(hz(NT['result'][j]), 1.4, 630 + j), gain=0.05 if EL else 0.09, pan=0.35, hall=0.4,
+                      delay=0.0 if EL else 0.3)
     # camera moves between the three screens
     cams = S.demo_cams()
     for (ta, ca), (tb, cb) in zip(cams, cams[1:]):
         if tb - ta < 1.2 and abs(ca.zoom - cb.zoom) > 0.05:
-            place(ta, s_whoosh(tb - ta + 0.15, 400 if cb.zoom < ca.zoom else 900, 3500, 0.9, int(ta * 10)), gain=0.16,
+            place(ta, s_whoosh(tb - ta + 0.15, 400 if cb.zoom < ca.zoom else 900, 3500, 0.9, int(ta * 10)), gain=0.12 if EL else 0.16,
                   pan=0.0, hall=0.2)
     # filing travels to Nadia; she decides; everyone hears back
     place(T_['file'] + 0.9, s_whoosh(0.9, 1200, 6000, 1.4, 640), gain=0.18, pan=-0.2, hall=0.3)
     place(T_['file'] + 1.8, s_msg_in(641), gain=0.24, pan=0.1, hall=0.3)
     for j in range(4):
-        place(dd[2] + 0.5 + 0.15 * j, s_ui_confirm(hz(['A5', 'B5', 'C#6', 'E6'][j]), 642 + j), gain=0.14, pan=0.1, hall=0.3)
+        place(dd[2] + 0.5 + 0.15 * j, s_ui_confirm(hz(NT['review'][j]), 642 + j), gain=0.14, pan=0.1, hall=0.3)
     place(T_['decide'] - 0.02, s_click(2600, 646), gain=0.35, pan=0.1)
-    place(T_['decide'] + 0.12, s_stamp() * 0.55, gain=0.5, room=0.3)                               # the approval seal
+    if EL:
+        place(T_['decide'] + 0.12 - peak_t('seal'), elf('seal', s_stamp() * 0.55), gain=0.4, room=0.25)   # the approval seal
+    else:
+        place(T_['decide'] + 0.12, s_stamp() * 0.55, gain=0.5, room=0.3)                           # the approval seal
     place(T_['decide'] + 0.12, s_sub_drop(0.5, 80, 45), gain=0.35, bus='sub')
-    place(T_['decide'] + 0.2, s_bell_tone(hz('A5'), 2.0, 647), gain=0.1, hall=0.5, delay=0.3)
+    place(T_['decide'] + 0.2, s_bell_tone(hz(NT['result'][0]), 2.0, 647), gain=0.1, hall=0.5, delay=0.3)
     place(T_['decide'] + 1.0, s_whoosh(0.8, 1500, 7000, 1.4, 648), gain=0.16, pan=0.3, hall=0.3)
     place(dd[4] - 0.5, s_whoosh(0.7, 1500, 7000, 1.4, 649), gain=0.12, pan=0.4, hall=0.3)
     t_mnm = L('demo', 3).word('business') - 0.1
@@ -449,7 +550,7 @@ def build():
     place(T_['change'], s_sonar(hz('E5')), gain=0.12, pan=0.3, hall=0.4, delay=0.3)
     place(T_['same'] - 0.1, s_whoosh(1.4, 300, 9000, 0.8, 655, 1.2), gain=0.18, hall=0.35)
     place(T_['same'] - 0.1, s_boom(2.0, 70, 35, 656), gain=0.45, bus='sub')
-    for j, nm in enumerate(['A5', 'C#6', 'E6']):
+    for j, nm in enumerate(NT['wave']):
         place(T_['same'] + 0.3 + j * 0.15, s_bell_tone(hz(nm), 1.8, 657 + j), gain=0.06, pan=-0.6 + 0.6 * j, space=0.6)
 
     # ---------------------------------------------------------------- TRUST
@@ -458,14 +559,14 @@ def build():
     t_before = r0.word('before')
     for j in range(4):
         tj = r0.start + 0.3 + j * (t_before - r0.start) / 4
-        place(tj, s_ui_confirm(hz(['E5', 'G#5', 'B5', 'E6'][j]), 701 + j), gain=0.11, pan=0.35, hall=0.3)
+        place(tj, s_ui_confirm(hz(NT['pay'][j]), 701 + j), gain=0.11, pan=0.35, hall=0.3)
     place(r0.end - 0.1, s_chirp(705), gain=0.2, pan=0.35, hall=0.3)
     place(r0.end - 0.05, s_bell_tone(hz('B5'), 1.2, 706), gain=0.07, pan=0.35, hall=0.4)
     place(r1.start - 0.25, s_whoosh(0.5, 300, 3000, 0.9, 707), gain=0.18, hall=0.3)
     t_infra, t_keys = r1.word('infrastructure'), r1.word('keys')
     for i in range(6):
         ti = r1.start + 0.1 + i * (t_infra - r1.start + 0.6) / 6
-        place(ti + 0.18, s_bell_tone(hz(['E5', 'A5', 'C#6', 'E6', 'A6', 'C#7'][i]), 1.2, 710 + i) * 0.6 + 0 * 0, gain=0.14,
+        place(ti + 0.18, s_bell_tone(hz(NT['layers'][i]), 1.2, 710 + i) * 0.6, gain=0.09 if EL else 0.14,
               pan=0.45, hall=0.35)
         place(ti + 0.18, s_key_click(716 + i), gain=0.12, pan=0.45)
     place(t_keys - 0.19, s_lock(), gain=0.75, pan=0.3, room=0.3, hall=0.2)
@@ -481,39 +582,46 @@ def build():
                 (L('network', 1).word('joins'), L('network', 2).start, ['D2', 'A2', 'D3', 'F#3']),
                 (L('network', 2).start, L('network', 2).word('Together'), ['E2', 'B2', 'E3', 'G#3']),
                 (L('network', 2).word('Together'), t_close, ['A2', 'E3', 'A3', 'C#4', 'E4'])]
-    pad_run(chords_n, 0.13, 2200, seed=802, attack=1.0, space=0.5)
+    if not EL:
+        pad_run(chords_n, 0.13, 2200, seed=802, attack=1.0, space=0.5)
     t_hub, times, mesh = S.net_schedule()
     place(t_hub, s_sonar(hz('A4')), gain=0.26, space=0.7, delay=0.4)
     place(t_hub, s_sonar(hz('A2')), gain=0.18, space=0.6)
     for k, (nm, ti) in enumerate(sorted(times.items(), key=lambda x: x[1])):
         notes = next((c[2] for c in chords_n if c[0] <= ti < c[1]), chords_n[-1][2])
-        f = hz(notes[k % len(notes)]) * (4 if k % 2 == 0 else 2)
+        f = hz(notes[k % len(notes)]) * (4 if k % 2 == 0 else 2) if not EL else hz(NT['nodes'][k % 6])
         pan = 0.7 * math.sin(k * 1.1)
-        place(ti, s_pluck(f, 1.8, 0.9, 810 + k), gain=0.12, pan=pan, bus='music', space=0.45, delay=0.45)
+        place(ti, s_pluck(f, 1.8, 0.9, 810 + k), gain=0.12 if not EL else 0.07, pan=pan, bus='music', space=0.45, delay=0.45)
         place(ti, s_bell_tone(f * 2, 1.4, 830 + k), gain=0.03, pan=pan, space=0.5)
         place(ti - 0.55, s_whoosh(0.55, 800, 5000, 1.5, 850 + k), gain=0.06, pan=pan * 0.6, space=0.4)
     for k, (_, _, tm) in enumerate(mesh):
-        place(tm + 0.5, s_pluck(hz(['A5', 'C#6', 'E6', 'B5'][k % 4]), 1.2, 0.6, 870 + k), gain=0.05,
+        place(tm + 0.5, s_pluck(hz(NT['mesh'][k % 4]), 1.2, 0.6, 870 + k), gain=0.05 if not EL else 0.03,
               pan=0.6 * math.sin(k * 1.3), bus='music', space=0.5, delay=0.5)
     t_one = L('network', 2).word('Together')
-    for i in range(int((t_close - t_one) / BEAT)):
-        place(t_one + i * BEAT, s_kick(880 + i, 0.3), gain=0.3 + 0.1 * i, bus='sub')
-    place(t_close - 1.4, fade(s_riser(1.35, 890), 0.3, 0.004), gain=0.3, bus='music', hall=0.2)
+    if not EL:
+        for i in range(int((t_close - t_one) / BEAT)):
+            place(t_one + i * BEAT, s_kick(880 + i, 0.3), gain=0.3 + 0.1 * i, bus='sub')
+        place(t_close - 1.4, fade(s_riser(1.35, 890), 0.3, 0.004), gain=0.3, bus='music', hall=0.2)
 
     # ---------------------------------------------------------------- CLOSE: four hits, then the logo
     c0, c1 = L('close', 0), L('close', 1)
     hits = [c0.word('Formed'), c0.word('Licensed'), c0.word('Banked'), c0.word('Recognised')]
-    stabs = [['A2', 'E3', 'A3', 'C#4'], ['C#3', 'G#3', 'C#4', 'E4'], ['D3', 'A3', 'D4', 'F#4'], ['E3', 'B3', 'E4', 'G#4']]
+    stabs = NT['stabs']
     for k, th in enumerate(hits):
         place(th - 0.32, fade(s_reverse_swell(0.32, 900 + k), 0.05, 0.002), gain=0.1 + 0.02 * k, hall=0.2)
         hit, stab = s_hit(k, stabs[k], 910 + 10 * k)
         place(th, hit, gain=0.7 + 0.08 * k, bus='sub', hall=0.25)
-        place(th, stab, gain=0.34 + 0.05 * k, bus='music', hall=0.3)
+        place(th, stab, gain=(0.34 + 0.05 * k) * (0.7 if EL else 1.0), bus='music', hall=0.3)
         place(th, s_metal(950 + k, 1.0 + 0.2 * k), gain=0.03 + 0.01 * k, pan=0.3 * (-1) ** k, hall=0.5)
         place(th - 0.06, s_whoosh(0.14, 5200, 1400, 1.0, 960 + k), gain=0.05, pan=0.35 * (-1) ** k)
     place(hits[0], s_cymbal(2.0, 970), gain=0.08, hall=0.4)
     t_mass = c1.word('Mass') - 0.05
     s_sting(t_mass, big=True)
+    if EL:
+        sc, fs = sf.read(os.path.join(ELDIR, 'score.wav'))
+        if fs != FS:
+            sc = signal.resample_poly(sc, FS, fs, axis=0)
+        place(0.0, sc * SCORE_GAIN, bus='music')
     place(c1.word('operating'), s_bell_tone(hz('E6'), 2.4, 980), gain=0.03, space=0.6)
     place(c1.end + 0.4, s_bell_tone(hz('A6'), 1.8, 981), gain=0.025, space=0.6)
     return dict(t_black=t_black, t_cut=t_cut, t_rev=t_rev)
@@ -592,6 +700,11 @@ def master(out_path, target=-15.0, source='scratch'):
         gate[i + m:j] = 0
         gate[j:j + ns(0.4)] = np.minimum(gate[j:j + ns(0.4)], np.linspace(0, 1, ns(0.4)))
     talk = 1 - duck                                                             # narration present
+    if EL:
+        # carve a pocket for the voice: under narration the score's speech band dips a further 6 dB
+        sos = signal.butter(2, [300, 4000], btype='band', fs=FS, output='sos')
+        mid = signal.sosfiltfilt(sos, music, axis=0)
+        music = music - mid * (1 - db(-6 * talk))[:, None]
     bed = (music * 0.9 * db(-10 * talk)[:, None] + sub * db(-3 * talk)[:, None]
            + fx * db(-5 * talk)[:, None]) * gate[:, None] * db(BED_DB)
     mix = bed + pan2(vo, 0.0) * 1.0
@@ -623,5 +736,5 @@ def master(out_path, target=-15.0, source='scratch'):
 
 if __name__ == '__main__':
     src = os.environ.get('MASS_VO', 'scratch')
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(V2, 'out', f'mass_v2_mix_{src}.wav')
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(V2, 'out', f"mass_v2_mix_{src}{'_el' if EL else ''}.wav")
     master(out, source=src)

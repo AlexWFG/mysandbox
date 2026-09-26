@@ -34,6 +34,10 @@ reads `footage/manifest.json`, and are not stored in the repository.
 - Earth textures (network sequence): NASA Visible Earth / Earth Observatory, public domain (shared with v1).
 - UAE outline (ministry dashboard): Natural Earth 1:50m, public domain.
 - Fonts: Inter, JetBrains Mono and Courier Prime, all under the SIL Open Font License.
-- Scratch narration (animatic only): Piper TTS, voice `en_GB-alan-medium`. The final narration will be
-  an ElevenLabs take, which requires a paid plan for commercial use.
-- Score and sound design: synthesised from scratch in `src/audio2.py`.
+- Narration: ElevenLabs text-to-speech (Creator plan), voice "Russell" from the ElevenLabs voice library,
+  model `eleven_multilingual_v2`, one take (`out/vo_final/`). Scratch narration for the animatic: Piper TTS
+  (`en_GB-alan-medium`).
+- Score, version A: composed by Eleven Music (`music_v2_5`) from a composition plan timed to the edit
+  (`src/el_audio.py`, `out/el_audio/score.mp3`). Recorded-style effects (stamps, pen, welding, port, city,
+  typing, airport, office, control room, seal) from ElevenLabs sound effects (`out/el_audio/sfx_*.mp3`).
+- Score, version B, UI sounds, the sonic logo and the closing hits: synthesised from scratch in `src/audio2.py`.

@@ -1,0 +1,364 @@
+{
+ "model": "music_v2_5",
+ "plan": {
+  "chunks": [
+   {
+    "text": "[Instrumental: Cold open]",
+    "duration_ms": 12776,
+    "positive_styles": [
+     "cinematic documentary score",
+     "instrumental",
+     "modern hybrid orchestral with subtle electronics",
+     "emotional, visionary, premium brand film",
+     "clean mix, wide stereo",
+     "no vocals",
+     "dark ticking pulse",
+     "low drone",
+     "sparse muted piano",
+     "tension slowly rising",
+     "bureaucratic, mechanical rhythm"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "melody",
+     "drums"
+    ]
+   },
+   {
+    "text": "[Instrumental: Aisha at night]",
+    "duration_ms": 13301,
+    "positive_styles": [
+     "intimate night atmosphere",
+     "soft felt piano motif in A minor",
+     "muted string ostinato",
+     "quiet determination",
+     "restless",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "big drums",
+     "major key"
+    ]
+   },
+   {
+    "text": "[Instrumental: The licensing office]",
+    "duration_ms": 10833,
+    "positive_styles": [
+     "same motif, more insistent",
+     "pulsing staccato strings",
+     "clockwork tension",
+     "frustration building",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "big drums"
+    ]
+   },
+   {
+    "text": "[Instrumental: The ministry]",
+    "duration_ms": 7471,
+    "positive_styles": [
+     "dense layered pulses",
+     "many overlapping rhythms",
+     "rising pressure",
+     "dissonant but controlled",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "release"
+    ]
+   },
+   {
+    "text": "[Instrumental: Peak]\n{stops abruptly, dead silence after the last hit}",
+    "duration_ms": 6520,
+    "positive_styles": [
+     "full crescendo of strings and low brass",
+     "accelerating",
+     "maximum tension",
+     "ends abruptly in silence on the last beat",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "resolution",
+     "fade out"
+    ]
+   },
+   {
+    "text": "[Instrumental: The turn]\n{silence for two seconds, then one warm piano note}",
+    "duration_ms": 9569,
+    "positive_styles": [
+     "begins in silence for two seconds",
+     "then a single warm piano note",
+     "hopeful swell in A major",
+     "airy pads",
+     "gentle rising strings",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "drums",
+     "tension"
+    ]
+   },
+   {
+    "text": "[Instrumental: Logo breath]\n{almost silent, one sustained low chord}",
+    "duration_ms": 3050,
+    "positive_styles": [
+     "very sparse",
+     "soft sustained low A major chord",
+     "leave space for a sound logo",
+     "reverent pause",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "drums",
+     "melody",
+     "hits"
+    ]
+   },
+   {
+    "text": "[Instrumental: The demo]",
+    "duration_ms": 30049,
+    "positive_styles": [
+     "optimistic and driving",
+     "about 100 bpm",
+     "confident modern pulse",
+     "piano arpeggios over warm strings",
+     "light electronic percussion",
+     "momentum, progress, things working",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "heavy drums",
+     "aggressive"
+    ]
+   },
+   {
+    "text": "[Instrumental: Trust]",
+    "duration_ms": 7450,
+    "positive_styles": [
+     "solid and assured",
+     "broader strings",
+     "steady pulse",
+     "sovereign, dignified",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "playful"
+    ]
+   },
+   {
+    "text": "[Instrumental: Across borders]",
+    "duration_ms": 16149,
+    "positive_styles": [
+     "expansive and epic",
+     "wide cinematic strings and horns",
+     "building layer by layer",
+     "global, uplifting",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "sad"
+    ]
+   },
+   {
+    "text": "[Instrumental: Climax]",
+    "duration_ms": 4777,
+    "positive_styles": [
+     "full orchestral climax",
+     "powerful rising build",
+     "big and triumphant",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "quiet"
+    ]
+   },
+   {
+    "text": "[Instrumental: Resolution]\n{long decay to silence}",
+    "duration_ms": 6803,
+    "positive_styles": [
+     "resolved final chord in A major",
+     "long shimmering decay",
+     "calm confidence",
+     "fades to silence",
+     "instrumental",
+     "great production quality"
+    ],
+    "negative_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "choir words",
+     "rap",
+     "EDM drop",
+     "dubstep",
+     "comedy",
+     "lo-fi",
+     "jazz",
+     "guitar solo",
+     "cheesy corporate ukulele",
+     "whistling",
+     "drums",
+     "new melody"
+    ]
+   }
+  ]
+ },
+ "total_ms": 128748,
+ "headers": {
+  "Song-Id": "VSWMMUQFRaYlkWintyFB"
+ },
+ "credits": 1770
+}

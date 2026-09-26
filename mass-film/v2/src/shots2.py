@@ -612,14 +612,18 @@ def demo_chat():
     d0 = T_['d'][0]
     tf = T_['file']
     d3 = T_['d'][3]
+    u2 = d0 + 4.2                                 # "Just me. Here's my passport."
+    scan = u2 + 0.7
+    ck = max(tf - 2.2, scan + 1.2)                # checks card once the passport is verified
+    it = [ck + 0.35, ck + 0.65, ck + 0.95, max(tf, ck + 1.3)]
     return Chat([
         dict(who='user', t=d0 + 0.1, text="I'm launching an AI trading company. Can you set it up in Abu Dhabi?"),
-        dict(who='agent', t=d0 + 1.7, text="On it. I'll form the company, apply for your licence and open a bank account. Who owns it?"),
-        dict(who='user', t=d0 + 4.0, text="Just me. Here's my passport."),
-        dict(who='user', t=d0 + 4.5, kind='passport', scan=d0 + 4.8),
-        dict(who='agent', t=tf - 2.2, kind='checks', title='PREPARING YOUR FILING',
-             items=[('Ownership recorded', tf - 1.8), ('Documents complete', tf - 1.3), ('23 compliance checks passed', tf - 0.7),
-                    ('Filed with Abu Dhabi free zone', tf)]),
+        dict(who='agent', t=d0 + 1.5, text="On it. I'll form the company, apply for your licence and open a bank account. Who owns it?"),
+        dict(who='user', t=u2, text="Just me. Here's my passport."),
+        dict(who='user', t=u2 + 0.4, kind='passport', scan=scan),
+        dict(who='agent', t=ck, kind='checks', title='PREPARING YOUR FILING',
+             items=[('Ownership recorded', it[0]), ('Documents complete', it[1]), ('23 compliance checks passed', it[2]),
+                    ('Filed with Abu Dhabi free zone', it[3])]),
         dict(who='agent', t=d3 + 0.25, kind='result', typing=False, company='Aisha Trading LLC',
              items=[('Company formed', d3 + 0.5), ('Licence issued', d3 + 0.8), ('Bank account open', d3 + 1.1)],
              elapsed='4 MIN 12 S'),
@@ -630,7 +634,7 @@ def demo_cams():
     T_ = demo_times()
     f0, f1, f2, ov = CV.focus_cam(0), CV.focus_cam(1), CV.focus_cam(2), CV.overview_cam()
     d = T_['d']
-    return [(T_['start'], f0), (T_['file'] + 0.35, f0), (T_['file'] + 1.25, ov), (d[2] - 0.45, ov), (d[2] + 0.45, f1),
+    return [(T_['start'], f0), (T_['file'] + 0.6, f0), (T_['file'] + 1.4, ov), (d[2] - 0.45, ov), (d[2] + 0.45, f1),
             (T_['decide'] + 0.75, f1), (T_['decide'] + 1.55, ov), (d[3] - 0.25, ov), (d[3] + 0.55, f0),
             (d[4] - 0.55, f0), (d[4] - 0.05, ov), (d[4] + 0.5, f2), (T_['same'] - 0.1, f2), (T_['same'] + 0.9, ov)]
 

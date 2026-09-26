@@ -44,7 +44,7 @@ def request(voice_id, text):
     if len(text) > left:
         raise SystemExit('not enough characters left')
     r = requests.post(f'https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps',
-                      params=dict(output_format='mp3_44100_128'),
+                      params=dict(output_format='mp3_44100_192' if sub.get('tier') not in ('free', None) else 'mp3_44100_128'),
                       json=dict(text=text, model_id=MODEL, voice_settings=SETTINGS), timeout=600)
     if r.status_code != 200:
         raise SystemExit(f'ElevenLabs error {r.status_code}: {r.text[:300]}')
@@ -53,6 +53,7 @@ def request(voice_id, text):
     os.makedirs(OUT, exist_ok=True)
     json.dump(d, open(raw, 'w'))
     open(os.path.join(OUT, 'take.mp3'), 'wb').write(base64.b64decode(d['audio_base64']))
+    json.dump({k: v for k, v in d.items() if k != 'audio_base64'}, open(os.path.join(OUT, 'alignment.json'), 'w'))
     return d
 
 

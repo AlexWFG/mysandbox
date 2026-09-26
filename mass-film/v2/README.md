@@ -28,7 +28,10 @@ ElevenLabs take re-times picture and sound automatically.
 | Scratch narration (offline) | `python3 scratch_vo.py` |
 | Review sheets | `python3 render2.py --sheet 12.5,30,68,90 --sheet-out ../out/review/x.jpg` |
 | Picture (lossless, parallel) | `python3 render2.py --video ../out/mass_v2_picture_lossless.mkv --workers 4` |
-| Score, sound design and narration mix | `python3 audio2.py` (−15 LUFS, −1 dBTP) |
+| Final narration (one ElevenLabs request, cut into lines) | `python3 tts_final.py <voice_id>` |
+| ElevenLabs score and effects timed to the edit | `python3 el_audio.py score` / `python3 el_audio.py sfx` |
+| Score, sound design and narration mix | `python3 audio2.py` (−15 LUFS, −1 dBTP); `MASS_SCORE=el` uses the ElevenLabs score |
+| Delivery encodes | `finish2.py`: the video is encoded once, then each soundtrack is muxed onto it |
 | Captions | `python3 captions.py` |
 
 Set `MASS_VO=final` to build everything from the ElevenLabs take in `out/vo_final/`
