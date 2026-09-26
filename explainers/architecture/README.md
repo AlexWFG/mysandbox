@@ -4,8 +4,8 @@ A narrated motion-graphics explainer made from `Propchain — Technical Architec
 
 | File | Spec |
 |---|---|
-| `architecture-1080p.mp4` | 1920×1080, 30 fps, H.264 two-pass, AAC 160k stereo |
-| `architecture-preview.mp4` | 1280×720, 30 fps, two-pass ~0.8 Mbps, AAC 128k, under 29 MB |
+| `architecture-1080p.mp4` | 1920×1080, 30 fps, H.264 two-pass ~2.75 Mbps, AAC 160k stereo · 87.0 MB |
+| `architecture-preview.mp4` | 1280×720, 30 fps, H.264 two-pass ~0.78 Mbps, AAC 128k · 27.4 MB |
 
 **Runtime: 4:00.** That is the top of the brief's 1–4 minute range. The deck covers 15 dense slides, and the four things the film must land are the system diagram, one record's journey, the integration path and the custody model. Each needs its own time. To stay inside four minutes, the first narration draft (4:36) was cut by two lines and six lines were tightened.
 
@@ -62,13 +62,15 @@ It is written for a smart non-engineer, such as an investor or partner. By the e
 - `film/`: a DOM/SVG compositor. `engine.js` holds the deterministic, time-driven helpers: appear with slide and blur-in, stroke draw-on, travelling yellow pulses, camera, hash scramble, stock frame sequences, grain, vignette and chapter markers. `scenes1–3.js` hold the scenes. Every beat is keyed to the narration: `Wd(line, word)` estimates when a word is spoken, in proportion to its character position within the generated line. The picture is timed to the voice, not the other way round.
 - `audio/`: `narration.json` (George, `eleven_multilingual_v2`, series settings), `music.json` (one 4:00 composition plan with six sections matching the chapters), `timeline.json`, and the **committed ElevenLabs cache** (`vo/`, `music/`). All sound effects (ticks, whooshes, chimes, thumps) are synthesized in `tools/mix.py`, so no SFX credits were spent.
 - `tools/`: `eleven.py` (cached ElevenLabs calls; a `pin` field keeps untouched lines on their cached takes when neighbours change), `layout.py` (places narration lines and writes `film/timeline.js`), `mix.py`, `pexels_search.py`, `fetch_stock.py` and `sheet.py`.
+- The final mix puts narration 10.3 dB above music and SFX in speech regions, at −16.5 dBFS RMS with a soft limiter.
+- The preview is 720p, not 1080p. A four-minute film under 29 MB leaves only ~0.9 Mbps in total, and 720p looks cleaner than 1080p at that rate.
 - `build.sh` runs everything end to end. Frames, stock downloads and the WAV are gitignored.
 
 Rebuild with `npm i && ./build.sh`. Previews: `node render.mjs stills --page film/index.html 72 90 130`.
 
 ## Budgets
 
-- **ElevenLabs.** Narration was 28 lines (3,471 characters) plus a re-take of 6 lines (978 characters) after trimming to four minutes. The account bills this voice at about 0.53 credits per character (from `/v1/history`). The first narration pass moved the shared counter by exactly 2,379 credits, and the whole narration comes to **about 2,900 credits**. The music bed was one call, and the shared counter moved 43 credits across it. Other sessions were spending on the same account in parallel, so per-film totals can only be estimated from these figures. The estimate is **well under the 15,000 budget**. Nothing needs regenerating: every take is cached in `audio/`.
+- **ElevenLabs.** Narration was 28 lines (3,471 characters) plus a re-take of 6 lines (978 characters) after trimming to four minutes. The account bills this voice at about 0.53 credits per character (from `/v1/history`). The first narration pass moved the shared counter by exactly 2,379 credits, and the whole narration comes to **about 2,900 credits**. The music bed was one call, and the shared counter moved 43 credits across it. Other sessions were spending on the same account in parallel, so per-film totals can only be estimated from these figures. The shared counter read 10,585 at the start and 35,723 at the end, and most of that difference is other sessions. The estimate is **well under the 15,000 budget**. Nothing needs regenerating: every take is cached in `audio/`.
 - **Pexels: 3 API calls** out of 30, one search per slot. Clips were downloaded from the CDN.
 
 ### Stock credits (Pexels)
