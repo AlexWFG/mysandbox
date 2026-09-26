@@ -41,7 +41,7 @@ function build2() {
     <div data-k="rl" class="abs" style="left:0;top:270px;white-space:nowrap"><span class="lbl" style="color:${INK}">Realised </span><span data-k="rv" class="big" style="font-size:34px">€800k</span></div>
     <div data-k="oc1" class="abs" style="left:160px;top:590px"><div class="lbl y">Outcome 1</div><div class="h3" style="margin-top:6px">−5% · inside tolerance</div></div>
     <div data-k="oc2" class="abs" style="left:160px;top:590px"><div class="lbl y">Outcome 2</div><div class="h3" style="margin-top:6px">−10% · 5 pts beyond</div></div>
-    <div data-k="bl" class="abs lbl" style="left:${(X(720) + X(760)) / 2}px;top:300px;transform:translateX(-50%);color:${INK}">Beyond tolerance</div>
+    <div data-k="bl" class="abs lbl" style="left:${(X(720) + X(760)) / 2}px;top:${AY - 34}px;transform:translateX(-50%);color:${INK}">Beyond tolerance</div>
     <div data-k="pr" class="abs" style="left:960px;top:596px;transform:translateX(-50%);text-align:center;white-space:nowrap">
       <div class="h2">Pro rata, <span class="y">never all or nothing</span></div>
       <div class="lbl" style="margin-top:14px">5 pts beyond tolerance, bond sized for 10 · half the bond</div></div>
@@ -151,7 +151,7 @@ function build2() {
         <div class="abs" style="left:42px;top:2px;font-size:22px;${j === 2 ? `color:${DIM}` : ''};white-space:nowrap">${r}</div>
         ${j === 2 ? `<div data-k="x${i}" class="abs" style="left:40px;top:17px;height:2px;width:${r.length * 11}px;background:${DIM};transform-origin:0 50%"></div>` : ''}</div>`).join('')}
       ${c.note ? `<div data-k="nt${j}" class="abs body" style="left:32px;top:500px;width:440px;font-size:20px">${c.note}</div>` : ''}</div>`).join('')}
-    <div data-k="ft" class="foot">The lesson from staking: slashing works on facts the chain can see; slashing by governance vote has failed where tried</div>`,
+    <div data-k="ft" class="foot">The lesson from staking: slashing works on facts the chain can see; slashing by governance vote has failed everywhere it was tried</div>`,
     (t, k) => {
       const t0 = T('n18a') - .3, tb = T('n18b'), tc = T('n18c'), td = T('n18d');
       show(k.h, t, t0);

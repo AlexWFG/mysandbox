@@ -216,7 +216,7 @@ function build1() {
     <div data-k="l3" class="abs" style="left:${X(955) - 26}px;top:612px;transform:translateX(-100%);text-align:right"><div class="big" style="font-size:40px">€955k</div><div class="lbl" style="margin-top:8px">Tenants</div></div>
     <div data-k="lq" class="abs" style="left:${X(956 * .98) - 24}px;top:372px;text-align:right;transform:translateX(-100%)"><div class="lbl y">Quorum</div><div class="big y" style="font-size:64px;margin-top:6px">€956k</div></div>
     <div data-k="a3" class="abs" style="left:${X(956 * .98) - 24}px;top:486px;transform:translateX(-100%)"><div class="chip y" style="font-size:20px;padding:9px 16px 8px">Level A3</div></div>
-    <div data-k="bl" class="abs lbl y" style="left:${X(956)}px;top:${AY - 36}px;transform:translateX(-50%);font-size:13px">Tolerance 2%</div>
+    <div data-k="bl" class="abs lbl y" style="left:${X(956)}px;top:326px;transform:translateX(-50%);font-size:13px">Tolerance 2%</div>
     <div data-k="ft" class="foot">Numbers are a worked illustration</div>`,
     (t, k) => {
       const t0 = T('n07') - .3;
