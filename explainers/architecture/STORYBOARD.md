@@ -1,0 +1,57 @@
+# Architecture explainer · storyboard
+
+Source: `Propchain — Technical Architecture.pdf` ("Provable, not visible", working draft, September 2026).
+Target runtime about 3:45. Narration comes first and the picture is timed to it; the times below are estimates until the VO is generated.
+
+## What the viewer should understand by the end
+
+1. **The chain is a notary and a settlement rail, not a database.** Only commitments, identities, grants, signatures, settlement state and the audit root go on chain. Records, documents, mandates, models and the matching engine stay off chain. Keys stay in HSMs.
+2. **The eight services around one ledger**, and how they map to the three layers.
+3. **One record's journey**: a rent roll goes from the source system through an adapter, ingestion, per-field encryption, salted hashes and a Merkle root, then attestation (sources sign, quorum, level). Only the root, signatures and level reach the chain. The data stays private.
+4. **Consensus orders, attestation verifies.** These are two different quorums: named validators run consensus, anchored to a public chain.
+5. **How a counterparty sees a field**: through a logged grant (value and salt checked against the root), or through a range proof ("NOI ≥ X") with no disclosure at all.
+6. **Every action traces to a person**: institution, principal, agent credential, action. Binding acts need a human signature. Matching runs deterministically in an attested enclave.
+7. **The deal end to end** (List → Diligence → Match → Finance → Settle → Operate). Each step leaves an unreadable but verifiable mark on chain, and Operate repeats monthly.
+8. **Integration without displacement**: Shadow → Write back → Workflow. Adapters are one untrusted source that can lie but cannot reach a quorum. Worked example: a bank's three connectors.
+9. **Keeping value safe**: data and value are kept on separate keys, networks and teams. Access is a grant, never a role. The key stance is that one key can do nothing, two can do a little, and three can reverse it. The film also covers the settlement-asset ladder and the build sequence.
+
+## Arc
+
+Title → the one decision (split screen on/off chain) → build the system (ledger + 8 services, layer bands) → trace one record through it (the centrepiece) → two quorums and the network → disclosure and proof → people, agents and the deal → integration → safety → build sequence → end card.
+
+The same visual objects persist throughout. The ledger is a horizontal yellow-edged "rail" in the centre of the system diagram. The record is a small card with fields `rent`, `tenant`, `NOI`, which gets hashed, rolled up and pulsed onto the rail.
+
+## Beat sheet
+
+| # | ~Time | Chapter | Narration | Visual | On-screen text |
+|---|---|---|---|---|---|
+| 1 | 0:00 | title | "Provable, not visible. This is how the attested market is built." | Logo, then the headline draws on and a thin yellow rule sweeps under it | TECHNICAL ARCHITECTURE / Provable, not visible |
+| 2 | 0:06 | 01 THE FIRST DECISION | "Start with one decision. The chain is a notary and a settlement rail — not a database." | A vertical divider draws. Left is labelled ON CHAIN, right OFF CHAIN. A stamp icon and a rail icon appear on the left; a crossed database icon fades | A notary and a settlement rail. Not a database. |
+| 3 | 0:13 | | "On chain goes only what someone must verify later without trusting us: commitments to records, identities, permission grants, attestation signatures, settlement state, and the root of the audit log." | Six chips slide into the ON CHAIN column one by one with line icons. Each chip gets a small yellow hash glyph | Commitments · Identity registry · Permission grants · Attestation signatures · Escrow & settlement state · Audit log root |
+| 4 | 0:25 | | "Everything anyone needs to read stays off chain: the records, mandates and credit boxes, the matching engine, the models, the documents. And the keys never leave a hardware security module." | Six chips enter the OFF CHAIN column; the Keys chip locks into an HSM box | Records · Mandates & credit boxes · Matching engine · Models · Documents · Keys → HSM only |
+| 5 | 0:36 | | "Nothing sensitive is ever permanent — which is also how right-to-erasure and confidentiality are met." | The test appears as two questions with arrows to each column | Verify later without trusting us? → on chain. Need to read it? → off chain, behind a grant |
+| 6 | 0:43 | 02 THE COMPONENTS | "Around that one ledger sit eight services: identity, ingestion, the record store, attestation — matching, settlement, the agent runtime, and integration, the one that decides adoption." | The ledger rail draws across the centre. Eight service nodes pop in around it (4 above, 4 below) with icons and numbers 01–08 | 01 Identity … 08 Integration |
+| 7 | 0:57 | | "Every service writes commitments to the ledger and reads grants from it. None of them stores state there." | Yellow pulses travel down from each service into the rail (commitments) and grey pulses travel back up (grants) | writes commitments ↓ · reads grants ↑ |
+| 8 | 1:04 | | "Ingestion and the record store form layer one. Identity, attestation and settlement, layer two. Matching and agents, layer three. Integration cuts across all three." | Coloured bands sweep behind nodes: L01 Structured, L02 Attested, L03 Agent-ready. Integration spans the full height | LAYER 01 · LAYER 02 · LAYER 03 |
+| 9 | 1:15 | 03 ONE RECORD | "Follow one record. A rent roll leaves the owner's property system through an adapter. Ingestion extracts its fields into a canonical schema, with lineage back to the source." | Camera pushes to the left. A property system box emits a PDF/sheet. It passes the adapter and becomes a structured card with fields and a thin lineage line back to the source | SOURCE → ADAPTER → INGESTION |
+| 10 | 1:27 | | "The record store encrypts each field under its own key, in the owner's vault." | Each field gets its own small key and a padlock; the card drops into a VAULT · TENANT A frame | field-level keys · per-tenant vault |
+| 11 | 1:33 | | "Then each field is hashed with a random salt. The salt matters: 'NOI equals 800,000' is guessable — an unsalted hash is a leak." | NOI = 800,000 + salt → hash string scrambles in. A side inset shows an attacker guessing without salt → match (red-free: dim flash) | NOI = 800,000 + salt → 9f3a…c21e |
+| 12 | 1:42 | | "The field hashes roll up into one Merkle root, per asset, per period." | Tree builds bottom-up to a single yellow root | ROOT · asset 0142 · 2026-09 |
+| 13 | 1:48 | | "Attestation collects signatures from independent sources of the fact, computes the quorum and a level, and commits." | Three source nodes (property system, bank statement, auditor) sign the root; a quorum ring fills; level badge | 3 sources signed · quorum · level |
+| 14 | 1:56 | | "What reaches the chain is the root, the signatures and the level. The rent roll itself never does." | The root + signatures pulse onto the ledger rail. The card stays behind in the vault, dimmed | ON CHAIN: root · signatures · level |
+| 15 | 2:03 | 04 TWO QUORUMS | "Keep two questions apart. Consensus asks: in what order did things happen? Validators answer. Attestation asks: is this fact true enough to act on? Independent sources answer." | Split: left, blocks stacking in order with validator nodes; right, sources signing a commitment | Consensus orders · Attestation verifies |
+| 16 | 2:15 | | "The validators are named parties — notaries, auditors, depositaries, banks — and periodic roots are anchored to a public chain that no consortium member controls." | Four named validator nodes in a ring; a line periodically drops a root down to a "public chain" strip | Permissioned validators · public anchor |
+| 17 | 2:25 | 05 DISCLOSURE | "When a buyer's agent needs a field, a grant hands it the value and salt for that field alone. It checks them against the root on chain — and the grant itself is logged." | The agent receives the key for one field only. It recomputes the hash, which matches the leaf, and a tick appears. A log row is appended | GRANT · who · what · when · whose permission |
+| 18 | 2:35 | | "Where the double-blind market needs it, a zero-knowledge range proof answers 'is NOI at least X?' — without revealing NOI at all." | The NOI field stays locked. A proof token passes through the gate and shows "NOI ≥ X ✓" | NOI ≥ X · range proof · no disclosure |
+| 19 | 2:44 | 06 THE DEAL | "Every action traces to a person: institution, principal, agent credential — then the signed action. Agents prepare; anything that binds also carries the principal's signature." | Chain of four nodes, scope tags on agent credential; a binding act gets a second signature | Institution → Principal → Agent credential → Action |
+| 20 | 2:56 | | "Matching runs in an attested enclave: deterministic, with roots in and a root out. Neutrality becomes something you can verify." | Enclave box with a hardware outline; input roots enter and an output root exits; build hash badge | Deterministic · committed in & out · attested build |
+| 21 | 3:05 | | "List, diligence, match, finance, settle — each step leaves a mark on chain that anyone can verify and no one can read. And operate is the same pipeline, running monthly." | The five steps tick along the rail, each dropping an on-chain token; Operate loops back monthly | List · Diligence · Match · Finance · Settle · Operate ↻ monthly |
+| 22 | 3:17 | 07 INTEGRATION | "None of this asks an intermediary to change their systems. First, shadow: adapters read what exists, and an attested copy appears beside their data. Then write back, in the format they already use. Then they act on the platform — because it's faster." | Stock insert (office). Then three stages: their system box stays fixed, and our layer grows beside it with arrows reading in, writing back, and then acting | Shadow · Write back · Workflow |
+| 23 | 3:33 | | "Every adapter is one untrusted source. A compromised adapter can lie; it cannot reach a quorum alone." | Several adapters feed the event bus; one turns dim/flagged and its lone signature fails to fill the quorum ring | 1 source ≠ quorum |
+| 24 | 3:41 | | "A bank gets three connectors: its financing pack in, its credit policy out as a standing credit box, and a servicing feed. Neither bank system is replaced." | Bank origination + servicing systems; three connectors light in sequence | Pack in · Credit box out · Servicing feed |
+| 25 | 3:52 | 08 KEEPING VALUE SAFE | "A data breach costs confidentiality; a key compromise is money gone. So data and value live on different keys, different networks, different teams." | Two separate stacks (DATA / VALUE) drawn apart | different keys · networks · teams |
+| 26 | 4:02 | | "Assume a key will be compromised. One key can do nothing on its own. A second can do only a little. A third can reverse it." | Three keys: key 1 greys against a threshold lock, key 2 moves a small capped amount, key 3 reverses (freeze/clawback) | 1 → nothing · 2 → a little · 3 → reversed |
+| 27 | 4:12 | | "Settle in someone else's money first. Build in order: commit first, connect second, match third, settle last." | Now / Next / Later strip builds | Commit first. Connect second. Match third. Settle last. |
+| 28 | 4:20 | end | "Propchain. Provable, not visible." | End card, logo | |
+
+The first draft ran long, so the final cut will trim narration to bring it inside four minutes. The final README has the real timings.
