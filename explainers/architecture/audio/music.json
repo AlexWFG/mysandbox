@@ -1,0 +1,115 @@
+{
+ "cues": [
+  {
+   "id": "bed",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "calm modern ambient electronic",
+     "optimistic and intelligent",
+     "flowing arpeggiated synths",
+     "soft felt piano",
+     "warm analog pads",
+     "subtle clean pulse",
+     "92 BPM",
+     "D major",
+     "documentary explainer underscore",
+     "spacious, understated"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "trailer drums",
+     "epic",
+     "aggressive",
+     "dubstep",
+     "cheesy corporate ukulele",
+     "heavy bass drops"
+    ],
+    "sections": [
+     {
+      "section_name": "Opening",
+      "positive_local_styles": [
+       "sparse felt piano motif",
+       "soft pad swell",
+       "no drums"
+      ],
+      "negative_local_styles": [
+       "drums"
+      ],
+      "duration_ms": 6000,
+      "lines": []
+     },
+     {
+      "section_name": "First idea",
+      "positive_local_styles": [
+       "gentle plucked arpeggio",
+       "light pulse enters",
+       "clear and curious"
+      ],
+      "negative_local_styles": [
+       "loud"
+      ],
+      "duration_ms": 48000,
+      "lines": []
+     },
+     {
+      "section_name": "The journey",
+      "positive_local_styles": [
+       "arpeggios gain motion",
+       "soft kick and shaker",
+       "steady forward momentum",
+       "evolving textures"
+      ],
+      "negative_local_styles": [
+       "aggressive"
+      ],
+      "duration_ms": 70000,
+      "lines": []
+     },
+     {
+      "section_name": "Proof and people",
+      "positive_local_styles": [
+       "lighter texture",
+       "piano and pads",
+       "thoughtful",
+       "steady pulse continues"
+      ],
+      "negative_local_styles": [
+       "loud"
+      ],
+      "duration_ms": 53000,
+      "lines": []
+     },
+     {
+      "section_name": "Integration and safety",
+      "positive_local_styles": [
+       "warmer fuller pads",
+       "confident but calm",
+       "gentle rhythmic drive"
+      ],
+      "negative_local_styles": [
+       "epic"
+      ],
+      "duration_ms": 53000,
+      "lines": []
+     },
+     {
+      "section_name": "Resolve",
+      "positive_local_styles": [
+       "resolving chord",
+       "piano motif returns",
+       "fade to silence"
+      ],
+      "negative_local_styles": [
+       "drums"
+      ],
+      "duration_ms": 10000,
+      "lines": []
+     }
+    ]
+   }
+  }
+ ]
+}

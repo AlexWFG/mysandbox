@@ -100,3 +100,43 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--
 .srcnode { border-radius: 50%; border: 1px solid var(--line2); background: #141416; display: grid; place-items: center; }
 .tok { width: 150px; height: 36px; justify-content: center; background: #19170f; }
 .pill.ns { color: var(--dim); }
+.qrow { display: flex; gap: 24px; align-items: baseline; font-size: 24px; border-top: 1px solid var(--line); padding-top: 12px; }
+.qrow .mono { width: 130px; flex: none; }
+.block { display: grid; place-items: center; border: 1px solid var(--line2); border-radius: 8px; background: #141416; font-family: JBM; font-size: 16px; color: var(--dim); }
+.block.lit { border-color: var(--y); color: var(--y); }
+.vnode { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.vnode .nodet { margin: 0; }
+.pubchain { display: flex; align-items: center; gap: 18px; padding: 0 26px; border: 1px solid var(--line2); border-radius: 12px; overflow: hidden;
+  background-image: repeating-linear-gradient(90deg, transparent 0 40px, rgba(244,242,236,.07) 40px 100px, transparent 100px 118px); }
+.pblk { display: none; }
+.tok2 { width: 300px; height: 36px; justify-content: center; background: #19170f; }
+.tok3 { justify-content: center; background: #19170f; }
+.pill.solid.tok3 { background: var(--y); }
+.logrow { display: flex; align-items: center; gap: 30px; padding: 0 24px; border: 1px solid rgba(255,190,6,.45); border-radius: 10px; background: rgba(255,190,6,.05); font-size: 18px; color: var(--dim); }
+.logrow b { color: var(--ink); font-weight: 500; }
+.enclave { border: 2px solid rgba(255,190,6,.7); border-radius: 20px; background: repeating-linear-gradient(45deg, rgba(255,190,6,.025) 0 10px, transparent 10px 20px), #121213; box-shadow: 0 0 60px rgba(255,190,6,.1), inset 0 0 0 8px rgba(11,11,12,.9), inset 0 0 0 9px rgba(255,190,6,.25); }
+.sigs { display: flex; gap: 16px; padding: 0 26px; }
+.stepn { border: 1px solid var(--line); border-radius: 14px; background: #141416; padding-top: 24px; }
+.stepn.lit { border-color: var(--y); box-shadow: 0 0 36px rgba(255,190,6,.16); }
+.stepn.lit .nodet { color: var(--y); }
+.mark { border-left: 2px solid rgba(255,190,6,.6); padding: 6px 0 0 14px; line-height: 1.5; }
+.mark .mono.sm { font-size: 14px; }
+.regc { padding-bottom: 18px; }
+.reglist { display: flex; gap: 22px; padding: 16px 22px 0; font-family: JBM; font-size: 16px; }
+.reglist .hid { color: var(--dim); text-decoration: line-through; text-decoration-color: var(--y); }
+.stage { border-top: 2px solid var(--line2); padding-top: 14px; }
+.stage.lit { border-top-color: var(--y); }
+.sysrow { margin: 12px 20px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 10px; font-size: 22px; }
+.sysrow.att { border-color: rgba(255,190,6,.4); color: var(--y); font-family: JBM; font-size: 17px; background: rgba(255,190,6,.04); }
+.card > .nodehd:first-child { padding-bottom: 6px; }
+.usr { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--y); background: #19170f; display: grid; place-items: center; }
+.bus { border-radius: 18px; border: 1.5px solid var(--y); background: linear-gradient(180deg, rgba(255,190,6,.12), rgba(255,190,6,.03)); }
+.srcrow { display: flex; align-items: center; padding: 0 20px; border: 1px solid var(--line); border-radius: 10px; font-size: 21px; background: rgba(244,242,236,.03); }
+.srcrow.lit { border-color: var(--y); }
+.adp { border: 1px solid var(--line2); border-radius: 10px; display: grid; place-items: center; background: #141416; }
+.adp.badadp { border-color: var(--y); background: #221c08; }
+.conn { border-color: rgba(255,190,6,.35); }
+.sepr { display: flex; align-items: center; justify-content: center; border: 1px solid var(--line2); border-radius: 10px; font-family: JBM; font-size: 18px; letter-spacing: .06em; }
+.sepr.y { border-color: rgba(255,190,6,.55); }
+.keys { display: flex; gap: 14px; padding: 30px 26px 0; }
+.bitem { margin: 0 26px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 19px; color: var(--dim); }
