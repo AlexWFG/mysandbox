@@ -632,7 +632,7 @@ def demo_cams():
     d = T_['d']
     return [(T_['start'], f0), (T_['file'] + 0.35, f0), (T_['file'] + 1.25, ov), (d[2] - 0.45, ov), (d[2] + 0.45, f1),
             (T_['decide'] + 0.75, f1), (T_['decide'] + 1.55, ov), (d[3] - 0.25, ov), (d[3] + 0.55, f0),
-            (d[4] - 1.0, f0), (d[4] - 0.4, ov), (d[4] + 0.2, f2), (T_['same'] - 0.1, f2), (T_['same'] + 0.9, ov)]
+            (d[4] - 0.55, f0), (d[4] - 0.05, ov), (d[4] + 0.5, f2), (T_['same'] - 0.1, f2), (T_['same'] + 0.9, ov)]
 
 
 def seg_demo(t, fi):
@@ -651,9 +651,10 @@ def seg_demo(t, fi):
     def aisha_ui(ui, tt):
         chat_panel(ui, tt, chat, 980, 70, 860, 940, clock='10:31')
         lower_third(ui, tt, T_['start'] + 0.2, 'Aisha', 'Founder', 'Karachi · 10:31', y=H - 110)
-        ma = appear(tt, L('demo', 3).end + 0.15, 0.5)
+        t_mnm = L('demo', 3).word('business') - 0.1
+        ma = appear(tt, t_mnm, 0.5)
         if ma > 0:
-            V1.title(ui.c, [('Minutes. ', TEXT), ('Not months.', GOLD)], 120, 250, tt, L('demo', 3).end + 0.15, None,
+            V1.title(ui.c, [('Minutes. ', TEXT), ('Not months.', GOLD)], 120, 250, tt, t_mnm, None,
                      size=76, key='display_semibold', tracking=-0.02)
 
     def omar_ui(ui, tt):

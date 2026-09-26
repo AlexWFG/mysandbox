@@ -45,11 +45,11 @@ def worker(idx, frames, seg_path):
     p.wait()
 
 
-def render_video(workers, out_path, start=0, end=None):
+def render_video(workers, out_path, start=0, end=None, seg_dir=None):
     import plates
     plates.prepare_all()
     end = end or n_frames()
-    seg_dir = os.path.join(OUT, 'segments')
+    seg_dir = os.path.abspath(seg_dir or os.path.join(OUT, 'segments'))
     os.makedirs(seg_dir, exist_ok=True)
     frames = list(range(start, end))
     size = (len(frames) + workers - 1) // workers
@@ -126,6 +126,7 @@ if __name__ == '__main__':
     ap.add_argument('--workers', type=int, default=4)
     ap.add_argument('--start', type=int, default=0)
     ap.add_argument('--end', type=int, default=None)
+    ap.add_argument('--seg-dir', type=str, default=None)
     a = ap.parse_args()
     if a.still is not None:
         p = os.path.join(OUT, f'still_{a.still:07.3f}.jpg')
@@ -134,4 +135,4 @@ if __name__ == '__main__':
     if a.sheet:
         sheet([float(x) for x in a.sheet.split(',')], a.sheet_out, a.cols, a.scale)
     if a.video:
-        render_video(a.workers, a.video, a.start, a.end)
+        render_video(a.workers, a.video, a.start, a.end, a.seg_dir)

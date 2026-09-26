@@ -56,7 +56,8 @@ class Timeline:
         t = script.LEAD_IN
         self.lines = []
         for (key, text), d, wd in zip(keyed, durs, words):
-            ln = Line(key, text, t, d, [tuple(x) for x in wd] if wd else None)
+            # final take: word times in lines.json are relative to the start of each line's file
+            ln = Line(key, text, t, d, [(w, t + a, t + b) for w, a, b in wd] if wd else None)
             self.lines.append(ln)
             t = ln.end + script.PAUSE_AFTER.get(key, 0.5)
         self.duration = t

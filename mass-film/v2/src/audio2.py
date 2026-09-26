@@ -440,7 +440,7 @@ def build():
     place(T_['decide'] + 0.2, s_bell_tone(hz('A5'), 2.0, 647), gain=0.1, hall=0.5, delay=0.3)
     place(T_['decide'] + 1.0, s_whoosh(0.8, 1500, 7000, 1.4, 648), gain=0.16, pan=0.3, hall=0.3)
     place(dd[4] - 0.5, s_whoosh(0.7, 1500, 7000, 1.4, 649), gain=0.12, pan=0.4, hall=0.3)
-    t_mnm = L('demo', 3).end + 0.15
+    t_mnm = L('demo', 3).word('business') - 0.1
     place(t_mnm, s_tom(70, 650), gain=0.3, bus='sub', hall=0.2)
     place(t_mnm, s_glass_in(651), gain=0.2, hall=0.3)
     place(T_['live'], s_counter_tick(652), gain=0.25, pan=0.3)
