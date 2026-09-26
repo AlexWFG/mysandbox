@@ -1,0 +1,249 @@
+{
+ "cues": [
+  {
+   "id": "A_hype",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "cinematic hybrid trailer score",
+     "120 BPM",
+     "D minor",
+     "modern tech-finance launch film",
+     "pulsing synth bass",
+     "taiko and processed percussion",
+     "string ostinatos",
+     "epic modern film trailer sound design",
+     "deep sub hits"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "cheesy",
+     "corporate ukulele",
+     "lo-fi",
+     "comedy"
+    ],
+    "sections": [
+     {
+      "section_name": "Cold open",
+      "positive_local_styles": [
+       "sparse felt piano motif",
+       "warm low pad",
+       "anticipation",
+       "no drums"
+      ],
+      "negative_local_styles": [
+       "drums",
+       "loud"
+      ],
+      "duration_ms": 5600,
+      "lines": []
+     },
+     {
+      "section_name": "The hype builds",
+      "positive_local_styles": [
+       "driving pulse enters",
+       "ticking hi-hats",
+       "rising string ostinato",
+       "confident momentum",
+       "big hits every two bars"
+      ],
+      "negative_local_styles": [
+       "calm"
+      ],
+      "duration_ms": 13000,
+      "lines": []
+     },
+     {
+      "section_name": "Peak euphoria",
+      "positive_local_styles": [
+       "full energy",
+       "soaring brass and strings",
+       "relentless percussion",
+       "accelerating tension",
+       "ends on an unresolved climax"
+      ],
+      "negative_local_styles": [
+       "resolution",
+       "fade out"
+      ],
+      "duration_ms": 12400,
+      "lines": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "B_reality",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "cinematic documentary score",
+     "D minor",
+     "somber then tense",
+     "felt piano",
+     "low strings",
+     "restrained, emotional, premium"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "cheesy",
+     "corporate ukulele",
+     "lo-fi",
+     "comedy",
+     "upbeat",
+     "happy"
+    ],
+    "sections": [
+     {
+      "section_name": "Aftermath",
+      "positive_local_styles": [
+       "sparse sad felt piano",
+       "long low cello notes",
+       "rain-like ambience",
+       "very quiet, lots of space",
+       "melancholic"
+      ],
+      "negative_local_styles": [
+       "drums",
+       "percussion",
+       "loud"
+      ],
+      "duration_ms": 22000,
+      "lines": []
+     },
+     {
+      "section_name": "Human cost",
+      "positive_local_styles": [
+       "piano with soft strings swelling",
+       "emotional",
+       "slow"
+      ],
+      "negative_local_styles": [
+       "drums"
+      ],
+      "duration_ms": 8000,
+      "lines": []
+     },
+     {
+      "section_name": "Root cause",
+      "positive_local_styles": [
+       "ticking clock pulse",
+       "staccato string ostinato",
+       "slowly building tension",
+       "investigative",
+       "low synth bass heartbeat"
+      ],
+      "negative_local_styles": [
+       "resolution"
+      ],
+      "duration_ms": 16000,
+      "lines": []
+     },
+     {
+      "section_name": "Tension peaks",
+      "positive_local_styles": [
+       "intense rising strings",
+       "driving percussion",
+       "crescendo",
+       "riser",
+       "ends abruptly on the peak"
+      ],
+      "negative_local_styles": [
+       "fade out",
+       "resolution"
+      ],
+      "duration_ms": 12000,
+      "lines": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "C_reveal",
+   "model_id": "music_v1",
+   "composition_plan": {
+    "positive_global_styles": [
+     "cinematic tech launch score",
+     "F major",
+     "hopeful, confident, premium",
+     "modern synth arpeggios",
+     "warm strings",
+     "120 BPM"
+    ],
+    "negative_global_styles": [
+     "vocals",
+     "singing",
+     "lyrics",
+     "cheesy",
+     "corporate ukulele",
+     "lo-fi",
+     "comedy",
+     "sad",
+     "dark"
+    ],
+    "sections": [
+     {
+      "section_name": "Reveal",
+      "positive_local_styles": [
+       "warm major chord swell",
+       "shimmering pads",
+       "sense of arrival and clarity",
+       "no drums"
+      ],
+      "negative_local_styles": [
+       "drums"
+      ],
+      "duration_ms": 4000,
+      "lines": []
+     },
+     {
+      "section_name": "The layer",
+      "positive_local_styles": [
+       "precise pulsing synth arpeggio",
+       "light percussion builds",
+       "intelligent, engineered, forward motion"
+      ],
+      "negative_local_styles": [
+       "aggressive"
+      ],
+      "duration_ms": 19600,
+      "lines": []
+     },
+     {
+      "section_name": "Autonomous market",
+      "positive_local_styles": [
+       "full driving uplifting groove",
+       "big drums",
+       "soaring strings",
+       "triumphant but tasteful",
+       "momentum"
+      ],
+      "negative_local_styles": [
+       "cheesy"
+      ],
+      "duration_ms": 14000,
+      "lines": []
+     },
+     {
+      "section_name": "Logo",
+      "positive_local_styles": [
+       "final big hit",
+       "sustained warm chord",
+       "gentle shimmering tail",
+       "resolution"
+      ],
+      "negative_local_styles": [
+       "drums continuing"
+      ],
+      "duration_ms": 6000,
+      "lines": []
+     }
+    ]
+   }
+  }
+ ]
+}

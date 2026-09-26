@@ -2,9 +2,13 @@
 // Layers: stock footage (frame sequences) -> 3D scene -> press windows -> UI -> fx.
 // window.__seek(t) renders any frame deterministically (async: waits for image decode).
 import { clamp, range, smooth, lerp, easeOutExpo, easeInCubic, easeOutCubic, easeInOutCubic, window01, rng } from '../src/util.js';
-import * as M from './modules.js';
+import * as Mod from './modules.js';
 
-export const DURATION = 125;
+export const DURATION = 132.4;
+// Act II gained a 7.4s human beat (Bloomberg, Detroit, Forbes). Everything authored
+// after the old 51.4s mark shifts by SHIFT; items flagged {abs:true} are in final time.
+const SHIFT_AT = 51.4, SHIFT = 7.4;
+const sh = x => (x >= SHIFT_AT - 1e-6 ? x + SHIFT : x);
 const FPS = 30;
 const $ = id => document.getElementById(id);
 
@@ -32,7 +36,10 @@ const STOCK = [
   // ACT II — THE REALITY
   [34.3, 41.0, 'rain', { speed: 0.7, z: [1.05, 1.12], grade: 'night', fi: 1.2, dim: 0.7 }],
   [41.0, 47.5, 'headinhands', { speed: 0.8, z: [1.06, 1.12], grade: 'night', dim: 0.3, fi: 0.4 }],
-  [47.5, 54.0, 'emptyoffice', { speed: 0.8, z: [1.04, 1.1], grade: 'night', dim: 0.55, fi: 0.4 }],
+  [47.5, 51.35, 'emptyoffice', { speed: 0.8, z: [1.04, 1.1], grade: 'night', dim: 0.55, fi: 0.4 }],
+  [51.4, 54.2, 'rain', { abs: true, off: 4.5, speed: 0.6, z: [1.1, 1.16], grade: 'night', dim: 0.45 }],
+  [54.2, 58.6, 'nightdesk', { abs: true, speed: 0.8, z: [1.04, 1.1], grade: 'night', dim: 0.42 }],
+  [58.6, 61.4, 'emptyoffice', { abs: true, off: 3.2, speed: 0.6, z: [1.1, 1.14], grade: 'night', dim: 0.45 }],
   // ACT III — THE ROOT CAUSE
   [54.0, 57.5, 'aerial', { z: [1.04, 1.12], grade: 'cine', dim: 0.62, fi: 0.5 }],
   [57.5, 59.5, 'buried', { z: [1.05, 1.1], grade: 'cine', dim: 0.6 }],
@@ -59,7 +66,18 @@ const THREE_SHOTS = [
 
 const W = 1280;
 const CENTER = [320, 150];
+const shiftO = o => {
+  if (o.abs) return o;
+  const r = { ...o, t0: sh(o.t0), t1: sh(o.t1) };
+  if (o.subT != null) r.subT = sh(o.subT);
+  if (o.hlT != null) r.hlT = sh(o.hlT);
+  if (o.lines) r.lines = o.lines.map(l => (l.t != null ? { ...l, t: sh(l.t) } : l));
+  if (o.keys) r.keys = o.keys.map(k => [sh(k[0]), ...k.slice(1)]);
+  return r;
+};
 function buildCues(assets) {
+  const HLS = assets.hls;
+  const M = Object.fromEntries(Object.entries(Mod).map(([k, f]) => [k, (k === 'mk' || k === 'setRoot') ? f : (o, ...a) => f(shiftO(o), ...a)]));
   const P = (o) => M.press(o, assets);
   const cues = [
     // ---------------- ACT I — THE PROMISE
@@ -68,18 +86,18 @@ function buildCues(assets) {
     P({ t0: 5.6, t1: 7.3, img: 'decrypt.jpg', url: 'decrypt.co/116145/blackrock-ceo-says-next-generation…', from: [620, 170, 0.8, -14, 2], to: [360, 150, 0.86, -8, 1], cap: 'Decrypt · <b>Dec 1, 2022</b>', capPos: [132, 972] }),
     P({ t0: 7.3, t1: 9.0, img: 'addx.jpg', url: 'addx.co/insights/bcg-addx-report-asset-tokenization…', from: [60, 190, 0.8, 14, 2], to: [260, 150, 0.86, 7, 1], hl: [0, 0, 0, 0], cap: 'BCG × ADDX report · <b>Sep 2022</b>', capPos: [132, 972] }),
     M.counter({ t0: 9.0, t1: 10.6, keys: [[9.0, 0], [10.2, 16.1]], fmt: v => `$${v.toFixed(1)}<i>T</i>`, label: 'Tokenized assets by 2030 · BCG, 2022', style: { left: '132px', bottom: '160px' } }),
-    P({ t0: 10.6, t1: 11.9, img: 'securitize.jpg', url: 'securitize.io/news · BlackRock launches its first tokenized fund', from: [700, 140, 0.8, -16, 0], to: [420, 150, 0.84, -9, 0], cap: 'BlackRock BUIDL launch · <b>Mar 20, 2024</b>', capPos: [132, 972], snap: true }),
+    P({ t0: 10.6, t1: 11.9, img: 'pk_cnbc24.jpg', url: 'cnbc.com/2024/01/12/blackrocks-larry-fink-says-bitcoin-etfs-are-just-the-first-step…', from: [700, 140, 0.8, -16, 0], to: [420, 150, 0.86, -9, 0], hl: HLS.cnbc24, hlT: 10.95, hlDur: 0.6, cap: 'CNBC · Larry Fink · <b>Jan 12, 2024</b>', capPos: [132, 972], snap: true }),
     M.slam({ t0: 11.9, t1: 12.5, word: 'TOKENIZATION' }),
     P({ t0: 12.5, t1: 13.8, img: 'stanchart.jpg', url: 'sc.com/en/press-release/trade-finance-to-play-substantial-role…', from: [0, 180, 0.8, 16, 0], to: [240, 150, 0.84, 9, 0], cap: 'Standard Chartered · <b>Jun 27, 2024</b>', capPos: [132, 972], snap: true }),
     M.counter({ t0: 13.8, t1: 14.9, keys: [[13.8, 16.1], [14.5, 30.1]], fmt: v => `$${v.toFixed(1)}<i>T</i>`, label: 'Tokenized assets by 2034 · Standard Chartered, 2024', style: { left: '132px', bottom: '160px' } }),
     M.slam({ t0: 14.9, t1: 15.4, word: 'EVERY ASSET', color: '#FFBE06' }),
-    P({ t0: 15.4, t1: 16.5, img: 'kitco.jpg', url: 'kitco.com/news/article/2024-07-02/blockchain-not-bitcoin…', from: [640, 160, 0.8, -12, 0], to: [380, 150, 0.84, -6, 0], cap: 'Kitco News · <b>Jul 2, 2024</b>', capPos: [132, 972], snap: true }),
+    P({ t0: 15.4, t1: 16.5, img: 'pk_deloitte.jpg', url: 'coindesk.com/markets/2025/04/24/global-tokenized-real-estate-market-could-explode-to-4t…', from: [640, 160, 0.8, -12, 0], to: [380, 150, 0.86, -6, 0], cap: 'CoinDesk · Deloitte forecast · <b>Apr 24, 2025</b>', capPos: [132, 972], snap: true }),
     M.slam({ t0: 16.5, t1: 17.0, word: 'TOKENIZED' }),
-    P({ t0: 17.0, t1: 18.1, img: 'coindesk.jpg', url: 'coindesk.com/business/2025/06/26/real-world-asset-tokenization…', bgpos: '50% 40%', from: [40, 170, 0.8, 12, 0], to: [260, 150, 0.84, 6, 0], cap: 'CoinDesk · <b>Jun 26, 2025</b>', capPos: [132, 972], snap: true }),
+    P({ t0: 17.0, t1: 18.1, img: 'pk_dubai.jpg', url: 'dubailand.gov.ae/en/news-media/dld-launches-the-mena-s-first-tokenized-real-estate-project…', from: [40, 170, 0.8, 12, 0], to: [260, 150, 0.86, 6, 0], hl: HLS.dubai, hlT: 17.3, hlDur: 0.5, cap: 'Dubai Land Department · <b>May 25, 2025</b>', capPos: [132, 972], snap: true }),
     M.slam({ t0: 18.1, t1: 18.6, word: 'TRILLIONS', color: '#FFBE06' }),
     P({ t0: 18.6, t1: 22.6, img: 'blackrock_quote.jpg', url: 'blackrock.com/corporate/investor-relations/2025-larry-fink-annual-chairmans-letter', bgpos: '-120px -253px', bgsize: '2000px auto', from: [330, 200, 0.9, -6, 3], to: [300, 150, 0.98, -2, 0], drift: 0.14, hl: [74, 352, 670, 38], hlT: 19.7, cap: 'Larry Fink · <b>2025 Annual Chairman’s Letter</b>', capPos: [132, 972] }),
     M.quote({ t0: 22.6, t1: 26.6, top: 360, size: 72, per: 0.13, text: 'Markets wouldn’t need to close. Transactions that currently take days would clear in seconds.', attrib: '<b>Larry Fink</b> · 2025 Annual Chairman’s Letter' }),
-    P({ t0: 26.6, t1: 30.2, img: 'cnbc.jpg', url: 'cnbc.com/2025/04/12/tokenization-stock-bond-real-estate-trading-market-coming-blackrock.html', outlet: 'CNBC', headline: 'Tokenization of the market, from stocks to bonds to real estate is coming, says BlackRock CEO Larry Fink, <span style="background:rgba(255,190,6,.55)">if we can solve one problem</span>', date: 'APR 12, 2025', from: [320, 190, 0.84, 0, 4], to: [320, 150, 0.9, 0, 0], drift: 0.1, out: 0.05, cap: 'CNBC · <b>Apr 12, 2025</b>', capPos: [132, 972] }),
+    P({ t0: 26.6, t1: 30.2, img: 'pk_cnbc25.jpg', hl: HLS.cnbc25, hlT: 27.6, hlDur: 0.9, url: 'cnbc.com/2025/04/12/tokenization-stock-bond-real-estate-trading-market-coming-blackrock.html', outlet: 'CNBC', headline: 'Tokenization of the market, from stocks to bonds to real estate is coming, says BlackRock CEO Larry Fink, <span style="background:rgba(255,190,6,.55)">if we can solve one problem</span>', date: 'APR 12, 2025', from: [320, 190, 0.84, 0, 4], to: [320, 150, 0.9, 0, 0], drift: 0.1, out: 0.05, cap: 'CNBC · <b>Apr 12, 2025</b>', capPos: [132, 972] }),
     // ---------------- ACT II — THE REALITY
     M.chapter({ t0: 31.6, t1: 54.0, num: 'II', title: 'The reality' }),
     M.title({ t0: 31.8, t1: 34.3, pos: 'c', size: 'h-l', lines: [{ segs: [['Four years later.']] }] }),
@@ -88,8 +106,12 @@ function buildCues(assets) {
       label: t => t < 36.4 ? 'The forecast · tokenized by 2030' : 'What arrived · tradeable on-chain value, mid 2026 · <b style="color:#FFBE06;font-weight:500">under 0.2% of the forecast</b>',
       shake: t => t > 37.2 && t < 37.8 ? 6 * Math.exp(-(t - 37.2) * 8) : 0, style: { left: '132px', bottom: '170px' } }),
     M.assetChart({ t0: 41.0, t1: 47.4 }),
-    M.title({ t0: 47.6, t1: 51.4, pos: 'll', size: 'h-l', lines: [{ segs: [['$1 on-chain for every', '']] }, { segs: [['$2 million', 'yl'], [' of real estate.', '']] }], sub: 'The largest asset class. The lowest penetration.' }),
-    P({ t0: 51.4, t1: 54.0, img: 'forbes.jpg', url: 'forbes.com/sites/digital-assets/2026/05/26/why-tokenized-real-estate-still-hasnt-taken-off/', outlet: 'Forbes · Digital Assets', headline: 'Why Tokenized Real Estate Still Hasn’t Taken Off', date: 'MAY 26, 2026', from: [360, 200, 0.8, -6, 3], to: [320, 150, 0.86, -2, 0], drift: 0.1, cap: 'Forbes · <b>May 26, 2026</b>', capPos: [132, 972] }),
+    M.title({ t0: 47.6, t1: 51.35, pos: 'll', size: 'h-l', lines: [{ segs: [['$1 on-chain for every', '']] }, { segs: [['$2 million', 'yl'], [' of real estate.', '']] }], sub: 'The largest asset class. The lowest penetration.' }),
+    P({ abs: true, t0: 51.4, t1: 54.2, img: 'pk_bloomberg.jpg', dark: true, url: 'finance.yahoo.com/news/tokenization-become-wall-street-latest-favorite-crypto-buzzword…', from: [360, 200, 0.84, -6, 3], to: [300, 150, 0.92, -2, 0], drift: 0.12, hl: HLS.bloomberg, hlT: 52.0, hlDur: 1.1, cap: 'Bloomberg (via Yahoo Finance) · <b>Dec 27, 2024</b>', capPos: [132, 972] }),
+    P({ abs: true, t0: 54.2, t1: 56.4, img: 'pk_detroit1.jpg', url: 'outliermedia.org/detroit-sues-realt-crypto-landlord-blight…', from: [300, 190, 0.84, 6, 3], to: [330, 150, 0.9, 2, 0], drift: 0.1, cap: 'Outlier Media, Detroit · <b>Jul 2, 2025</b>', capPos: [132, 972] }),
+    P({ abs: true, t0: 56.4, t1: 58.6, img: 'pk_detroit2.jpg', url: 'outliermedia.org/realt-detroit-model-no-longer-works…', from: [340, 190, 0.84, -6, 3], to: [310, 150, 0.9, -2, 0], drift: 0.1, cap: 'Outlier Media, Detroit · <b>Mar 17, 2026</b>', capPos: [132, 972] }),
+    P({ abs: true, t0: 58.6, t1: 59.9, img: 'pk_forbes.jpg', url: 'forbes.com/sites/digital-assets/2026/05/26/why-tokenized-real-estate-still-hasnt-taken-off/', from: [320, 170, 0.86, 0, 3], to: [320, 150, 0.9, 0, 0], cap: 'Forbes · <b>May 26, 2026</b>', capPos: [132, 972], snap: true }),
+    P({ abs: true, t0: 59.9, t1: 61.4, img: 'pk_forbes2.jpg', url: 'forbes.com/sites/digital-assets/2026/05/26/why-tokenized-real-estate-still-hasnt-taken-off/', from: [320, 150, 0.9, 0, 0], to: [300, 140, 0.98, 0, 0], drift: 0.08, hl: HLS.forbes2, hlT: 60.0, hlDur: 1.0, cap: 'Forbes · <b>May 26, 2026</b>', capPos: [132, 972] }),
     // ---------------- ACT III — THE ROOT CAUSE
     M.chapter({ t0: 54.2, t1: 79.0, num: 'III', title: 'The root cause' }),
     M.title({ t0: 54.3, t1: 57.4, pos: 'll', size: 'h-xl', eyebrow: 'Real estate', lines: [{ segs: [['$380 trillion.', '']] }], sub: 'The largest asset class on earth.' }),
@@ -119,12 +141,18 @@ function buildCues(assets) {
   return cues;
 }
 
+for (const s of STOCK) if (!s[3].abs) { s[0] = sh(s[0]); s[1] = sh(s[1]); }
+for (const s of THREE_SHOTS) { s[0] = sh(s[0]); s[1] = sh(s[1]); }
+
 // letterbox height keyframes (per bar): film look until the reveal
 const BARS = [[0, 70], [82.2, 70], [84.2, 0], [125, 0]];
 // fade-to-black keyframes
 const BLACK = [[0, 1], [1.3, 0], [30.15, 0], [30.2, 1], [31.6, 1], [31.8, 0], [124.3, 0], [125, 1]];
+
 // white flashes (t, strength)
 const FLASH = [[11.9, 0.35], [14.9, 0.3], [16.5, 0.3], [18.1, 0.3], [37.25, 0.12], [80.6, 0.08], [89.8, 0.18], [82.4, 0.06]];
+for (const K of [BARS, BLACK, FLASH]) for (const k of K) k[0] = sh(k[0]);
+
 // film grade per shot
 const GRADES = {
   cine: 'contrast(1.12) saturate(0.78) brightness(0.92)',
@@ -210,14 +238,15 @@ async function boot() {
   await document.fonts.ready;
   await Promise.all(['300 20px Inter', '400 20px Inter', '500 20px Inter', '600 20px Inter', '400 20px Mono', '500 20px Mono'].map(f => document.fonts.load(f)));
   manifest = await fetch('stock/manifest.json').then(r => r.json()).catch(() => ({}));
-  const pressFiles = ['decrypt.jpg', 'addx.jpg', 'securitize.jpg', 'stanchart.jpg', 'kitco.jpg', 'coindesk.jpg', 'blackrock_quote.jpg', 'cnbc.jpg', 'forbes.jpg'];
+  const pressFiles = ['decrypt.jpg', 'addx.jpg', 'stanchart.jpg', 'blackrock_quote.jpg', ...['cnbc24', 'cnbc25', 'dubai', 'deloitte', 'bloomberg', 'detroit1', 'detroit2', 'forbes', 'forbes2'].map(n => `pk_${n}.jpg`)];
+  const hls = await fetch('press/pk_highlights.json').then(r => r.json()).catch(() => ({}));
   const press = new Set();
   await Promise.all(pressFiles.map(f => fetch('press/' + f, { method: 'HEAD' }).then(r => r.ok && press.add(f)).catch(() => {})));
   await Promise.all([...press].map(f => new Promise(res => { const i = new Image(); i.onload = i.onerror = res; i.src = 'press/' + f; })));
   for (let k = 0; k < 3; k++) { const im = document.createElement('img'); im.decoding = 'sync'; $('stock').appendChild(im); imgs.push(im); }
   makeGrain();
-  M.setRoot($('ui'));
-  cues = buildCues({ press });
+  Mod.setRoot($('ui'));
+  cues = buildCues({ press, hls });
   // press windows sit on their own layer beneath the type
   cues.forEach(c => { if (c.el.querySelector?.('.pwin')) $('press').appendChild(c.el); });
   three = await import('../src/main.js');

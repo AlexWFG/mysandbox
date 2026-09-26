@@ -1,0 +1,14 @@
+{ "fx": [
+  { "id": "rain",       "dur": 22, "text": "Steady rain against a large office window at night, distant city ambience, calm and melancholic" },
+  { "id": "clock",      "dur": 10, "text": "Slow mechanical clock ticking in an empty quiet room" },
+  { "id": "paperstorm", "dur": 6,  "text": "Hundreds of paper sheets fluttering and swirling through the air in strong wind" },
+  { "id": "applause",   "dur": 5,  "text": "Business conference audience applauding enthusiastically in a large hall" },
+  { "id": "tradefloor", "dur": 6,  "text": "Busy stock exchange trading floor, crowd murmur, phones ringing, energetic" },
+  { "id": "shutters",   "dur": 3,  "text": "Press conference camera shutters and flash clicks, rapid" },
+  { "id": "keyboard",   "dur": 5,  "text": "Fast confident typing on a quiet laptop keyboard in a calm office" },
+  { "id": "signing",    "dur": 3,  "text": "Pen signing paper document then a rubber stamp thump on a desk" },
+  { "id": "glitch",     "dur": 3,  "text": "Digital data corruption glitch, stuttering electronic scan errors" },
+  { "id": "citynight",  "dur": 12, "text": "Distant city at night from a high rooftop, soft traffic hum, wind" },
+  { "id": "boomtail",   "dur": 5,  "text": "Cinematic deep sub boom impact with a long dark reverb tail", "influence": 0.7 },
+  { "id": "whoosh",     "dur": 2,  "text": "Fast cinematic air whoosh transition, clean", "influence": 0.7 }
+] }

@@ -1,0 +1,170 @@
+[
+ {
+  "id": "01",
+  "t": 0.9,
+  "slot": 4.6,
+  "text": "In twenty twenty-two, the world's largest asset manager made a prediction.",
+  "file": "vo/01_ca67593e83.mp3",
+  "dur": 5.02
+ },
+ {
+  "id": "02",
+  "t": 18.9,
+  "slot": 3.6,
+  "text": "Every asset, it was said, could be tokenized.",
+  "file": "vo/02_2a55bde40b.mp3",
+  "dur": 2.77
+ },
+ {
+  "id": "03",
+  "t": 27.2,
+  "slot": 2.9,
+  "text": "There was just one problem.",
+  "file": "vo/03_03f345ebac.mp3",
+  "dur": 1.93
+ },
+ {
+  "id": "04",
+  "t": 32.0,
+  "slot": 2.3,
+  "text": "Four years later\u2026",
+  "file": "vo/04_a59e0623fc.mp3",
+  "dur": 1.15
+ },
+ {
+  "id": "05",
+  "t": 37.6,
+  "slot": 3.2,
+  "text": "\u2026less than zero point two percent had arrived.",
+  "file": "vo/05_30b03bc97c.mp3",
+  "dur": 2.95
+ },
+ {
+  "id": "06",
+  "t": 41.8,
+  "slot": 5.3,
+  "text": "And real estate, the largest asset class on earth, barely moved at all.",
+  "file": "vo/06_04ce11cced.mp3",
+  "dur": 4.83
+ },
+ {
+  "id": "07",
+  "t": 54.4,
+  "slot": 4.0,
+  "text": "Behind the headlines: real tenants, real investors, real money lost.",
+  "file": "vo/07_49a9a2afcc.mp3",
+  "dur": 5.25
+ },
+ {
+  "id": "08",
+  "t": 61.8,
+  "slot": 5.0,
+  "text": "Because real estate still runs on PDFs, spreadsheets and paper.",
+  "file": "vo/08_95daf07624.mp3",
+  "dur": 4.41
+ },
+ {
+  "id": "09",
+  "t": 69.4,
+  "slot": 4.3,
+  "text": "Every buyer re-verifies every asset. From scratch. For months.",
+  "file": "vo/09_915038be7c.mp3",
+  "dur": 4.41
+ },
+ {
+  "id": "10",
+  "t": 74.1,
+  "slot": 6.5,
+  "text": "A dozen intermediaries stand between capital and the asset, each one re-checking the same data.",
+  "file": "vo/10_c9dadfd2b5.mp3",
+  "dur": 6.82
+ },
+ {
+  "id": "11",
+  "t": 81.3,
+  "slot": 5.0,
+  "text": "Public markets automated decades ago, because their data allowed it.",
+  "file": "vo/11_6557004334.mp3",
+  "dur": 4.55
+ },
+ {
+  "id": "12",
+  "t": 86.7,
+  "slot": 1.8,
+  "text": "The token was never the problem.",
+  "file": "vo/12_1ea6665e88.mp3",
+  "dur": 1.7
+ },
+ {
+  "id": "13",
+  "t": 88.05,
+  "slot": 1.6,
+  "text": "The data was.",
+  "file": "vo/13_832a22d847.mp3",
+  "dur": 1.44
+ },
+ {
+  "id": "14",
+  "t": 90.4,
+  "slot": 2.6,
+  "text": "Propchain is the missing layer.",
+  "file": "vo/14_5575987593.mp3",
+  "dur": 1.8
+ },
+ {
+  "id": "15",
+  "t": 93.3,
+  "slot": 5.9,
+  "text": "Every source, from scanned registries to rent rolls, structured into one machine-readable standard.",
+  "file": "vo/15_26aa22f9c0.mp3",
+  "dur": 6.3
+ },
+ {
+  "id": "16",
+  "t": 99.9,
+  "slot": 5.0,
+  "text": "Attested on chain, so origin, permission and state are provable by anyone.",
+  "file": "vo/16_29ede4ceb9.mp3",
+  "dur": 4.96
+ },
+ {
+  "id": "17",
+  "t": 105.2,
+  "slot": 4.9,
+  "text": "So AI agents can finally act on it: identified, permissioned, audited.",
+  "file": "vo/17_d305cbf0b1.mp3",
+  "dur": 5.85
+ },
+ {
+  "id": "18",
+  "t": 112.9,
+  "slot": 4.5,
+  "text": "When an allocator sets a mandate, its agent finds, verifies, finances and settles\u2026",
+  "file": "vo/18_388a5aae06.mp3",
+  "dur": 6.27
+ },
+ {
+  "id": "19",
+  "t": 119.4,
+  "slot": 2.4,
+  "text": "\u2026in minutes. Not months.",
+  "file": "vo/19_48b11938de.mp3",
+  "dur": 2.46
+ },
+ {
+  "id": "20",
+  "t": 124.4,
+  "slot": 2.9,
+  "text": "Already live, across more than eleven thousand units.",
+  "file": "vo/20_8a83af6672.mp3",
+  "dur": 3.37
+ },
+ {
+  "id": "21",
+  "t": 128.1,
+  "slot": 4.0,
+  "text": "Propchain. Structuring real estate for the autonomous era.",
+  "file": "vo/21_dae204b562.mp3",
+  "dur": 3.79
+ }
+]

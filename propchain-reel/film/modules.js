@@ -90,8 +90,10 @@ export function press(o, assets) {
   } else {
     shot = mk('div', 'fallback', `<div class="ol">${o.outlet}</div><div class="hd">${o.headline}</div>${o.sub ? `<div class="sd">${o.sub}</div>` : ''}<div class="dt">${o.date}</div>`, win);
   }
-  let hl;
-  if (o.hl) { hl = mk('div', 'hl', null, shot); Object.assign(hl.style, { left: o.hl[0] + 'px', top: o.hl[1] + 'px', width: o.hl[2] + 'px', height: o.hl[3] + 'px' }); }
+  // highlight rects (in 1280x740 window space), swept one after another
+  const rects = !o.hl ? [] : Array.isArray(o.hl[0]) ? o.hl : [o.hl];
+  const tot = rects.reduce((a, r) => a + r[2], 0) || 1;
+  const HL = rects.map(r => { const h = mk('div', 'hl' + (o.dark ? ' dark' : ''), null, shot); Object.assign(h.style, { left: r[0] + 'px', top: r[1] + 'px', width: r[2] + 'px', height: r[3] + 'px' }); return { h, w: r[2] }; });
   const cap = o.cap ? mk('div', 'pcap', o.cap, wrap) : null;
   const A = o.from, B = o.to;
   return { el: wrap, update(t) {
@@ -106,7 +108,11 @@ export function press(o, assets) {
     const out = easeInCubic(range(t, o.t1 - (o.out ?? 0.25), o.t1));
     win.style.opacity = Math.min(1, range(t, o.t0, o.t0 + 0.15) * 1) * (1 - out);
     win.style.filter = out > 0 ? `blur(${out * 12}px)` : 'none';
-    if (hl) hl.style.transform = `scaleX(${easeInOutCubic(range(t, o.hlT ?? o.t0 + 0.6, (o.hlT ?? o.t0 + 0.6) + 0.5))})`;
+    if (HL.length) {
+      const h0 = o.hlT ?? o.t0 + 0.6, dur = o.hlDur ?? 0.3 + 0.5 * HL.length;
+      const p = clamp((t - h0) / dur) * tot; let acc = 0;
+      HL.forEach(({ h, w }) => { h.style.transform = `scaleX(${clamp((p - acc) / w)})`; acc += w; });
+    }
     if (cap) { Object.assign(cap.style, { left: (o.capPos?.[0] ?? 132) + 'px', top: (o.capPos?.[1] ?? 960) + 'px' }); cap.style.opacity = window01(t, o.t0 + 0.2, o.t1, 0.3, 0.2); }
   } };
 }

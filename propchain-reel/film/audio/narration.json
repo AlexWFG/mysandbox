@@ -1,0 +1,140 @@
+{
+ "voice": "JBFqnCBsd6RMkjVDRZzb",
+ "voice_name": "George - Warm, Captivating Storyteller",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "lines": [
+  {
+   "id": "01",
+   "t": 0.9,
+   "slot": 4.6,
+   "text": "In twenty twenty-two, the world's largest asset manager made a prediction."
+  },
+  {
+   "id": "02",
+   "t": 18.9,
+   "slot": 3.6,
+   "text": "Every asset, it was said, could be tokenized."
+  },
+  {
+   "id": "03",
+   "t": 27.2,
+   "slot": 2.9,
+   "text": "There was just one problem."
+  },
+  {
+   "id": "04",
+   "t": 32.0,
+   "slot": 2.3,
+   "text": "Four years later…"
+  },
+  {
+   "id": "05",
+   "t": 37.6,
+   "slot": 3.2,
+   "text": "…less than zero point two percent had arrived."
+  },
+  {
+   "id": "06",
+   "t": 41.8,
+   "slot": 5.3,
+   "text": "And real estate, the largest asset class on earth, barely moved at all."
+  },
+  {
+   "id": "07",
+   "t": 54.4,
+   "slot": 4.0,
+   "text": "Behind the headlines: real tenants, real investors, real money lost."
+  },
+  {
+   "id": "08",
+   "t": 61.8,
+   "slot": 5.0,
+   "text": "Because real estate still runs on PDFs, spreadsheets and paper."
+  },
+  {
+   "id": "09",
+   "t": 69.4,
+   "slot": 4.3,
+   "text": "Every buyer re-verifies every asset. From scratch. For months."
+  },
+  {
+   "id": "10",
+   "t": 74.1,
+   "slot": 6.5,
+   "text": "A dozen intermediaries stand between capital and the asset, each one re-checking the same data."
+  },
+  {
+   "id": "11",
+   "t": 81.3,
+   "slot": 5.0,
+   "text": "Public markets automated decades ago, because their data allowed it."
+  },
+  {
+   "id": "12",
+   "t": 86.3,
+   "slot": 1.8,
+   "text": "The token was never the problem."
+  },
+  {
+   "id": "13",
+   "t": 88.1,
+   "slot": 1.6,
+   "text": "The data was."
+  },
+  {
+   "id": "14",
+   "t": 90.4,
+   "slot": 2.6,
+   "text": "Propchain is the missing layer."
+  },
+  {
+   "id": "15",
+   "t": 93.3,
+   "slot": 5.9,
+   "text": "Every source, from scanned registries to rent rolls, structured into one machine-readable standard."
+  },
+  {
+   "id": "16",
+   "t": 99.9,
+   "slot": 5.0,
+   "text": "Attested on chain, so origin, permission and state are provable by anyone."
+  },
+  {
+   "id": "17",
+   "t": 105.2,
+   "slot": 4.9,
+   "text": "So AI agents can finally act on it: identified, permissioned, audited."
+  },
+  {
+   "id": "18",
+   "t": 112.9,
+   "slot": 4.5,
+   "text": "When an allocator sets a mandate, its agent finds, verifies, finances and settles…"
+  },
+  {
+   "id": "19",
+   "t": 119.4,
+   "slot": 2.4,
+   "text": "…in minutes. Not months."
+  },
+  {
+   "id": "20",
+   "t": 124.4,
+   "slot": 2.9,
+   "text": "Already live, across more than eleven thousand units."
+  },
+  {
+   "id": "21",
+   "t": 128.1,
+   "slot": 4.0,
+   "text": "Propchain. Structuring real estate for the autonomous era."
+  }
+ ]
+}

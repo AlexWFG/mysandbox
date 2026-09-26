@@ -57,7 +57,8 @@ canvas#gl { width: 1920px; height: 1080px; }
 .pwin .dot { width: 12px; height: 12px; border-radius: 50%; background: #3a3a3c; }
 .pwin .url { margin-left: 22px; flex: 1; height: 28px; border-radius: 8px; background: #2c2c2e; color: #a1a1a6; font: 400 15px Inter, sans-serif; display: flex; align-items: center; padding: 0 14px; white-space: nowrap; overflow: hidden; }
 .pwin .shot { width: 1280px; height: 740px; background-size: cover; background-position: 50% 0; position: relative; }
-.pwin .hl { position: absolute; background: rgba(255,190,6,.42); mix-blend-mode: multiply; transform-origin: left center; }
+.pwin .hl { position: absolute; background: rgba(255,190,6,.5); mix-blend-mode: multiply; transform-origin: left center; border-radius: 3px; }
+.pwin .hl.dark { background: rgba(255,190,6,.3); mix-blend-mode: screen; box-shadow: inset 0 -3px 0 #FFBE06; }
 .pwin .fallback { width: 1280px; height: 740px; background: #fbfaf7; color: #111; padding: 90px 110px; box-sizing: border-box; }
 .pwin .fallback .ol { font: 600 22px Inter, sans-serif; letter-spacing: .02em; color: #111; border-bottom: 2px solid #111; padding-bottom: 18px; margin-bottom: 60px; }
 .pwin .fallback .hd { font: 600 64px/1.08 Inter, sans-serif; letter-spacing: -.02em; }
